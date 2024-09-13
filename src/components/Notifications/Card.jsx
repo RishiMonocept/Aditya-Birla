@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     width: 328,
     marginTop: 50,
     flexDirection: "row",
-    backgroundColor: " #c7222",
+    backgroundColor: " #ffffff",
     paddingLeft: 20,
     // gap: 24,
   },
@@ -48,8 +48,7 @@ const styles = StyleSheet.create({
   logo: {
     width: 45,
     height: 40,
-   
-    
+
     borderRadius: 5,
   },
   cardDescContainer: {
