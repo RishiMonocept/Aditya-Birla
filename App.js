@@ -4,14 +4,10 @@ import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import Card from "./src/components/Notifications/Card";
 
 export default function App() {
-  // return <NavigationContainer>
+  return <NavigationContainer>
 
-  // </NavigationContainer>;
-  return (
-    <SafeAreaView>
-      <Card />
-    </SafeAreaView>
-  );
+  </NavigationContainer>;
+  
 }
 
 const styles = StyleSheet.create({
