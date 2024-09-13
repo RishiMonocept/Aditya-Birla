@@ -1,19 +1,19 @@
 import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
 
-const logo = require("../../assets/Birthday_Reminder.png");
-const Card = () => {
+// const logo = require("../../assets/Birthday_Reminder.png");
+const Card = ({ icon, title, date, key }) => {
   return (
-    <View style={styles.container}>
+    <View style={styles.container} key={key}>
       <View style={styles.cardMainContainer}>
         <View style={styles.cardLogoContainer}>
-          <Image source={logo} style={styles.logo} />
+          <Image source={icon} style={styles.logo} />
         </View>
 
         <View style={styles.cardDescContainer}>
           <View style={styles.cardDescContainer}>
-            <Text style={styles.titleText}>Birthday Reminder</Text>
-            <Text style={styles.dateText}>2024-08-13</Text>
+            <Text style={styles.titleText}>{title}</Text>
+            <Text style={styles.dateText}>{date}</Text>
           </View>
         </View>
       </View>
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     width: 328,
     marginTop: 50,
     flexDirection: "row",
-    backgroundColor: " #ffffff",
+    backgroundColor: " #ffff45",
     paddingLeft: 20,
     // gap: 24,
   },

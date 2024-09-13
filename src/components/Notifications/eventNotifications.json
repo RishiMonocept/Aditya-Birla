@@ -1,79 +1,92 @@
-{
-  "events": [
-    {
-      "icon": "../../assets/Birthday_Reminder.png",
-      "title": "Birthday Reminder",
-      "date": "2023-03-15"
-    },
-    {
-      "icon": "../../assets/New_Lead_Assignment.png",
-      "title": "New Lead Assignment",
-      "date": "2023-03-15"
-    },
-    {
-      "icon": "../../assets/Proposal_Payment_Failed.png",
-      "title": "Proposal Payment Failed",
-      "date": "2023-03-15"
-    },
-    {
-      "icon": "../../assets/HTLMeter_Product_Release.png",
-      "title": "HLTMeter product released.",
-      "date": "2023-03-15"
-    },
-    {
-      "icon": "../../assets/Milestone_Reached.png",
-      "title": "Milestone Reached",
-      "date": "2023-03-15"
-    },
-    {
-      "icon": "../../assets/Birthday_Reminder.png",
-      "title": "Birthday Reminder",
-      "date": "2023-03-15"
-    },
-    {
-      "icon": "../../assets/New_Lead_Assignment.png",
-      "title": "New Lead Assignment",
-      "date": "2023-03-15"
-    },
-    {
-      "icon": "../../assets/Proposal_Payment_Failed.png",
-      "title": "Proposal Payment Failed",
-      "date": "2023-03-15"
-    },
-    {
-      "icon": "../../assets/HTLMeter_Product_Release.png",
-      "title": "HLTMeter product released.",
-      "date": "2023-03-15"
-    },
-    {
-      "icon": "../../assets/Milestone_Reached.png",
-      "title": "Milestone Reached",
-      "date": "2023-03-15"
-    },
-    {
-      "icon": "../../assets/Birthday_Reminder.png",
-      "title": "Birthday Reminder",
-      "date": "2023-03-15"
-    },
-    {
-      "icon": "../../assets/New_Lead_Assignment.png",
-      "title": "New Lead Assignment",
-      "date": "2023-03-15"
-    },
-    {
-      "icon": "../../assets/Proposal_Payment_Failed.png",
-      "title": "Proposal Payment Failed",
-      "date": "2023-03-15"
-    },
-    {
-      "icon": "../../assets/HTLMeter_Product_Release.png",
-      "title": "HLTMeter product released.",
-      "date": "2023-03-15"
-    },
-    {
-      "icon": "../../assets/Milestone_Reached.png",
-      "title": "Milestone Reached",
-      "date": "2023-03-15"
-    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "icon": "../../assets/Birthday_Reminder.png",
+    "title": "Birthday Reminder",
+    "date": "2023-03-15"
+  },
+  {
+    "id": 2,
+    "icon": "../../assets/New_Lead_Assignment.png",
+    "title": "New Lead Assignment",
+    "date": "2023-03-15"
+  },
+  {
+    "id": 3,
+    "icon": "../../assets/Proposal_Payment_Failed.png",
+    "title": "Proposal Payment Failed",
+    "date": "2023-03-15"
+  },
+  {
+    "id": 4,
+    "icon": "../../assets/HTLMeter_Product_Release.png",
+    "title": "HLTMeter product released.",
+    "date": "2023-03-15"
+  },
+  {
+    "id": 5,
+    "icon": "../../assets/Milestone_Reached.png",
+    "title": "Milestone Reached",
+    "date": "2023-03-15"
+  },
+  {
+    "id": 6,
+    "icon": "../../assets/Birthday_Reminder.png",
+    "title": "Birthday Reminder",
+    "date": "2023-03-15"
+  },
+  {
+    "id": 7,
+    "icon": "../../assets/New_Lead_Assignment.png",
+    "title": "New Lead Assignment",
+    "date": "2023-03-15"
+  },
+  {
+    "id": 8,
+    "icon": "../../assets/Proposal_Payment_Failed.png",
+    "title": "Proposal Payment Failed",
+    "date": "2023-03-15"
+  },
+  {
+    "id": 9,
+    "icon": "../../assets/HTLMeter_Product_Release.png",
+    "title": "HLTMeter product released.",
+    "date": "2023-03-15"
+  },
+  {
+    "id": 10,
+    "icon": "../../assets/Milestone_Reached.png",
+    "title": "Milestone Reached",
+    "date": "2023-03-15"
+  },
+  {
+    "id": 11,
+    "icon": "../../assets/Birthday_Reminder.png",
+    "title": "Birthday Reminder",
+    "date": "2023-03-15"
+  },
+  {
+    "id": 12,
+    "icon": "../../assets/New_Lead_Assignment.png",
+    "title": "New Lead Assignment",
+    "date": "2023-03-15"
+  },
+  {
+    "id": 13,
+    "icon": "../../assets/Proposal_Payment_Failed.png",
+    "title": "Proposal Payment Failed",
+    "date": "2023-03-15"
+  },
+  {
+    "id": 14,
+    "icon": "../../assets/HTLMeter_Product_Release.png",
+    "title": "HLTMeter product released.",
+    "date": "2023-03-15"
+  },
+  {
+    "id": 15,
+    "icon": "../../assets/Milestone_Reached.png",
+    "title": "Milestone Reached",
+    "date": "2023-03-15"
+  }
+]
