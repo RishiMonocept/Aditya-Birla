@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
 
 const logo = require("../../assets/Birthday_Reminder.png");
-const Card = () => {
+const NotificationsCard = () => {
   return (
     <View style={styles.container}>
       <View style={styles.cardMainContainer}>
@@ -68,4 +68,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Card;
+export default NotificationsCard;

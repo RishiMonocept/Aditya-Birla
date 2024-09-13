@@ -5,8 +5,10 @@ import Header from "../components/Header/Header";
 import { styles } from "./home.style";
 import NavigationsTab from "../Tabs/NavigationsTab";
 import ChatButton from "../components/ChatButton";
-import Card from "../components/Notifications/Card";
+import NotificationsCard from "../components/Notifications/Card";
+import ActivityCard from "../components/Activity/Card";
 import BottomNavigation from "../components/BottomNavigation";
+import ActivitiesList from "../components/Activity";
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState("Notifications");
@@ -16,7 +18,11 @@ const Home = () => {
       <SafeAreaView style={styles.safeAreaView}>
         <Header />
         <NavigationsTab activeTab={activeTab} setActiveTab={setActiveTab} />
-        <Card />
+        {activeTab === "Notifications" ? (
+          <NotificationsCard />
+        ) : (
+          <ActivitiesList />
+        )}
       </SafeAreaView>
       <BottomNavigation />
       <ChatButton />
