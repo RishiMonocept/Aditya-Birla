@@ -26,20 +26,19 @@ const styles = StyleSheet.create({
     // flex:1,
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 20,
   },
   cardMainContainer: {
     // flexDirection:'row',
+    borderWidth: 1,
+
+    borderRadius: 16,
     height: 72,
     width: 328,
     marginTop: 50,
     flexDirection: "row",
     backgroundColor: " #c7222",
-    // borderRadius: 0,
-    shadowOpacity: 0.01,
-    elevation: 1,
-    padding: 16,
-    gap: 24,
+    paddingLeft: 20,
+    // gap: 24,
   },
   cardLogoContainer: {
     marginRight: 16,
@@ -49,7 +48,7 @@ const styles = StyleSheet.create({
   logo: {
     width: 45,
     height: 40,
-    borderRadius: 25,
+    borderRadius: 5,
   },
   cardDescContainer: {
     flex: 1,
@@ -62,8 +61,10 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   dateText: {
-    color: "#4c4c4c4c",
+    color: "#4c4f4f",
     fontSize: 12,
+    fontWeight: "400",
+    opacity: 1,
   },
 });
 
