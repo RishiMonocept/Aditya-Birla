@@ -10,6 +10,7 @@ import ActivityCard from "../components/Activity/Card";
 import BottomNavigation from "../components/BottomNavigation";
 import ActivitiesList from "../components/Activity";
 import NotificationsList from "../components/Notifications";
+import { StatusBar } from "expo-status-bar";
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState("Notifications");
@@ -27,6 +28,7 @@ const Home = () => {
       </SafeAreaView>
       <BottomNavigation />
       <ChatButton />
+      <StatusBar style="dark" />
     </>
   );
 };
