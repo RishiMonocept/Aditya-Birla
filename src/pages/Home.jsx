@@ -6,6 +6,7 @@ import { styles } from "./home.style";
 import NavigationsTab from "../Tabs/NavigationsTab";
 import ChatButton from "../components/ChatButton";
 import Card from "../components/Notifications/Card";
+import BottomNavigation from "../components/BottomNavigation";
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState("Notifications");
@@ -17,6 +18,7 @@ const Home = () => {
         <NavigationsTab activeTab={activeTab} setActiveTab={setActiveTab} />
         <Card />
       </SafeAreaView>
+      <BottomNavigation />
       <ChatButton />
     </>
   );

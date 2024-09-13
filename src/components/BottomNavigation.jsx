@@ -9,7 +9,7 @@ import {
 } from "react-native";
 
 const BottomNavigation = () => {
-  const [selectedTab, setSelectedTab] = useState(null);
+  const [selectedTab, setSelectedTab] = useState("Dashboard");
 
   const handlePress = (tab) => {
     setSelectedTab(tab);
@@ -83,6 +83,9 @@ const tabs = [
 
 const styles = StyleSheet.create({
   bottomNavigation: {
+    position: "absolute",
+    bottom: 1,
+    width: "100%",
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
