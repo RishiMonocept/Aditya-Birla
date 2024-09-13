@@ -1,11 +1,26 @@
 import { View, Text } from "react-native";
-import React from "react";
+import React, { useState } from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
+import Header from "../components/Header/Header";
+import { styles } from "./home.style";
+import NavigationsTab from "../Tabs/NavigationsTab";
+import ChatButton from "../components/ChatButton";
+import Card from "../components/Notifications/Card";
+import BottomNavigation from "../components/BottomNavigation";
 
 const Home = () => {
+  const [activeTab, setActiveTab] = useState("Notifications");
+
   return (
-    <View>
-      <Text>Home</Text>
-    </View>
+    <>
+      <SafeAreaView style={styles.safeAreaView}>
+        <Header />
+        <NavigationsTab activeTab={activeTab} setActiveTab={setActiveTab} />
+        <Card />
+      </SafeAreaView>
+      <BottomNavigation />
+      <ChatButton />
+    </>
   );
 };
 

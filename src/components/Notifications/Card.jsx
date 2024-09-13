@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
 
 const logo = require("../../assets/Birthday_Reminder.png");
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     // flexDirection:'row',
     borderWidth: 1,
 
-    borderRadius: 16,
+    // borderRadius: 16,
     height: 72,
     width: 328,
     marginTop: 50,
