@@ -2,17 +2,23 @@ import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
 
 const logo = require("../../assets/Birthday_Reminder.png");
-const NotificationsCard = () => {
+const NotificationsCard = ({ item, length }) => {
+  const icon = item?.item?.icon;
   return (
-    <View style={styles.container}>
+    <View
+      style={{
+        ...styles.container,
+        marginBottom: item?.item?.id === length ? 300 : null,
+      }}
+    >
       <View style={styles.cardMainContainer}>
         <View style={styles.cardLogoContainer}>
-          <Image source={logo} style={styles.logo} />
+          <Image source={icon} style={styles.logo} />
         </View>
 
         <View style={styles.cardDescContainer}>
-          <Text style={styles.titleText}>Birthday Reminder</Text>
-          <Text style={styles.dateText}>2024-08-13</Text>
+          <Text style={styles.titleText}>{item?.item?.title}</Text>
+          <Text style={styles.dateText}>{item?.item?.date}</Text>
         </View>
       </View>
     </View>
