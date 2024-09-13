@@ -1,19 +1,19 @@
 import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
 
-// const logo = require("../../assets/Birthday_Reminder.png");
+const logo = require("../../assets/Birthday_Reminder.png");
 const Card = ({ icon, title, date, key }) => {
   return (
     <View style={styles.container} key={key}>
       <View style={styles.cardMainContainer}>
         <View style={styles.cardLogoContainer}>
-          <Image source={icon} style={styles.logo} />
+          <Image source={logo} style={styles.logo} />
         </View>
 
         <View style={styles.cardDescContainer}>
           <View style={styles.cardDescContainer}>
-            <Text style={styles.titleText}>{title}</Text>
-            <Text style={styles.dateText}>{date}</Text>
+            <Text style={styles.titleText}>Birthday Reminder</Text>
+            <Text style={styles.dateText}>2024-08-13</Text>
           </View>
         </View>
       </View>
@@ -28,15 +28,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   cardMainContainer: {
-    // flexDirection:'row',
-    borderWidth: 1,
-
-    // borderRadius: 16,
+    borderRadius: 16,
     height: 72,
-    width: 328,
+    width: "100%",
     marginTop: 50,
     flexDirection: "row",
-    backgroundColor: " #ffff45",
+    backgroundColor: "white",
     paddingLeft: 20,
     // gap: 24,
   },

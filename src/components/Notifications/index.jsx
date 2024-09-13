@@ -9,7 +9,6 @@ const Index = () => {
       {eventsData.map((item) => {
         <Card
           title={item.title}
-        //   Tu push krde m dekhta hu apne usme leke 
           date={item.date}
           icon={item.icon}
           key={item.id}
