@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
 
 const logo = require("../../assets/Birthday_Reminder.png");
-const Card = ({ icon, title, date, key }) => {
+const NotificationsCard = () => {
   return (
     <View style={styles.container} key={key}>
       <View style={styles.cardMainContainer}>
@@ -11,10 +11,8 @@ const Card = ({ icon, title, date, key }) => {
         </View>
 
         <View style={styles.cardDescContainer}>
-          <View style={styles.cardDescContainer}>
-            <Text style={styles.titleText}>Birthday Reminder</Text>
-            <Text style={styles.dateText}>2024-08-13</Text>
-          </View>
+          <Text style={styles.titleText}>Birthday Reminder</Text>
+          <Text style={styles.dateText}>2024-08-13</Text>
         </View>
       </View>
     </View>
@@ -23,7 +21,6 @@ const Card = ({ icon, title, date, key }) => {
 
 const styles = StyleSheet.create({
   container: {
-    // flex:1,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -33,37 +30,41 @@ const styles = StyleSheet.create({
     width: "100%",
     marginTop: 50,
     flexDirection: "row",
-    backgroundColor: "white",
-    paddingLeft: 20,
-    // gap: 24,
+    backgroundColor: "#FFFFFF",
+    paddingHorizontal: 16,
+    paddingVertical: 20,
+    gap: 20,
   },
+
   cardLogoContainer: {
-    marginRight: 16,
     justifyContent: "center",
     alignItems: "center",
   },
-  logo: {
-    width: 45,
-    height: 40,
 
-    borderRadius: 5,
+  logo: {
+    width: 40,
+    height: 40,
   },
+
   cardDescContainer: {
     flex: 1,
     justifyContent: "center",
+    gap: 6,
   },
+
   titleText: {
     color: "#2E2E2E",
     fontSize: 16,
-    fontWeight: "bold",
-    marginBottom: 4,
+    fontWeight: "600",
+    lineHeight: 22,
   },
+
   dateText: {
-    color: "#4c4f4f",
+    color: "#4C4C4C",
     fontSize: 12,
     fontWeight: "400",
-    opacity: 1,
+    lineHeight: 12,
   },
 });
 
-export default Card;
+export default NotificationsCard;

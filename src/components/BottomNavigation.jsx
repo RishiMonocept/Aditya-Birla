@@ -7,6 +7,10 @@ import {
   Animated,
   Image,
 } from "react-native";
+import MENU from "../assets/BottomTab/Menu.png";
+import PRODUCT from "../assets/BottomTab/Product.png";
+import ENDORSEMENTS from "../assets/BottomTab/Endorsements.png";
+import MORE from "../assets/BottomTab/More.png";
 
 const BottomNavigation = () => {
   const [selectedTab, setSelectedTab] = useState("Dashboard");
@@ -24,13 +28,25 @@ const BottomNavigation = () => {
           onPress={() => handlePress(tab.name)}
           activeOpacity={0.8}
         >
+          <View
+            style={{
+              width: 51,
+              height: 2.4,
+              borderBottomRightRadius: 8,
+              borderBottomLeftRadius: 8,
+              marginTop: -4,
+              marginBottom: 10,
+              backgroundColor: selectedTab === tab.name ? "#C7222A" : null,
+              // borderWidth: 2,
+            }}
+          />
           <Animated.View
             style={[
               styles.iconContainer,
               {
                 transform: [
                   {
-                    scale: selectedTab === tab.name ? 1.2 : 1,
+                    scale: selectedTab === tab.name ? 1.03 : 1,
                   },
                 ],
               },
@@ -61,22 +77,22 @@ const BottomNavigation = () => {
 const tabs = [
   {
     name: "Dashboard",
-    icon: require("../assets/BottomTab/Menu.png"),
+    icon: MENU,
     label: "Dashboard",
   },
   {
     name: "Product",
-    icon: require("../assets/BottomTab/Product.png"),
+    icon: PRODUCT,
     label: "Product",
   },
   {
     name: "Endorsements",
-    icon: require("../assets/BottomTab/Endorsements.png"),
+    icon: ENDORSEMENTS,
     label: "Endorsements",
   },
   {
     name: "More",
-    icon: require("../assets/BottomTab/More.png"),
+    icon: MORE,
     label: "More",
   },
 ];
