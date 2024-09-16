@@ -30,6 +30,7 @@ const BottomNavigation = () => {
         >
           <View
             style={{
+              position: "absolute",
               width: 51,
               height: 2.4,
               borderBottomRightRadius: 8,
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     height: 60,
     borderTopWidth: 1,
-    borderTopColor: "#ccc",
+    borderTopColor: "#e6e6e6",
     paddingHorizontal: 10,
   },
   navigationButton: {

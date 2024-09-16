@@ -7,18 +7,23 @@ import ChatButton from "../components/ChatButton";
 import BottomNavigation from "../components/BottomNavigation";
 import { StatusBar } from "expo-status-bar";
 import All_Reports_Card from "../components/My_Performance/All_Reports_Card";
+import FilterSlide from "../components/Filter/FilterSlide";
+import Pagination from "../components/Pagination/Pagination";
+import Search from "../components/Search/Search";
 
 const Reports = () => {
   return (
-    <>
+    <View style={styles.mainContainer}>
       <SafeAreaView style={styles.safeAreaView}>
         <Header title={"All Reports"} />
+        <Search />
+        <FilterSlide />
         <All_Reports_Card/>
       </SafeAreaView>
       <BottomNavigation />
       <ChatButton />
       <StatusBar style="dark" />
-    </>
+    </View>
   );
 };
 

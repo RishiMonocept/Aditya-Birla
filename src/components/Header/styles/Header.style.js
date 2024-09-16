@@ -3,6 +3,8 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   topContainer: {
     // marginVertical: 12,
+    width: "100%",
+    height: 58,
     gap: 10,
     flexDirection: "row",
   },
