@@ -1,9 +1,17 @@
 import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
 
-const logo = require("../../assets/Birthday_Reminder.png");
+const icons = {
+  birthday_reminder: require("../../assets/Birthday_Reminder.png"),
+  new_lead_assignment: require("../../assets/New_Lead_Assignment.png"),
+  proposal_payment_failed: require("../../assets/Proposal_Payment_Failed.png"),
+  htmlmeter_product_release: require("../../assets/HTLMeter_Product_Release.png"),
+  milestone_reached: require("../../assets/Milestone_Reached.png"),
+};
+
 const NotificationsCard = ({ item, length }) => {
-  const icon = item?.item?.icon;
+  const icon = icons[item?.item?.icon] || icons.birthday_reminder; // default icon
+
   return (
     <View
       style={{
@@ -34,7 +42,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     height: 72,
     width: "100%",
-    marginTop: 50,
+    marginTop: 14,
     flexDirection: "row",
     backgroundColor: "#FFFFFF",
     paddingHorizontal: 16,
