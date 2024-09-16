@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
     shadowRadius: 3,
-    marginRight: 16,
+    marginRight: 10,
     overflow: "hidden",
   },
   icon: {
