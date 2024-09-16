@@ -18,7 +18,7 @@ const Home = () => {
   return (
     <>
       <SafeAreaView style={styles.safeAreaView}>
-        <Header />
+        <Header title={"Your Profile"} />
         <NavigationsTab activeTab={activeTab} setActiveTab={setActiveTab} />
         {activeTab === "Notifications" ? (
           <NotificationsList />
