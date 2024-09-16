@@ -16,7 +16,7 @@ const Home = () => {
   const [activeTab, setActiveTab] = useState("Notifications");
 
   return (
-    <>
+    <View style={styles.mainContainer}>
       <SafeAreaView style={styles.safeAreaView}>
         <Header />
         <NavigationsTab activeTab={activeTab} setActiveTab={setActiveTab} />
@@ -29,7 +29,7 @@ const Home = () => {
       <BottomNavigation />
       <ChatButton />
       <StatusBar style="dark" />
-    </>
+    </View>
   );
 };
 
