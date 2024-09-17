@@ -28,7 +28,7 @@ export default function AllReportsCard() {
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
-        onPacldgeChange={handlePageChange}
+        onPageChange={handlePageChange}
       />
       <FlatList
         data={jsonData.agent}
