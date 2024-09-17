@@ -1,12 +1,11 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "../components/Header/Header";
 import { styles } from "./home.style";
-import AllReportsCard from "../components/My_Performance/AllReportsCard";
 import FilterSlide from "../components/Filter/FilterSlide";
 import Search from "../components/Search/Search";
-import { ScrollView } from "react-native";
+import AllReportsCard from "../components/My_Performance/AllReportsCard";
 
 const Reports = () => {
   return (

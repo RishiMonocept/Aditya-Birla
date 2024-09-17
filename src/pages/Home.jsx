@@ -4,6 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "../components/Header/Header";
 import { styles } from "./home.style";
 import NavigationsTab from "../Tabs/NavigationsTab";
+import ActivitiesList from "../components/Activity";
 import NotificationsList from "../components/Notifications";
 import ActivitiesList from "../components/Activity";
 import { StatusBar } from "expo-status-bar";
