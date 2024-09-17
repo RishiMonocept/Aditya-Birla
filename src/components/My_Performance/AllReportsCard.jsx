@@ -20,7 +20,7 @@ export default function AllReportsCard() {
     setCurrentPage(page);
   };
 
-  console.log(jsonData.agent.length, "LEngth");
+  // console.log(jsonData.agent.length, "LEngth");
 
   return (
     <View style={styles.outerContainer}>
@@ -35,7 +35,7 @@ export default function AllReportsCard() {
         keyExtractor={(item, index) => index.toString()}
         showsVerticalScrollIndicator={false}
         renderItem={(item, index) => {
-          console.log(index, "index");
+          // console.log(index, "index");
           return (
             <View
               style={{

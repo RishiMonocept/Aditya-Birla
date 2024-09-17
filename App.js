@@ -15,16 +15,8 @@ export default function App() {
 
   return (
     <NavigationContainer ref={navigationRef}>
-      {/* <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Home" component={Home} />
-      </Stack.Navigator> */}
       <View style={{ flex: 1, backgroundColor: "#F1F3F6" }}>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-          {/* <Stack.Screen
-            name="Reports"
-            component={Reports}
-            options={{ headerShown: false, gestureEnabled: false }}
-          /> */}
           <Stack.Screen name="BottomTabs" component={BottomNavigation} />
         </Stack.Navigator>
       </View>
