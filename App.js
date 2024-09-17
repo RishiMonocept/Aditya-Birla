@@ -7,6 +7,7 @@ import Reports from "./src/pages/Reports";
 import { useRef } from "react";
 import BottomNavigation from "./src/components/BottomNavigation";
 import ChatButton from "./src/components/ChatButton";
+import Login from "./src/pages/Login/Login";
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +26,7 @@ export default function App() {
             component={Reports}
             options={{ headerShown: false, gestureEnabled: false }}
           /> */}
+          <Stack.Screen name="LoginPage" component={Login} />
           <Stack.Screen name="BottomTabs" component={BottomNavigation} />
         </Stack.Navigator>
       </View>
