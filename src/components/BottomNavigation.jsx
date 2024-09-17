@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+// BottomNavigation.js
+
+import React from "react";
 import {
   View,
   Text,
@@ -7,73 +9,140 @@ import {
   Animated,
   Image,
 } from "react-native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native";
 import MENU from "../assets/BottomTab/Menu.png";
 import PRODUCT from "../assets/BottomTab/Product.png";
 import ENDORSEMENTS from "../assets/BottomTab/Endorsements.png";
 import MORE from "../assets/BottomTab/More.png";
+import AllReportsCard from "./My_Performance/AllReportsCard";
+import Reports from "../pages/Reports";
+import Home from "../pages/Home";
+import ChatButton from "./ChatButton";
+
+const Tab = createBottomTabNavigator();
 
 const BottomNavigation = () => {
-  const [selectedTab, setSelectedTab] = useState("Dashboard");
+  const CustomTabBar = ({ state, descriptors, navigation }) => {
+    const { routes } = state;
 
-  const handlePress = (tab) => {
-    setSelectedTab(tab);
+    return (
+      <>
+        <View style={styles.bottomNavigation}>
+          {routes.map((route, index) => {
+            const { options } = descriptors[route.key];
+            const label = options.tabBarLabel || route.name;
+            const icon = tabs.find((tab) => tab.name === route.name)?.icon;
+
+            const isFocused = state.index === index;
+
+            const onPress = () => {
+              navigation.navigate(route.name);
+            };
+
+            return (
+              <TouchableOpacity
+                key={route.key}
+                style={styles.navigationButton}
+                onPress={onPress}
+                activeOpacity={0.8}
+              >
+                <View
+                  style={{
+                    position: "absolute",
+                    width: 51,
+                    height: 2.4,
+                    borderBottomRightRadius: 8,
+                    borderBottomLeftRadius: 8,
+                    marginTop: -4,
+                    marginBottom: 10,
+                    backgroundColor: isFocused ? "#C7222A" : null,
+                  }}
+                />
+                <Animated.View
+                  style={[
+                    styles.iconContainer,
+                    {
+                      transform: [
+                        {
+                          scale: isFocused ? 1.03 : 1,
+                        },
+                      ],
+                    },
+                  ]}
+                >
+                  <Image
+                    source={icon}
+                    style={[
+                      styles.icon,
+                      { tintColor: isFocused ? "#C7222A" : "gray" },
+                    ]}
+                  />
+                </Animated.View>
+                <Text
+                  style={[
+                    styles.buttonText,
+                    { color: isFocused ? "#C7222A" : "gray" },
+                  ]}
+                >
+                  {label}
+                </Text>
+              </TouchableOpacity>
+            );
+          })}
+        </View>
+        <ChatButton />
+      </>
+    );
   };
 
   return (
-    <View style={styles.bottomNavigation}>
-      {tabs.map((tab) => (
-        <TouchableOpacity
-          key={tab.name}
-          style={styles.navigationButton}
-          onPress={() => handlePress(tab.name)}
-          activeOpacity={0.8}
-        >
-          <View
-            style={{
-              position: "absolute",
-              width: 51,
-              height: 2.4,
-              borderBottomRightRadius: 8,
-              borderBottomLeftRadius: 8,
-              marginTop: -4,
-              marginBottom: 10,
-              backgroundColor: selectedTab === tab.name ? "#C7222A" : null,
-              // borderWidth: 2,
-            }}
-          />
-          <Animated.View
-            style={[
-              styles.iconContainer,
-              {
-                transform: [
-                  {
-                    scale: selectedTab === tab.name ? 1.03 : 1,
-                  },
-                ],
-              },
-            ]}
-          >
-            <Image
-              source={tab.icon}
-              style={[
-                styles.icon,
-                { tintColor: selectedTab === tab.name ? "#C7222A" : "gray" },
-              ]}
-            />
-          </Animated.View>
-          <Text
-            style={[
-              styles.buttonText,
-              { color: selectedTab === tab.name ? "#C7222A" : "gray" },
-            ]}
-          >
-            {tab.label}
-          </Text>
-        </TouchableOpacity>
-      ))}
-    </View>
+    <Tab.Navigator
+      tabBar={(props) => <CustomTabBar {...props} />}
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Tab.Screen name="Dashboard" component={Reports} />
+      <Tab.Screen name="Product" component={Home} />
+      <Tab.Screen name="Endorsements" component={Reports} />
+      <Tab.Screen name="More" component={Reports} />
+    </Tab.Navigator>
   );
 };
+
+// Define your screen components within the same file or import them
+function DashboardScreen() {
+  return (
+    <View style={styles.screenContainer}>
+      <Text>Dashboard Screen</Text>
+    </View>
+  );
+}
+
+function ProductScreen() {
+  return (
+    <View style={styles.screenContainer}>
+      <Text>Product Screen</Text>
+    </View>
+  );
+}
+
+function EndorsementsScreen() {
+  return (
+    <View style={styles.screenContainer}>
+      <Text>Endorsements Screen</Text>
+    </View>
+  );
+}
+
+function MoreScreen() {
+  return (
+    <View style={styles.screenContainer}>
+      <Text>More Screen</Text>
+    </View>
+  );
+}
 
 const tabs = [
   {
@@ -101,7 +170,7 @@ const tabs = [
 const styles = StyleSheet.create({
   bottomNavigation: {
     position: "absolute",
-    bottom: 1,
+    bottom: 0,
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-around",
@@ -131,12 +200,16 @@ const styles = StyleSheet.create({
     height: 24,
   },
   buttonText: {
-    // fontFamily: "Anek Latin",
     fontSize: 13,
     fontWeight: "500",
     lineHeight: 14.3,
     letterSpacing: 0.01,
     textAlign: "center",
+  },
+  screenContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 

@@ -26,8 +26,6 @@ const Home = () => {
           <ActivitiesList />
         )}
       </SafeAreaView>
-      <BottomNavigation />
-      <ChatButton />
       <StatusBar style="dark" />
     </View>
   );

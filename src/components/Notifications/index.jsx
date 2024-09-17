@@ -1,21 +1,17 @@
+import { FlatList } from "react-native";
 import React from "react";
-import { FlatList, ScrollView } from "react-native";
-import Card from "./Card";
-import eventsData from "./eventNotifications.json";
+import data from "./eventNotifications.json";
+import NotificationsCard from "./Card";
 
-const Index = () => {
+const NotificationsList = () => {
+  const length = data.events.length;
   return (
-    <ScrollView>
-      {eventsData.map((item) => {
-        <Card
-          title={item.title}
-          date={item.date}
-          icon={item.icon}
-          key={item.id}
-        />;
-      })}
-    </ScrollView>
+    <FlatList
+      data={data.events}
+      renderItem={(item) => <NotificationsCard item={item} length={length} />}
+      showsVerticalScrollIndicator={false}
+    />
   );
 };
 
-export default Index;
+export default NotificationsList;

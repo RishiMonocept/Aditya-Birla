@@ -1,19 +1,48 @@
-import { View, Text, FlatList, TouchableOpacity, Image, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import jsonData from "./data.json";
-import { styles } from "./style.jsx";
+import { styles } from "./AllReportsData.style.js";
+import EDIT from "../../assets/BottomTab/edit_icon.png";
+import Pagination from "../Pagination/Pagination.jsx";
 
-export default function All_Reports_Card() {
+export default function AllReportsCard() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 10;
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  console.log(jsonData.agent.length, "LEngth");
+
   return (
-    <ScrollView style={styles.outerContainer}>
+    <View style={styles.outerContainer}>
       {/* <Text>All_Reports_Card</Text> */}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPacldgeChange={handlePageChange}
+      />
       <FlatList
         data={jsonData.agent}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={(item) => {
-          console.log(item);
+        showsVerticalScrollIndicator={false}
+        renderItem={(item, index) => {
+          console.log(index, "index");
           return (
-            <View style={styles.mainContainer}>
+            <View
+              style={{
+                ...styles.mainContainer,
+                marginBottom: item?.item?.id === 3 && 70,
+              }}
+            >
               <View style={styles.child1}>
                 <View style={styles.textContainer}>
                   <Text style={styles.nameText}>{item?.item?.name}</Text>
@@ -22,7 +51,7 @@ export default function All_Reports_Card() {
                 <View style={styles.logoContainer}>
                   <TouchableOpacity style={styles.icon}>
                     <Image
-                      source={require("../../assets/edit_icon.png")}
+                      source={EDIT}
                       style={{ width: "100%", height: "100%" }}
                     />
                   </TouchableOpacity>
@@ -84,6 +113,6 @@ export default function All_Reports_Card() {
           );
         }}
       />
-    </ScrollView>
+    </View>
   );
 }

@@ -6,6 +6,7 @@ export const styles = StyleSheet.create({
     backgroundColor: "#F1F3F6",
   },
   safeAreaView: {
+    // flex: 1,
     paddingTop: 14,
     marginHorizontal: 16,
   },

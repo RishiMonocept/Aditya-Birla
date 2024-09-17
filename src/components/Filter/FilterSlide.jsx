@@ -31,32 +31,15 @@ export const RendreItem = ({ item, selected, setSelected }) => {
 const FilterSlide = () => {
   const data = ["My Performance", "Commision Report", "Leaderboard"];
   const [selected, setSelected] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 10;
-
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
 
   return (
-    <>
-      <FlatList
-        data={data}
-        renderItem={(item) => (
-          <RendreItem
-            item={item}
-            selected={selected}
-            setSelected={setSelected}
-          />
-        )}
-        horizontal
-      />
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
-    </>
+    <FlatList
+      data={data}
+      renderItem={(item) => (
+        <RendreItem item={item} selected={selected} setSelected={setSelected} />
+      )}
+      horizontal
+    />
   );
 };
 
