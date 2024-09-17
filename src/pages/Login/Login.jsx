@@ -1,25 +1,25 @@
 import {
   View,
+  Image,
   Text,
   TextInput,
-  TouchableOpacity,
   ImageBackground,
+  TouchableOpacity,
   KeyboardAvoidingView,
-  Platform,
   TouchableWithoutFeedback,
   Keyboard,
-  Image,
   ActivityIndicator,
+  Platform,
 } from "react-native";
 import React, { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Toast from "react-native-toast-message";
-import { styles } from "./login.style";
-import { Ionicons } from "@expo/vector-icons";
-import loginBgImage from "../../assets/Login/loginBgImg.png";
 import abhiLogo from "../../assets/Login/AbhiLogo.png";
+import loginBgImage from "../../assets/Login/loginBgImg.png";
+import { styles } from "./login.style";
+import { Ionicons } from "@expo/vector-icons"; // Ensure you have installed expo/vector-icons or another icon library
+import { useNavigation } from "@react-navigation/native";
+import Toast from "react-native-toast-message";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Login() {
   const navigation = useNavigation();
@@ -28,6 +28,7 @@ export default function Login() {
     password: "12345",
   });
   const [loading, setLoading] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   const handleLogin = async () => {
     setLoading(true);
@@ -47,7 +48,7 @@ export default function Login() {
       });
 
       const result = await response.json();
-      console.log(result);
+      console.log("result", result);
 
       if (response.ok) {
         // console.log("Hello");
@@ -90,8 +91,6 @@ export default function Login() {
     }
   };
 
-  const [passwordVisible, setPasswordVisible] = useState(false);
-
   return (
     <SafeAreaView style={styles.safeArea}>
       <ImageBackground source={loginBgImage} style={styles.backgroundImage}>
@@ -121,8 +120,8 @@ export default function Login() {
                   <TextInput
                     placeholder="Username"
                     style={styles.input}
-                    placeholderTextColor="#777"
                     keyboardType="visible-password"
+                    placeholderTextColor="#797979"
                     value={loginData.email}
                     onChangeText={(e) =>
                       setLoginData((prevData) => ({ ...prevData, email: e }))
@@ -135,7 +134,7 @@ export default function Login() {
                       placeholder="Password"
                       secureTextEntry={!passwordVisible}
                       style={styles.input}
-                      placeholderTextColor="#777"
+                      placeholderTextColor="#797979"
                       keyboardType={
                         passwordVisible ? "visible-password" : "default"
                       }
@@ -158,6 +157,16 @@ export default function Login() {
                       />
                     </TouchableOpacity>
                   </View>
+
+                  {/* Forgot Password Link */}
+                  <TouchableOpacity
+                    onPress={() => console.log("Forgot Password pressed")}
+                    style={styles.forgotPasswordContainer}
+                  >
+                    <Text style={styles.forgotPasswordText}>
+                      Forgot Password
+                    </Text>
+                  </TouchableOpacity>
 
                   <TouchableOpacity
                     style={styles.loginButton}
