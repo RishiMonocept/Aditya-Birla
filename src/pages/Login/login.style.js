@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
   },
   backgroundImage: {
     flex: 1,
-    resizeMode: "cover", // Makes sure the image covers the entire screen
+    resizeMode: "cover",
     width: "100%",
     height: "100%",
   },
