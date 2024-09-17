@@ -1,6 +1,4 @@
-// BottomNavigation.js
-
-import React from "react";
+import React, { useCallback } from "react";
 import {
   View,
   Text,
@@ -10,35 +8,54 @@ import {
   Image,
 } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
+import Reports from "../pages/Reports";
+import Home from "../pages/Home";
+import ChatButton from "./ChatButton";
 import MENU from "../assets/BottomTab/Menu.png";
 import PRODUCT from "../assets/BottomTab/Product.png";
 import ENDORSEMENTS from "../assets/BottomTab/Endorsements.png";
 import MORE from "../assets/BottomTab/More.png";
-import AllReportsCard from "./My_Performance/AllReportsCard";
-import Reports from "../pages/Reports";
-import Home from "../pages/Home";
-import ChatButton from "./ChatButton";
 
 const Tab = createBottomTabNavigator();
 
+const tabs = [
+  {
+    name: "Dashboard",
+    icon: MENU,
+    label: "Dashboard",
+  },
+  {
+    name: "Product",
+    icon: PRODUCT,
+    label: "Product",
+  },
+  {
+    name: "Endorsements",
+    icon: ENDORSEMENTS,
+    label: "Endorsements",
+  },
+  {
+    name: "More",
+    icon: MORE,
+    label: "More",
+  },
+];
+
 const BottomNavigation = () => {
   const CustomTabBar = ({ state, descriptors, navigation }) => {
-    const { routes } = state;
-
     return (
       <>
         <View style={styles.bottomNavigation}>
-          {routes.map((route, index) => {
+          {state.routes.map((route, index) => {
             const { options } = descriptors[route.key];
             const label = options.tabBarLabel || route.name;
-            const icon = tabs.find((tab) => tab.name === route.name)?.icon;
-
+            const tabInfo = tabs.find((tab) => tab.name === route.name);
+            const icon = tabInfo?.icon;
             const isFocused = state.index === index;
 
-            const onPress = () => {
+            const onPress = useCallback(() => {
               navigation.navigate(route.name);
-            };
+            }, [navigation, route.name]);
 
             return (
               <TouchableOpacity
@@ -48,26 +65,16 @@ const BottomNavigation = () => {
                 activeOpacity={0.8}
               >
                 <View
-                  style={{
-                    position: "absolute",
-                    width: 51,
-                    height: 2.4,
-                    borderBottomRightRadius: 8,
-                    borderBottomLeftRadius: 8,
-                    marginTop: -4,
-                    marginBottom: 10,
-                    backgroundColor: isFocused ? "#C7222A" : null,
-                  }}
+                  style={[
+                    styles.indicator,
+                    { backgroundColor: isFocused ? "#C7222A" : "transparent" },
+                  ]}
                 />
                 <Animated.View
                   style={[
                     styles.iconContainer,
                     {
-                      transform: [
-                        {
-                          scale: isFocused ? 1.03 : 1,
-                        },
-                      ],
+                      transform: [{ scale: isFocused ? 1.03 : 1 }],
                     },
                   ]}
                 >
@@ -99,9 +106,7 @@ const BottomNavigation = () => {
   return (
     <Tab.Navigator
       tabBar={(props) => <CustomTabBar {...props} />}
-      screenOptions={{
-        headerShown: false,
-      }}
+      screenOptions={{ headerShown: false }}
     >
       <Tab.Screen name="Dashboard" component={Reports} />
       <Tab.Screen name="Product" component={Home} />
@@ -110,62 +115,6 @@ const BottomNavigation = () => {
     </Tab.Navigator>
   );
 };
-
-// Define your screen components within the same file or import them
-function DashboardScreen() {
-  return (
-    <View style={styles.screenContainer}>
-      <Text>Dashboard Screen</Text>
-    </View>
-  );
-}
-
-function ProductScreen() {
-  return (
-    <View style={styles.screenContainer}>
-      <Text>Product Screen</Text>
-    </View>
-  );
-}
-
-function EndorsementsScreen() {
-  return (
-    <View style={styles.screenContainer}>
-      <Text>Endorsements Screen</Text>
-    </View>
-  );
-}
-
-function MoreScreen() {
-  return (
-    <View style={styles.screenContainer}>
-      <Text>More Screen</Text>
-    </View>
-  );
-}
-
-const tabs = [
-  {
-    name: "Dashboard",
-    icon: MENU,
-    label: "Dashboard",
-  },
-  {
-    name: "Product",
-    icon: PRODUCT,
-    label: "Product",
-  },
-  {
-    name: "Endorsements",
-    icon: ENDORSEMENTS,
-    label: "Endorsements",
-  },
-  {
-    name: "More",
-    icon: MORE,
-    label: "More",
-  },
-];
 
 const styles = StyleSheet.create({
   bottomNavigation: {
@@ -188,12 +137,9 @@ const styles = StyleSheet.create({
   iconContainer: {
     width: 24,
     height: 24,
-    borderRadius: 4.62,
     justifyContent: "center",
     alignItems: "center",
-    padding: 3.69,
     marginBottom: 4,
-    gap: 5,
   },
   icon: {
     width: 24,
@@ -206,10 +152,14 @@ const styles = StyleSheet.create({
     letterSpacing: 0.01,
     textAlign: "center",
   },
-  screenContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+  indicator: {
+    position: "absolute",
+    width: 51,
+    height: 2.4,
+    borderBottomRightRadius: 8,
+    borderBottomLeftRadius: 8,
+    marginTop: -4,
+    marginBottom: 10,
   },
 });
 

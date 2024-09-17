@@ -13,23 +13,16 @@ export const styles = StyleSheet.create({
     borderRadius: 50,
     marginBottom: 16,
     alignItems: "center",
-    // justifyContent: "center",
+    justifyContent: "space-between", // Adjusted for better spacing
   },
   searchIcon: {
     width: 17.5,
     height: 17.5,
   },
   inputField: {
+    flex: 1, // Adjust input field to fill available space
     marginLeft: 11.5,
-    width: "85%",
     height: 20,
-  },
-  placeholderText: {
-    position: "absolute",
-    width: 100,
-    fontWeight: "600",
-    color: "#797979",
-    left: 44,
-    top: 13,
+    fontSize: 14, // Increased font size for better readability
   },
 });

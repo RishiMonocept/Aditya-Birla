@@ -1,3 +1,5 @@
+// Search.js
+import React, { useRef } from "react";
 import {
   View,
   Text,
@@ -5,11 +7,12 @@ import {
   TextInput,
   TouchableOpacity,
   Keyboard,
+  StyleSheet,
+  Dimensions,
 } from "react-native";
-import React, { useRef } from "react";
-import { styles } from "./search.style";
 import SEARCH from "../../assets/Search/SearchIcon.png";
 import FILTER from "../../assets/Search/FilterIcon.png";
+import { styles } from "./search.style";
 
 const Search = () => {
   const inputRef = useRef(null);
@@ -20,9 +23,15 @@ const Search = () => {
       <TextInput
         ref={inputRef}
         style={styles.inputField}
-        // onEndEditing={() => Keyboard.dismiss()}
+        placeholder="Find Something"
+        placeholderTextColor="#797979"
+        onFocus={() =>
+          Keyboard.addListener("keyboardDidShow", () => {
+            // Adjust component when keyboard is shown
+          })
+        }
+        onEndEditing={() => Keyboard.dismiss()}
       />
-      <Text style={styles.placeholderText}>Find Something</Text>
       <TouchableOpacity>
         <Image source={FILTER} />
       </TouchableOpacity>

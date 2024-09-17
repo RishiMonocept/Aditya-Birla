@@ -39,6 +39,7 @@ const FilterSlide = () => {
         <RendreItem item={item} selected={selected} setSelected={setSelected} />
       )}
       horizontal
+      showsHorizontalScrollIndicator={false}
     />
   );
 };
