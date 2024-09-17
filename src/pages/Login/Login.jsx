@@ -9,6 +9,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Image,
+  ActivityIndicator,
 } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -26,8 +27,10 @@ export default function Login() {
     email: "testuser1@monocept.com",
     password: "12345",
   });
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async () => {
+    setLoading(true);
     const url = "https://usp.monocept.ai/abhiupapi/Banca/User/Agent/AgentLogin";
     const data = {
       agentUserName: loginData.email,
@@ -57,6 +60,7 @@ export default function Login() {
         });
         AsyncStorage.setItem("UserData", JSON.stringify(result));
         // navigation.navigate("BottomTabs");
+        setLoading(false);
         navigation.replace("BottomTabs");
       } else {
         Toast.show({
@@ -66,6 +70,7 @@ export default function Login() {
           text2: result.message || "Please check your credentials.",
           visibilityTime: 3000,
         });
+        setLoading(false);
       }
     } catch (error) {
       Toast.show({
@@ -81,6 +86,7 @@ export default function Login() {
         "UserData:",
         userData ? JSON.parse(userData) : "No user data"
       );
+      setLoading(false);
     }
   };
 
@@ -116,6 +122,11 @@ export default function Login() {
                     placeholder="Username"
                     style={styles.input}
                     placeholderTextColor="#777"
+                    keyboardType="visible-password"
+                    value={loginData.email}
+                    onChangeText={(e) =>
+                      setLoginData((prevData) => ({ ...prevData, email: e }))
+                    }
                   />
 
                   {/* Password input with show/hide feature */}
@@ -125,6 +136,16 @@ export default function Login() {
                       secureTextEntry={!passwordVisible}
                       style={styles.input}
                       placeholderTextColor="#777"
+                      keyboardType={
+                        passwordVisible ? "visible-password" : "default"
+                      }
+                      value={loginData.password}
+                      onChangeText={(e) =>
+                        setLoginData((prevData) => ({
+                          ...prevData,
+                          password: e,
+                        }))
+                      }
                     />
                     <TouchableOpacity
                       style={styles.showHideIcon}
@@ -140,9 +161,14 @@ export default function Login() {
 
                   <TouchableOpacity
                     style={styles.loginButton}
-                    onPress={() => console.log("Login button pressed")}
+                    onPress={handleLogin}
+                    disabled={loading}
                   >
-                    <Text style={styles.loginButtonText}>Login</Text>
+                    {loading ? (
+                      <ActivityIndicator color={"#fff"} />
+                    ) : (
+                      <Text style={styles.loginButtonText}>Login</Text>
+                    )}
                   </TouchableOpacity>
                 </View>
               </View>
