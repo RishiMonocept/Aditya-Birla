@@ -5,10 +5,11 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     // padding: 10,
-    paddingTop: 10,
+    // paddingTop: 10,
     // marginBottom: 800,
-    marginBottom: 10,
+    marginBottom: 146.4,
     marginTop: -6,
+    paddingVertical: 24,
   },
   button: {
     width: 32,

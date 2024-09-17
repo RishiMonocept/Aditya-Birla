@@ -18,19 +18,16 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   }
 
   // Callback to handle page change
-  const handlePageChange = useCallback(
-    (page) => {
-      if (page >= 1 && page <= totalPages) {
-        onPageChange(page);
-      }
-    },
-    [onPageChange, totalPages]
-  );
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      onPageChange(page);
+    }
+  };
 
   // Handle ellipsis click
-  const handleEllipsisClick = () => {
+  const handleEllipsisClick = (currentPage, windowSize) => {
     const nextPage =
-      currentPage + (pagesToShow - (currentPage % pagesToShow) + 1);
+      currentPage + (windowSize - (currentPage % windowSize) + 1);
     onPageChange(nextPage);
   };
 
@@ -41,6 +38,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         style={[
           styles.button,
           { borderColor: currentPage !== 1 ? "#c7222a" : "#AFB3C0" },
+          { backgroundColor: "#fff" },
         ]}
         onPress={() => handlePageChange(currentPage - 1)}
         disabled={currentPage === 1}
@@ -60,7 +58,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         {startPage > 1 && (
           <TouchableOpacity
             style={[styles.pageButton, { borderColor: "#C0C5CA" }]}
-            onPress={handleEllipsisClick}
+            onPress={() => handlePageChange(currentPage - 1)}
           >
             <Text style={[styles.pageButtonText, styles.ellipsis]}>...</Text>
           </TouchableOpacity>
@@ -73,7 +71,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
               styles.pageButton,
               currentPage === startPage + index
                 ? { backgroundColor: "#C7222A", borderColor: "#C7222A" }
-                : { borderColor: "#c0c5ca" },
+                : { backgroundColor: "#fff", borderColor: "#fff" },
             ]}
             onPress={() => handlePageChange(startPage + index)}
           >
@@ -92,7 +90,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         {endPage < totalPages && (
           <TouchableOpacity
             style={[styles.pageButton, { borderColor: "#C0C5CA" }]}
-            onPress={handleEllipsisClick}
+            onPress={() => handleEllipsisClick(currentPage, 6)}
           >
             <Text style={[styles.pageButtonText, styles.ellipsis]}>...</Text>
           </TouchableOpacity>
@@ -104,6 +102,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         style={[
           styles.button,
           { borderColor: currentPage !== totalPages ? "#C7222A" : "#AFB3C0" },
+          { backgroundColor: "#fff" },
         ]}
         onPress={() => handlePageChange(currentPage + 1)}
         disabled={currentPage === totalPages}

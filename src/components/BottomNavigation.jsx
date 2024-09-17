@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
   Animated,
   Image,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Reports from "../pages/Reports";
@@ -44,7 +46,10 @@ const tabs = [
 const BottomNavigation = () => {
   const CustomTabBar = ({ state, descriptors, navigation }) => {
     return (
-      <>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        keyboardVerticalOffset={-64}
+      >
         <View style={styles.bottomNavigation}>
           {state.routes.map((route, index) => {
             const { options } = descriptors[route.key];
@@ -99,14 +104,18 @@ const BottomNavigation = () => {
           })}
         </View>
         <ChatButton />
-      </>
+      </KeyboardAvoidingView>
     );
   };
 
   return (
     <Tab.Navigator
       tabBar={(props) => <CustomTabBar {...props} />}
-      screenOptions={{ headerShown: false }}
+      screenOptions={{
+        headerShown: false,
+        tabBarHideOnKeyboard: true,
+        keyboardHidesTabBar: true,
+      }}
     >
       <Tab.Screen name="Dashboard" component={Reports} />
       <Tab.Screen name="Product" component={Home} />

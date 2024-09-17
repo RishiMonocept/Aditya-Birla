@@ -13,9 +13,7 @@ export default function AllReportsCard() {
 
   const renderItem = useCallback(({ item }) => {
     return (
-      <View
-        style={[styles.mainContainer, item?.id === 3 && { marginBottom: 70 }]}
-      >
+      <View style={[styles.mainContainer]}>
         <View style={styles.child1}>
           <View style={styles.textContainer}>
             <Text style={styles.nameText}>{item.name}</Text>
@@ -78,16 +76,17 @@ export default function AllReportsCard() {
 
   return (
     <View style={styles.outerContainer}>
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
       <FlatList
         data={jsonData.agent}
         keyExtractor={(item, index) => index.toString()}
         showsVerticalScrollIndicator={false}
         renderItem={renderItem}
+        // style={{ flex: 1, borderWidth: 2 }}
+      />
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
       />
     </View>
   );
