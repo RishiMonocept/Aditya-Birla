@@ -1,9 +1,24 @@
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  ImageBackground,
+  KeyboardAvoidingView,
+  Platform,
+  TouchableWithoutFeedback,
+  Keyboard,
+  Image,
+} from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Toast from "react-native-toast-message";
+import { styles } from "./login.style";
+import { Ionicons } from "@expo/vector-icons";
+import loginBgImage from "../../assets/Login/loginBgImg.png";
+import abhiLogo from "../../assets/Login/AbhiLogo.png";
 
 export default function Login() {
   const navigation = useNavigation();
@@ -69,56 +84,72 @@ export default function Login() {
     }
   };
 
-  return (
-    <SafeAreaView style={{ alignItems: "center", justifyContent: "center" }}>
-      <View
-        style={{
-          borderWidth: 1,
-          width: 250,
-          height: 500,
-          marginTop: 40,
-          padding: 10,
-        }}
-      >
-        <Text>Login</Text>
-        <TextInput
-          style={{
-            borderWidth: 0.5,
-            borderRadius: 10,
-            marginTop: 6,
-            padding: 5,
-          }}
-          placeholder="email"
-          value={loginData.email}
-          onChangeText={(e) => setLoginData({ email: e })}
-        />
-        <Text>Password</Text>
-        <TextInput
-          style={{
-            borderWidth: 0.5,
-            borderRadius: 10,
-            marginTop: 6,
-            padding: 5,
-          }}
-          placeholder="password"
-          value={loginData.password}
-          onChangeText={(e) => setLoginData({ password: e })}
-        />
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
-        <TouchableOpacity
-          style={{
-            borderColor: "grey",
-            borderWidth: 1,
-            padding: 10,
-            marginTop: 10,
-            borderRadius: 10,
-            backgroundColor: "#C197C6",
-          }}
-          onPress={handleLogin}
+  return (
+    <SafeAreaView style={styles.safeArea}>
+      <ImageBackground source={loginBgImage} style={styles.backgroundImage}>
+        <KeyboardAvoidingView
+          style={{ flex: 1 }}
+          behavior="padding"
+          keyboardVerticalOffset={Platform.OS === "ios" ? 60 : 0} // Adjust this value based on your header size
         >
-          <Text>Login</Text>
-        </TouchableOpacity>
-      </View>
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <View style={{ flex: 1 }}>
+              <View style={styles.container}>
+                {/* Logo Section */}
+                <View style={styles.logoContainer}>
+                  <Image source={abhiLogo} style={styles.logoImage} />
+                </View>
+
+                {/* Red Section */}
+                <View style={styles.redSection}></View>
+              </View>
+
+              <View style={styles.mainContainer}>
+                <View style={styles.formContainer}>
+                  <Text style={styles.heading}>
+                    Welcome to Aditya Birla Health Insurance
+                  </Text>
+
+                  <TextInput
+                    placeholder="Username"
+                    style={styles.input}
+                    placeholderTextColor="#777"
+                  />
+
+                  {/* Password input with show/hide feature */}
+                  <View style={styles.passwordContainer}>
+                    <TextInput
+                      placeholder="Password"
+                      secureTextEntry={!passwordVisible}
+                      style={styles.input}
+                      placeholderTextColor="#777"
+                    />
+                    <TouchableOpacity
+                      style={styles.showHideIcon}
+                      onPress={() => setPasswordVisible(!passwordVisible)}
+                    >
+                      <Ionicons
+                        name={passwordVisible ? "eye-off" : "eye"}
+                        size={20}
+                        color="#797979"
+                      />
+                    </TouchableOpacity>
+                  </View>
+
+                  <TouchableOpacity
+                    style={styles.loginButton}
+                    onPress={() => console.log("Login button pressed")}
+                  >
+                    <Text style={styles.loginButtonText}>Login</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
+      </ImageBackground>
     </SafeAreaView>
   );
 }
