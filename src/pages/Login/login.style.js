@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(255, 255, 255, 0.6)", // Adjusted for readability
+    backgroundColor: "rgba(255, 255, 255, 0.6)",
   },
   formContainer: {
     width: "80%", // Form covers 80% of the main container
@@ -41,13 +41,13 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: "center",
     justifyContent: "space-evenly",
-    backgroundColor: "rgba(255, 255, 255, 0.9)", // Background with transparency
-    borderColor: "#ddd", // Border color
-    elevation: 12, // Shadow for Android
-    shadowColor: "#000", // Shadow color for iOS
-    shadowOffset: { width: 0, height: 12 }, // Shadow offset for iOS
-    shadowOpacity: 0.2, // Shadow opacity for iOS
-    shadowRadius: 36, // Shadow radius for iOS
+    backgroundColor: "rgba(255, 255, 255, 0.9)",
+    borderColor: "#ddd",
+    elevation: 12,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 12 },
+    shadowOpacity: 0.2,
+    shadowRadius: 36,
   },
   heading: {
     fontSize: 18,
@@ -58,7 +58,8 @@ export const styles = StyleSheet.create({
   input: {
     width: "100%",
     height: 40,
-    borderColor: "#ddd",
+    borderColor: "#F1F3F6",
+    backgroundColor:"#FFFFFF",
     borderWidth: 1,
     borderRadius: 10,
     paddingHorizontal: 10,
@@ -68,24 +69,34 @@ export const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     alignItems: "center",
-    // borderColor: "#ddd",
+
+    borderColor: "#ddd",
     // borderWidth: 1,
     borderRadius: 10,
-    marginBottom: 10,
-    // marginTop:12,
+    marginBottom: 15,
     position: "relative",
   },
   showHideIcon: {
     position: "absolute",
     right: 10,
-    height: 40,
+    height: 33,
     // justifyContent: "center",
-
+  },
+  forgotPasswordContainer: {
+    // flexDirection:,
+    marginTop: -55,
+    marginLeft:154,
+   
+  },
+  forgotPasswordText: {
+    color: "#C7222A",
+    fontSize: 12,
+    fontWeight: "400",
   },
   loginButton: {
     width: "100%",
     height: 40,
-    backgroundColor: "#C91429",
+    backgroundColor: "#C7222A",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
