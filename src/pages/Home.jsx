@@ -6,7 +6,6 @@ import { styles } from "./home.style";
 import NavigationsTab from "../Tabs/NavigationsTab";
 import ActivitiesList from "../components/Activity";
 import NotificationsList from "../components/Notifications";
-import ActivitiesList from "../components/Activity";
 import { StatusBar } from "expo-status-bar";
 
 const Home = () => {
