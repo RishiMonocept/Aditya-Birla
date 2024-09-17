@@ -8,6 +8,7 @@ import { useRef } from "react";
 import BottomNavigation from "./src/components/BottomNavigation";
 import ChatButton from "./src/components/ChatButton";
 import Login from "./src/pages/Login/Login";
+import Toast from "react-native-toast-message";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +22,7 @@ export default function App() {
           <Stack.Screen name="LoginPage" component={Login} />
           <Stack.Screen name="BottomTabs" component={BottomNavigation} />
         </Stack.Navigator>
+        <Toast />
       </View>
     </NavigationContainer>
   );
