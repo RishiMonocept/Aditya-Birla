@@ -1,4 +1,4 @@
-import { View, ImageBackground, StyleSheet, TextInput } from "react-native";
+import { View, ImageBackground, StyleSheet, TextInput, Text } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import BottomImage from "./BottomImage";
@@ -18,6 +18,11 @@ const LoginAdv = () => {
             gap: 24,
           }}
         >
+          <View>
+            <Text style={styles.headingTextName}>Hi Ajay,</Text>
+            <Text style={styles.headingText}>Welcome to Aditya Birla Health</Text>
+            <Text style={styles.headingText}>Insurance!</Text>
+          </View>
           <TextInput
             placeholder="User Code"
             style={styles.input}
@@ -40,6 +45,18 @@ const LoginAdv = () => {
 export default LoginAdv;
 
 const styles = StyleSheet.create({
+  headingTextName:{
+    fontSize:22,
+    fontWeight:"600",
+    lineHeight:28,
+    color:"#000000"
+  },
+  headingText:{
+    fontSize:19,
+    fontWeight:"600",
+    lineHeight:28,
+    color:"#000000"
+  },
   input: {
     width: "100%",
     height: 40,
