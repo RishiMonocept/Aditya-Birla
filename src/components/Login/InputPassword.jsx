@@ -5,15 +5,22 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 
 export default function InputPassword({ inputValue, setInputValue }) {
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const inputRef1 = useRef(null);
+  const inputRef2 = useRef(null);
+
+  const handleSubmitEditing = () => {
+    inputRef2.current.focus();
+  };
 
   return (
     <>
       <TextInput
+        ref={inputRef1}
         placeholder="User Code"
         style={styles.input}
         keyboardType="visible-password"
@@ -22,9 +29,12 @@ export default function InputPassword({ inputValue, setInputValue }) {
         onChangeText={(e) =>
           setInputValue((prevData) => ({ ...prevData, email: e }))
         }
+        onSubmitEditing={handleSubmitEditing}
+        returnKeyType="next"
       />
       <View style={styles.passwordContainer}>
         <TextInput
+          ref={inputRef2}
           placeholder="Password"
           secureTextEntry={!passwordVisible}
           style={{ width: "90%" }}

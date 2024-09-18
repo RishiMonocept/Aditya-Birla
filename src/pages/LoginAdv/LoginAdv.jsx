@@ -4,6 +4,8 @@ import {
   Text,
   KeyboardAvoidingView,
   StatusBar,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -92,36 +94,41 @@ const LoginAdv = () => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <KeyboardAvoidingView style={{ flex: 0.65 }}>
-        <View
-          style={{
-            marginTop: 56,
-            marginHorizontal: 16,
-            flex: 1,
-            gap: 24,
-          }}
-        >
-          <View>
-            <Text style={styles.headingTextName}>Hi Ajay,</Text>
-            <Text style={styles.headingText}>
-              {`Welcome to Aditya Birla Health \nInsurance!`}
-            </Text>
-          </View>
-          <ToggleButtons />
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <SafeAreaView style={{ flex: 1 }}>
+        <KeyboardAvoidingView style={{ flex: 0.65 }}>
+          <View
+            style={{
+              marginTop: 56,
+              marginHorizontal: 16,
+              flex: 1,
+              gap: 24,
+            }}
+          >
+            <View>
+              <Text style={styles.headingTextName}>Hi Ajay,</Text>
+              <Text style={styles.headingText}>
+                {`Welcome to Aditya Birla Health \nInsurance!`}
+              </Text>
+            </View>
+            <ToggleButtons />
 
-          <InputPassword inputValue={loginData} setInputValue={setLoginData} />
-          <CustomButton
-            loading={loading}
-            title={"Login"}
-            subTitle={"I'm an employee"}
-            onPress={handleLogin}
-          />
-        </View>
-      </KeyboardAvoidingView>
-      <BottomImage />
-      <StatusBar backgroundColor={"#F7F7F7"} barStyle={"light-content"} />
-    </SafeAreaView>
+            <InputPassword
+              inputValue={loginData}
+              setInputValue={setLoginData}
+            />
+            <CustomButton
+              loading={loading}
+              title={"Login"}
+              subTitle={"I'm an employee"}
+              onPress={handleLogin}
+            />
+          </View>
+        </KeyboardAvoidingView>
+        <BottomImage />
+        <StatusBar backgroundColor={"#F7F7F7"} barStyle={"light-content"} />
+      </SafeAreaView>
+    </TouchableWithoutFeedback>
   );
 };
 
