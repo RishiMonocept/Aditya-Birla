@@ -28,7 +28,11 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const handleEllipsisClick = (currentPage, windowSize) => {
     const nextPage =
       currentPage + (windowSize - (currentPage % windowSize) + 1);
-    onPageChange(nextPage);
+    if (nextPage > totalPages) {
+      onPageChange(totalPages);
+    } else {
+      onPageChange(nextPage);
+    }
   };
 
   return (
@@ -38,7 +42,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         style={[
           styles.button,
           { borderColor: currentPage !== 1 ? "#c7222a" : "#AFB3C0" },
-          { backgroundColor: "#fff" },
+          { backgroundColor: currentPage !== 1 ? "#fff" : null },
         ]}
         onPress={() => handlePageChange(currentPage - 1)}
         disabled={currentPage === 1}
@@ -57,7 +61,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       >
         {startPage > 1 && (
           <TouchableOpacity
-            style={[styles.pageButton, { borderColor: "#C0C5CA" }]}
+            style={styles.pageButton}
             onPress={() => handlePageChange(currentPage - 1)}
           >
             <Text style={[styles.pageButtonText, styles.ellipsis]}>...</Text>
@@ -89,7 +93,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
 
         {endPage < totalPages && (
           <TouchableOpacity
-            style={[styles.pageButton, { borderColor: "#C0C5CA" }]}
+            style={styles.pageButton}
             onPress={() => handleEllipsisClick(currentPage, 6)}
           >
             <Text style={[styles.pageButtonText, styles.ellipsis]}>...</Text>
@@ -102,7 +106,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         style={[
           styles.button,
           { borderColor: currentPage !== totalPages ? "#C7222A" : "#AFB3C0" },
-          { backgroundColor: "#fff" },
+          { backgroundColor: currentPage !== totalPages ? "#fff" : null },
         ]}
         onPress={() => handlePageChange(currentPage + 1)}
         disabled={currentPage === totalPages}

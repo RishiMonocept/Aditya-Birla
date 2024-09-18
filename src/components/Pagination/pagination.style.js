@@ -4,12 +4,7 @@ export const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
-    // padding: 10,
-    // paddingTop: 10,
-    // marginBottom: 800,
     marginBottom: 100,
-    // marginTop: -6,
-    // paddingVertical: 24,
     paddingTop: 10,
   },
   button: {
@@ -18,9 +13,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 1,
-    // borderColor: "#AFB3CO",
     borderRadius: 5,
-    // marginHorizontal: 5,
   },
   buttonText: {
     color: "#000",
@@ -43,6 +36,8 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     marginHorizontal: 3,
+    backgroundColor: "#fff",
+    borderColor: "#fff",
   },
   pageButtonText: {
     fontSize: 14,
