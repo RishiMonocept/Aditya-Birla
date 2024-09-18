@@ -7,8 +7,8 @@ export const styles = StyleSheet.create({
     // padding: 10,
     // paddingTop: 10,
     // marginBottom: 800,
-    marginBottom: 146.4,
-    marginTop: -6,
+    marginBottom: 100,
+    // marginTop: -6,
     paddingVertical: 24,
   },
   button: {

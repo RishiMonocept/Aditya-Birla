@@ -81,7 +81,7 @@ export default function AllReportsCard() {
         keyExtractor={(item, index) => index.toString()}
         showsVerticalScrollIndicator={false}
         renderItem={renderItem}
-        // style={{ flex: 1, borderWidth: 2 }}
+        // style={{ borderWidth: 2 }}
       />
       <Pagination
         currentPage={currentPage}

@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -8,6 +8,7 @@ import {
   Image,
   KeyboardAvoidingView,
   Platform,
+  Keyboard,
 } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Reports from "../pages/Reports";
@@ -44,12 +45,25 @@ const tabs = [
 ];
 
 const BottomNavigation = () => {
+  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+
+  useEffect(() => {
+    const keyboardShowListener = Keyboard.addListener("keyboardDidShow", () => {
+      setKeyboardVisible(true);
+    });
+    const keyboardHideListener = Keyboard.addListener("keyboardDidHide", () => {
+      setKeyboardVisible(false);
+    });
+
+    return () => {
+      keyboardShowListener.remove();
+      keyboardHideListener.remove();
+    };
+  }, []);
+
   const CustomTabBar = ({ state, descriptors, navigation }) => {
     return (
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        keyboardVerticalOffset={-64}
-      >
+      <>
         <View style={styles.bottomNavigation}>
           {state.routes.map((route, index) => {
             const { options } = descriptors[route.key];
@@ -104,13 +118,15 @@ const BottomNavigation = () => {
           })}
         </View>
         <ChatButton />
-      </KeyboardAvoidingView>
+      </>
     );
   };
 
   return (
     <Tab.Navigator
-      tabBar={(props) => <CustomTabBar {...props} />}
+      tabBar={(props) =>
+        !isKeyboardVisible ? <CustomTabBar {...props} /> : null
+      }
       screenOptions={{
         headerShown: false,
         tabBarHideOnKeyboard: true,
@@ -127,8 +143,8 @@ const BottomNavigation = () => {
 
 const styles = StyleSheet.create({
   bottomNavigation: {
-    position: "absolute",
-    bottom: 0,
+    // position: "absolute",
+    // bottom: 0,
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-around",

@@ -16,6 +16,7 @@ export const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
     // marginTop: 16,
     marginBottom: 16,
+    // borderWidth: 1,
   },
   child1: {
     flexDirection: "row", // Align elements in a row
