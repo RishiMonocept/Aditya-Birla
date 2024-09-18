@@ -1,7 +1,9 @@
-import { View, ImageBackground } from "react-native";
+import { View, ImageBackground, StyleSheet, TextInput } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import BottomImage from "./BottomImage";
+import InputPassword from "../../components/Login/InputPassword";
+import CustomButton from "../../components/Login/CustonButton";
 
 const LoginAdv = () => {
   return (
@@ -13,8 +15,22 @@ const LoginAdv = () => {
             marginHorizontal: 16,
             borderWidth: 1,
             flex: 1,
+            gap: 24,
           }}
-        ></View>
+        >
+          <TextInput
+            placeholder="User Code"
+            style={styles.input}
+            keyboardType="visible-password"
+            placeholderTextColor="#797979"
+            // value={loginData.email}
+            // onChangeText={(e) =>
+            //   setLoginData((prevData) => ({ ...prevData, email: e }))
+            // }
+          />
+          <InputPassword />
+          <CustomButton title={"Login"} subTitle={"I'm an employee"} />
+        </View>
       </View>
       <BottomImage />
     </SafeAreaView>
@@ -22,3 +38,19 @@ const LoginAdv = () => {
 };
 
 export default LoginAdv;
+
+const styles = StyleSheet.create({
+  input: {
+    width: "100%",
+    height: 40,
+    borderColor: "#F1F3F6",
+    backgroundColor: "#FFFFFF",
+    borderWidth: 1,
+    borderRadius: 12,
+    paddingVertical: 8,
+    paddingLeft:8,
+    paddingRight:16,
+
+    // marginBottom: 15,
+  },
+});
