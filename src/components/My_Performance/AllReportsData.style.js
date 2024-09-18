@@ -3,7 +3,6 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   outerContainer: {
     flex: 1,
-    gap: 16,
   },
   mainContainer: {
     height: 243,
@@ -14,9 +13,7 @@ export const styles = StyleSheet.create({
     paddingBottom: 16,
     paddingLeft: 12,
     backgroundColor: "#ffffff",
-    // marginTop: 16,
-    marginBottom: 16,
-    // borderWidth: 1,
+    marginTop: 16,
   },
   child1: {
     flexDirection: "row", // Align elements in a row
