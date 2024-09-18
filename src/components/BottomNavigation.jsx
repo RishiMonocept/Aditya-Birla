@@ -1,6 +1,6 @@
 // BottomNavigation.js
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Animated,
   Image,
+  Keyboard,
 } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
@@ -23,6 +24,22 @@ import ChatButton from "./ChatButton";
 const Tab = createBottomTabNavigator();
 
 const BottomNavigation = () => {
+  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+
+  useEffect(() => {
+    const keyboardShowListener = Keyboard.addListener("keyboardDidShow", () => {
+      setKeyboardVisible(true);
+    });
+    const keyboardHideListener = Keyboard.addListener("keyboardDidHide", () => {
+      setKeyboardVisible(false);
+    });
+
+    return () => {
+      keyboardShowListener.remove();
+      keyboardHideListener.remove();
+    };
+  }, []);
+
   const CustomTabBar = ({ state, descriptors, navigation }) => {
     const { routes } = state;
 
@@ -75,14 +92,14 @@ const BottomNavigation = () => {
                     source={icon}
                     style={[
                       styles.icon,
-                      { tintColor: isFocused ? "#C7222A" : "gray" },
+                      { tintColor: isFocused ? "#C7222A" : "#797979" },
                     ]}
                   />
                 </Animated.View>
                 <Text
                   style={[
                     styles.buttonText,
-                    { color: isFocused ? "#C7222A" : "gray" },
+                    { color: isFocused ? "#C7222A" : "#797979" },
                   ]}
                 >
                   {label}
@@ -98,7 +115,9 @@ const BottomNavigation = () => {
 
   return (
     <Tab.Navigator
-      tabBar={(props) => <CustomTabBar {...props} />}
+      tabBar={(props) =>
+        !isKeyboardVisible ? <CustomTabBar {...props} /> : null
+      }
       screenOptions={{
         headerShown: false,
       }}
@@ -110,39 +129,6 @@ const BottomNavigation = () => {
     </Tab.Navigator>
   );
 };
-
-// Define your screen components within the same file or import them
-function DashboardScreen() {
-  return (
-    <View style={styles.screenContainer}>
-      <Text>Dashboard Screen</Text>
-    </View>
-  );
-}
-
-function ProductScreen() {
-  return (
-    <View style={styles.screenContainer}>
-      <Text>Product Screen</Text>
-    </View>
-  );
-}
-
-function EndorsementsScreen() {
-  return (
-    <View style={styles.screenContainer}>
-      <Text>Endorsements Screen</Text>
-    </View>
-  );
-}
-
-function MoreScreen() {
-  return (
-    <View style={styles.screenContainer}>
-      <Text>More Screen</Text>
-    </View>
-  );
-}
 
 const tabs = [
   {
@@ -169,8 +155,6 @@ const tabs = [
 
 const styles = StyleSheet.create({
   bottomNavigation: {
-    position: "absolute",
-    bottom: 0,
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-around",
@@ -205,11 +189,6 @@ const styles = StyleSheet.create({
     lineHeight: 14.3,
     letterSpacing: 0.01,
     textAlign: "center",
-  },
-  screenContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
 });
 

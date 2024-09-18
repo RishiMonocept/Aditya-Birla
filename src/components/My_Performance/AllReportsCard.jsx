@@ -25,15 +25,12 @@ export default function AllReportsCard() {
   return (
     <View style={styles.outerContainer}>
       {/* <Text>All_Reports_Card</Text> */}
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
+
       <FlatList
         data={jsonData.agent}
         keyExtractor={(item, index) => index.toString()}
         showsVerticalScrollIndicator={false}
+        style={{ marginBottom: 10 }}
         renderItem={(item, index) => {
           // console.log(index, "index");
           return (
@@ -112,6 +109,11 @@ export default function AllReportsCard() {
             </View>
           );
         }}
+      />
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
       />
     </View>
   );
