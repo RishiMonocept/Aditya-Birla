@@ -1,3 +1,5 @@
+// BottomNavigation.js
+
 import React, { useCallback, useEffect, useState } from "react";
 import {
   View,
@@ -6,8 +8,6 @@ import {
   TouchableOpacity,
   Animated,
   Image,
-  KeyboardAvoidingView,
-  Platform,
   Keyboard,
 } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -101,14 +101,14 @@ const BottomNavigation = () => {
                     source={icon}
                     style={[
                       styles.icon,
-                      { tintColor: isFocused ? "#C7222A" : "gray" },
+                      { tintColor: isFocused ? "#C7222A" : "#797979" },
                     ]}
                   />
                 </Animated.View>
                 <Text
                   style={[
                     styles.buttonText,
-                    { color: isFocused ? "#C7222A" : "gray" },
+                    { color: isFocused ? "#C7222A" : "#797979" },
                   ]}
                 >
                   {label}

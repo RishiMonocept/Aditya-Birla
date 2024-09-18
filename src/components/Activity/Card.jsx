@@ -7,7 +7,7 @@ const ActivityCard = ({ item, length }) => {
     <View
       style={{
         ...styles.mainConatiner,
-        marginBottom: item?.item?.id === length ? 300 : null,
+        // marginBottom: item?.item?.id === length ? 210 : null,
       }}
     >
       <View style={styles.titleDateContainer}>

@@ -16,7 +16,7 @@ const NotificationsCard = ({ item, length }) => {
     <View
       style={{
         ...styles.container,
-        marginBottom: item?.item?.id === length ? 300 : null,
+        // marginBottom: item?.item?.id === length ? 210 : null,
       }}
     >
       <View style={styles.cardMainContainer}>

@@ -13,7 +13,12 @@ export default function AllReportsCard() {
 
   const renderItem = useCallback(({ item }) => {
     return (
-      <View style={[styles.mainContainer]}>
+      <View
+        style={{
+          ...styles.mainContainer,
+          marginBottom: item.id === 3 && 30,
+        }}
+      >
         <View style={styles.child1}>
           <View style={styles.textContainer}>
             <Text style={styles.nameText}>{item.name}</Text>
@@ -81,7 +86,7 @@ export default function AllReportsCard() {
         keyExtractor={(item, index) => index.toString()}
         showsVerticalScrollIndicator={false}
         renderItem={renderItem}
-        // style={{ borderWidth: 2 }}
+        style={{ marginBottom: 10 }}
       />
       <Pagination
         currentPage={currentPage}

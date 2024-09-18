@@ -9,7 +9,8 @@ export const styles = StyleSheet.create({
     // marginBottom: 800,
     marginBottom: 100,
     // marginTop: -6,
-    paddingVertical: 24,
+    // paddingVertical: 24,
+    paddingTop: 10,
   },
   button: {
     width: 32,
