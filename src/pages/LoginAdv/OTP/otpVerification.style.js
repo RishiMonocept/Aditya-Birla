@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
     // gap: 8,
   },
   otpInput: {
-    width: 40,
+    width: 50,
     height: 40,
     borderWidth: 1,
     borderColor: "#F1F3F6",
