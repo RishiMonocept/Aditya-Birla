@@ -4,7 +4,7 @@ import loginBgImage from "../../assets/Login/login-bg.png";
 
 const BottomImage = () => {
   return (
-    <View style={{ flex: 0.35, borderWidth: 2 }}>
+    <View style={{ flex: 0.35 }}>
       <ImageBackground
         source={loginBgImage}
         style={{ flex: 1, opacity: 0.9 }}
