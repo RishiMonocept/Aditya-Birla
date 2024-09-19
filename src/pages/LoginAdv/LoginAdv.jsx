@@ -11,6 +11,7 @@ import BottomImage from "./BottomImage";
 import InputPassword from "../../components/Login/InputPassword";
 import CustomButton from "../../components/Login/CustonButton";
 import InputBox from "../../components/Login/InputBox";
+import AsEmplayee from "../../components/Login/AsEmplayee";
 
 const LoginAdv = () => {
   return (
@@ -33,24 +34,15 @@ const LoginAdv = () => {
             </Text>
             <Text style={styles.headingText}>Insurance!</Text>
           </View>
-          {/* {1 && (
-            <>
-              <TextInput
-                placeholder="User Code"
-                style={styles.input}
-                keyboardType="visible-password"
-                placeholderTextColor="#797979"  
-              />
-              <InputPassword />
-              <CustomButton title={"Login"} subTitle={"I'm an employee"} />
-            </>
-          )} */}
-          {1 && (
-            <>
-             
-             <InputBox/>
-            </>
-          )}
+
+          <TextInput
+            placeholder="User Code"
+            style={styles.input}
+            keyboardType="visible-password"
+            placeholderTextColor="#797979"
+          />
+          <InputPassword />
+          <CustomButton title={"Login"} subTitle={"I'm an employee"} />
         </View>
       </View>
       <BottomImage />
@@ -61,7 +53,6 @@ const LoginAdv = () => {
 export default LoginAdv;
 
 const styles = StyleSheet.create({
-
   headingTextName: {
     fontSize: 22,
     fontWeight: "600",
