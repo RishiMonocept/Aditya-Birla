@@ -1,21 +1,37 @@
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  ActivityIndicator,
+} from "react-native";
 import React from "react";
 
-export default function CustomButton({ title, subTitle }) {
+export default function CustomButton({
+  loading,
+  onPress = null,
+  title,
+  subTitle,
+}) {
   return (
-    <>
+    <View>
       <TouchableOpacity
         style={styles.loginButton}
         // onPress={handleLogin}
         // disabled={loading}
+        onPress={onPress}
       >
-        <Text style={styles.loginButtonText}>{title}</Text>
+        {loading ? (
+          <ActivityIndicator color={"#fff"} />
+        ) : (
+          <Text style={styles.loginButtonText}>{title}</Text>
+        )}
       </TouchableOpacity>
 
-      <TouchableOpacity>
-        <Text style={styles.employee}>{subTitle}</Text>
+      <TouchableOpacity style={styles.employeeButton}>
+        <Text style={styles.employeeText}>{subTitle}</Text>
       </TouchableOpacity>
-    </>
+    </View>
   );
 }
 
@@ -27,6 +43,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
+    marginTop: 30,
   },
   loginButtonText: {
     color: "#fff",
@@ -34,12 +51,15 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     lineHeight: 24,
   },
-  employee: {
+  employeeButton: {
+    marginTop: 13,
+  },
+  employeeText: {
     alignSelf: "center",
     color: "#C7222A",
     fontSize: 14,
-    fontFamily: "400",
+    fontWeight: "400",
     lineHeight: 15.4,
-    marginTop: -5,
+    // marginTop: -5,
   },
 });

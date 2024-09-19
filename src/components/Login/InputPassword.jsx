@@ -5,21 +5,45 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 
-export default function InputPassword() {
+export default function InputPassword({ inputValue, setInputValue }) {
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const inputRef1 = useRef(null);
+  const inputRef2 = useRef(null);
+
+  const handleSubmitEditing = () => {
+    inputRef2.current.focus();
+  };
 
   return (
     <>
+      <TextInput
+        ref={inputRef1}
+        placeholder="User Code"
+        style={styles.input}
+        keyboardType="visible-password"
+        placeholderTextColor="#797979"
+        value={inputValue?.email}
+        onChangeText={(e) =>
+          setInputValue((prevData) => ({ ...prevData, email: e }))
+        }
+        onSubmitEditing={handleSubmitEditing}
+        returnKeyType="next"
+      />
       <View style={styles.passwordContainer}>
         <TextInput
+          ref={inputRef2}
           placeholder="Password"
           secureTextEntry={!passwordVisible}
-          style={styles.input}
+          style={{ width: "90%" }}
           placeholderTextColor="#797979"
           keyboardType={passwordVisible ? "visible-password" : "default"}
+          value={inputValue?.password}
+          onChangeText={(e) =>
+            setInputValue((prevData) => ({ ...prevData, password: e }))
+          }
         />
         <TouchableOpacity
           style={styles.showHideIcon}
@@ -45,43 +69,39 @@ export default function InputPassword() {
 const styles = StyleSheet.create({
   passwordContainer: {
     width: "100%",
-    height: 40,
+    // height: 40,
     flexDirection: "row",
     alignItems: "center",
     paddingVertical: 8,
-    paddingLeft:8,
-    paddingRight:16,
-    backgroundColor:"#FFFFFF",
+    paddingLeft: 8,
+    paddingRight: 16,
+    backgroundColor: "#FFFFFF",
     borderColor: "#F1F3F6",
     borderWidth: 1,
     borderRadius: 12,
-    marginBottom: 15,
+    marginBottom: 12,
     position: "relative",
   },
-  input:{
-    width:"90%"
+  input: {
+    marginVertical: 24,
+    width: "100%",
+    // height: 40,
+    borderColor: "#F1F3F6",
+    backgroundColor: "#FFFFFF",
+    borderWidth: 1,
+    borderRadius: 12,
+    paddingVertical: 8,
+    paddingLeft: 8,
+    paddingRight: 16,
   },
-//   input: {
-//     width: "100%",
-//     height: 40,
-//     borderColor: "#F1F3F6",
-//     backgroundColor: "#FFFFFF",
-//     borderWidth: 1,
-//     borderRadius: 10,
-//     paddingHorizontal: 10,
-//     marginBottom: 15,
-//   },
   showHideIcon: {
     position: "absolute",
     right: 10,
     height: 33,
-    top: 9,
-    // justifyContent: "center",
+    top: 11,
   },
   forgotPasswordContainer: {
-    // flexDirection:,
     marginTop: -35,
-    // marginBottom:40,
     alignSelf: "flex-end",
     marginRight: 2,
   },
@@ -89,5 +109,6 @@ const styles = StyleSheet.create({
     color: "#C7222A",
     fontSize: 12,
     fontWeight: "400",
+    marginRight: 3,
   },
 });
