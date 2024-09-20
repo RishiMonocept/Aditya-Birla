@@ -54,7 +54,6 @@ export default function InputPassword({ inputValue, setInputValue }) {
               name={passwordVisible ? "eye-off" : "eye"}
               size={20}
               color="#797979"
-              style={{ height: 18, width: 18 }}
             />
           </TouchableOpacity>
         </View>
@@ -82,6 +81,7 @@ const styles = StyleSheet.create({
     borderColor: "#F1F3F6",
     borderWidth: 1,
     borderRadius: 12,
+    justifyContent: "space-between",
   },
   input: {
     width: "100%",
@@ -94,15 +94,10 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
   },
   showHideIcon: {
-    position: "absolute",
-    right: 10,
-    height: 18,
-    width: 18,
-    top: 11,
+    justifyContent: "center",
   },
   forgotPasswordContainer: {
     alignSelf: "flex-end",
-    // marginRight: 2,
   },
   forgotPasswordText: {
     color: "#C7222A",

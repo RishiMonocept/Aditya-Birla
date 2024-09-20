@@ -17,7 +17,7 @@ import OTPVerification from "./OTP/OtpVerification";
 import InputPassword from "../../components/Login/InputPassword";
 import CustomButton from "../../components/Login/CustonButton";
 import InputBox from "../../components/Login/InputBox";
-import AsEmplayee from "../../components/Login/AsEmplayee";
+import EmployeeLogin from "../../components/Login/EmployeeLogin";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Toast from "react-native-toast-message";
 import { CommonActions, useNavigation } from "@react-navigation/native";
@@ -137,7 +137,7 @@ const LoginAdv = () => {
             ) : !isEmployee ? (
               <InputBox />
             ) : (
-              <AsEmplayee setInputNum={(num) => setInputNum(num)} />
+              <EmployeeLogin setInputNum={(num) => setInputNum(num)} />
             )}
             <CustomButton
               loading={loading}
