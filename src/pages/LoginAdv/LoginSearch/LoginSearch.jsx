@@ -17,16 +17,17 @@ import SEARCH_ICON from "../../../assets/Login/magnify.png";
 import { styles } from "./LoginScreen.style";
 
 const mobileNumbers = [
-  "+91 9876543210",
-  "+91 9123456789",
-  "+91 9898989898",
-  "+91 9000000000",
-  "+91 9555555555",
-  "+91 9191919191",
-  "+91 9090909090",
-  "+91 9222222222",
-  "+91 9333333333",
-  "+91 9444444444",
+  "+91 98765 43210",
+  "+91 91234 56789",
+  "+91 98989 89898",
+  "+91 90000 00000",
+  "+91 95555 55555",
+  "+91 91919 19191",
+  "+91 90909 09090",
+  "+91 92222 22222",
+  "+91 93333 33333",
+  "+91 94444 44444",
+  "+91 78444 44444",
 ];
 
 const emailAddresses = [
@@ -69,12 +70,10 @@ const LoginSearch = () => {
       if (searchText) {
         const filteredResults = !flag
           ? mobileNumbers
-              .filter((item) => item.includes(searchText))
-              .sort()
+              .filter((item) => item.slice(4).startsWith(searchText))
               .slice(0, 4)
           : emailAddresses
-              .filter((item) => item.includes(searchText.toLowerCase()))
-              .sort()
+              .filter((item) => item.startsWith(searchText.toLowerCase()))
               .slice(0, 4);
         setSearchResults(filteredResults);
       } else {
