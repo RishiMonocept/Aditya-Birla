@@ -10,6 +10,7 @@ import ChatButton from "./src/components/ChatButton";
 import Login from "./src/pages/Login/Login";
 import Toast from "react-native-toast-message";
 import LoginAdv from "./src/pages/LoginAdv/LoginAdv";
+import LoginSearch from "./src/pages/LoginAdv/LoginSearch/LoginSearch";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,7 @@ export default function App() {
           <Stack.Screen name="AdvLoginPage" component={LoginAdv} />
           {/* <Stack.Screen name="LoginPage" component={Login} /> */}
           <Stack.Screen name="BottomTabs" component={BottomNavigation} />
+          <Stack.Screen name="LoginSearch" component={LoginSearch} />
         </Stack.Navigator>
         <Toast />
       </View>

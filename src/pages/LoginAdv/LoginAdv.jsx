@@ -9,7 +9,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import BottomImage from "./BottomImage";
 import ToggleButtons from "./ToggleButtons";
@@ -29,6 +29,19 @@ const LoginAdv = () => {
     password: "12345",
   });
   const [loading, setLoading] = useState(false);
+  const [selected, setSelected] = useState(0);
+  const [isEmployee, setIsEmployee] = useState(false);
+  const [sendOTP, setSendOTP] = useState(false);
+  const [inputNum, setInputNum] = useState("");
+
+  // Reset states when selected changes to 0
+  useEffect(() => {
+    if (selected === 0) {
+      setIsEmployee(false);
+      setSendOTP(false);
+      setInputNum("");
+    }
+  }, [selected]);
 
   const handleLogin = async () => {
     setLoading(true);
@@ -48,10 +61,8 @@ const LoginAdv = () => {
       });
 
       const result = await response.json();
-      // console.log("result", result);
 
       if (response.ok) {
-        // console.log("Hello");
         Toast.show({
           type: "success",
           position: "top",
@@ -60,13 +71,10 @@ const LoginAdv = () => {
           visibilityTime: 3000,
         });
         AsyncStorage.setItem("UserData", JSON.stringify(result));
-        // navigation.navigate("BottomTabs");
-        setLoading(false);
-        // navigation.replace("BottomTabs");
         navigation.dispatch(
           CommonActions.reset({
             index: 0,
-            routes: [{ name: "BottomTabs" }], // Your main screen after login
+            routes: [{ name: "BottomTabs" }],
           })
         );
       } else {
@@ -77,7 +85,6 @@ const LoginAdv = () => {
           text2: result.message || "Please check your credentials.",
           visibilityTime: 3000,
         });
-        setLoading(false);
       }
     } catch (error) {
       Toast.show({
@@ -97,6 +104,10 @@ const LoginAdv = () => {
     }
   };
 
+  const checkNumEntered = () => {
+    console.log("Verify OTP pressed without num");
+  };
+
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <SafeAreaView style={{ flex: 1 }}>
@@ -106,7 +117,7 @@ const LoginAdv = () => {
               marginTop: 56,
               marginHorizontal: 16,
               flex: 1,
-              gap: 24,
+              gap: 40,
             }}
           >
             <View>
@@ -115,17 +126,35 @@ const LoginAdv = () => {
                 {`Welcome to Aditya Birla Health \nInsurance!`}
               </Text>
             </View>
-            <ToggleButtons />
-
-            <InputPassword
-              inputValue={loginData}
-              setInputValue={setLoginData}
-            />
+            <ToggleButtons selected={selected} setSelected={setSelected} />
+            {!selected ? (
+              <InputPassword
+                inputValue={loginData}
+                setInputValue={setLoginData}
+              />
+            ) : sendOTP ? (
+              <OTPVerification title={inputNum} />
+            ) : !isEmployee ? (
+              <InputBox />
+            ) : (
+              <AsEmplayee setInputNum={(num) => setInputNum(num)} />
+            )}
             <CustomButton
               loading={loading}
-              title={"Login"}
-              subTitle={"I'm an employee"}
-              onPress={handleLogin}
+              title={!selected ? "Login" : !sendOTP ? "Send OTP" : "Verify OTP"}
+              subTitle={
+                !selected
+                  ? "I'm an employee"
+                  : !isEmployee
+                  ? "I'm an employee"
+                  : "Login as Customer"
+              }
+              onPressB1={!selected ? handleLogin : checkNumEntered}
+              onPressB2={() => setIsEmployee(!isEmployee)}
+              sendOTP={() => {
+                // Logic for sending OTP
+                setSendOTP(true);
+              }}
             />
           </View>
         </KeyboardAvoidingView>

@@ -40,14 +40,16 @@ const OTPVerification = ({ title, accessId }) => {
     }
   };
 
-  const handleSubmit = () => {
+  const handleOTPSubmit = () => {
     const enteredOtp = otp.join("");
     console.log("OTP entered:", enteredOtp);
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
+      <Text
+        style={styles.title}
+      >{`The OTP has been sent to +91 ***** ***${title.slice(9)}`}</Text>
       <View style={styles.otpContainer}>
         {otp.map((digit, index) => (
           <TextInput
@@ -66,9 +68,6 @@ const OTPVerification = ({ title, accessId }) => {
           />
         ))}
       </View>
-      <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
-        <Text style={styles.buttonText}>Verify OTP</Text>
-      </TouchableOpacity>
     </View>
   );
 };

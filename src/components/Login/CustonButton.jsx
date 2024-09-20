@@ -9,17 +9,26 @@ import React from "react";
 
 export default function CustomButton({
   loading,
-  onPress = null,
+  onPressB1 = null,
+  onPressB2 = null,
   title,
   subTitle,
+  sendOTP,
 }) {
+  const handlePress = () => {
+    if (title === "Send OTP") {
+      sendOTP();
+    } else {
+      onPressB1();
+    }
+  };
+
   return (
-    <View>
+    <View style={{ gap: 13 }}>
       <TouchableOpacity
         style={styles.loginButton}
-        // onPress={handleLogin}
-        // disabled={loading}
-        onPress={onPress}
+        disabled={loading}
+        onPress={handlePress}
       >
         {loading ? (
           <ActivityIndicator color={"#fff"} />
@@ -28,7 +37,7 @@ export default function CustomButton({
         )}
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.employeeButton}>
+      <TouchableOpacity onPress={onPressB2}>
         <Text style={styles.employeeText}>{subTitle}</Text>
       </TouchableOpacity>
     </View>
@@ -42,17 +51,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#C7222A",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 10,
-    marginTop: 30,
+    borderRadius: 12,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
   },
   loginButtonText: {
     color: "#fff",
     fontSize: 16,
     fontWeight: "500",
-    lineHeight: 24,
-  },
-  employeeButton: {
-    marginTop: 13,
+    lineHeight: 20,
   },
   employeeText: {
     alignSelf: "center",
@@ -60,6 +67,5 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "400",
     lineHeight: 15.4,
-    // marginTop: -5,
   },
 });
