@@ -29,6 +29,7 @@ const LoginAdv = () => {
     password: "12345",
   });
   const [loading, setLoading] = useState(false);
+  const [selected, setSelected] = useState(0);
 
   const handleLogin = async () => {
     setLoading(true);
@@ -66,7 +67,7 @@ const LoginAdv = () => {
         navigation.dispatch(
           CommonActions.reset({
             index: 0,
-            routes: [{ name: "BottomTabs" }], // Your main screen after login
+            routes: [{ name: "BottomTabs" }],
           })
         );
       } else {
@@ -115,17 +116,20 @@ const LoginAdv = () => {
                 {`Welcome to Aditya Birla Health \nInsurance!`}
               </Text>
             </View>
-            <ToggleButtons />
-
-            <InputPassword
-              inputValue={loginData}
-              setInputValue={setLoginData}
-            />
+            <ToggleButtons selected={selected} setSelected={setSelected} />
+            {!selected ? (
+              <InputPassword
+                inputValue={loginData}
+                setInputValue={setLoginData}
+              />
+            ) : (
+              <InputBox />
+            )}
             <CustomButton
               loading={loading}
-              title={"Login"}
+              title={!selected ? "Login" : "Send OTP"}
               subTitle={"I'm an employee"}
-              onPress={handleLogin}
+              onPress={!selected ? handleLogin : null}
             />
           </View>
         </KeyboardAvoidingView>

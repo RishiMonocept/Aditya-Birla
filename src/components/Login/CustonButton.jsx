@@ -18,7 +18,7 @@ export default function CustomButton({
       <TouchableOpacity
         style={styles.loginButton}
         // onPress={handleLogin}
-        // disabled={loading}
+        disabled={loading}
         onPress={onPress}
       >
         {loading ? (
