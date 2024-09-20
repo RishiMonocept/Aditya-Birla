@@ -15,7 +15,7 @@ export default function InputBox() {
   const onFocus = () => {
     setIsFocused(true);
     Animated.timing(animatedValue, {
-      toValue: 0.5,
+      toValue: 0.7,
       duration: 100,
       useNativeDriver: false,
     }).start();
@@ -35,7 +35,7 @@ export default function InputBox() {
   const animatedStyle = {
     fontSize: animatedValue.interpolate({
       inputRange: [0, 1],
-      outputRange: [16, 10],
+      outputRange: [13.5, 10],
     }),
     transform: [
       {
@@ -45,6 +45,10 @@ export default function InputBox() {
         }),
       },
     ],
+    color: animatedValue.interpolate({
+      inputRange: [0, 1],
+      outputRange: ["#797979", "#4c4c4c"],
+    }),
   };
 
   return (
@@ -74,6 +78,8 @@ const styles = StyleSheet.create({
     left: 16,
     zIndex: 100,
     color: "#797979",
+    fontSize: 12,
+    fontWeight: "500",
   },
   input: {
     width: "100%",

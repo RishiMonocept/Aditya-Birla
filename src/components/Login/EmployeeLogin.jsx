@@ -8,12 +8,11 @@ import {
 } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
-export default function AsEmplayee({ setInputNum }) {
+export default function EmployeeLogin({ setInputNum }) {
   const navigation = useNavigation();
   const route = useRoute();
   const [searchText, setSearchText] = useState("");
 
-  // Capture the search result when navigating back from LoginSearch
   useEffect(() => {
     if (route.params?.selectedContact) {
       setSearchText(route.params.selectedContact);
@@ -37,19 +36,15 @@ export default function AsEmplayee({ setInputNum }) {
       />
 
       <View style={styles.container}>
-        <View>
-          <Text style={styles.text}>
-            Enter the mobile number or{"\n"}email address to receive the OTP.
-          </Text>
-        </View>
-        <View>
-          <TouchableOpacity
-            style={styles.searchbtn}
-            onPress={handleSearchNavigation}
-          >
-            <Text style={styles.searchMobNum}>Search Mobile Number</Text>
-          </TouchableOpacity>
-        </View>
+        <Text style={styles.text}>
+          Enter the mobile number or{"\n"}email address to receive the OTP.
+        </Text>
+        <TouchableOpacity
+          style={styles.searchbtn}
+          onPress={handleSearchNavigation}
+        >
+          <Text style={styles.searchMobNum}>Search Mobile Number</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -67,8 +62,8 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingTop: 8,
     paddingBottom: 8,
-    paddingLeft: 6,
-    paddingRight: 16,
+    paddingRight: 6,
+    paddingLeft: 16,
   },
   text: {
     fontSize: 11.5,
@@ -78,6 +73,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flexDirection: "row",
+    justifyContent: "space-between",
   },
   searchMobNum: {
     fontSize: 11.5,
@@ -85,7 +81,10 @@ const styles = StyleSheet.create({
     color: "#C7222A",
   },
   searchbtn: {
-    paddingTop: 10,
-    paddingLeft: 25,
+    // paddingTop: 10,
+    // paddingLeft: 25,
+    paddingVertical: 6,
+    paddingHorizontal: 14,
+    justifyContent: "center",
   },
 });

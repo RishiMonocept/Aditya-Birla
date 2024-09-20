@@ -92,7 +92,7 @@ const LoginSearch = () => {
     setSearchText(item.slice(4));
     setSearchResults([]);
 
-    // Navigate back to AsEmplayee screen with the selected search text
+    // Navigate back to EmployeeLogin screen with the selected search text
     navigation.navigate("AdvLoginPage", { selectedContact: item.slice(4) });
   };
 
