@@ -1,4 +1,10 @@
-import { View, TextInput, Animated, StyleSheet, TouchableWithoutFeedback } from "react-native";
+import {
+  View,
+  TextInput,
+  Animated,
+  StyleSheet,
+  TouchableWithoutFeedback,
+} from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 
 export default function InputBox() {
@@ -6,12 +12,11 @@ export default function InputBox() {
   const inputRef = useRef(null);
   const [isFocused, setIsFocused] = useState(false);
 
-
   const onFocus = () => {
     setIsFocused(true);
     Animated.timing(animatedValue, {
-      toValue: 0.5, 
-      duration: 100, 
+      toValue: 0.5,
+      duration: 100,
       useNativeDriver: false,
     }).start();
   };
@@ -20,24 +25,23 @@ export default function InputBox() {
     if (!inputRef.current || !inputRef.current.isFocused()) {
       setIsFocused(false);
       Animated.timing(animatedValue, {
-        toValue: 0, 
-        duration: 200, 
+        toValue: 0,
+        duration: 200,
         useNativeDriver: false,
       }).start();
     }
   };
 
-
   const animatedStyle = {
     fontSize: animatedValue.interpolate({
       inputRange: [0, 1],
-      outputRange: [16, 10], 
+      outputRange: [16, 10],
     }),
     transform: [
       {
         translateY: animatedValue.interpolate({
           inputRange: [0, 1],
-          outputRange: [0, -30], 
+          outputRange: [0, -30],
         }),
       },
     ],
@@ -56,8 +60,8 @@ export default function InputBox() {
         ref={inputRef}
         style={styles.input}
         placeholderTextColor="#797979"
-        onFocus={onFocus} 
-        onBlur={onBlur} 
+        onFocus={onFocus}
+        onBlur={onBlur}
       />
     </View>
   );
@@ -66,7 +70,7 @@ export default function InputBox() {
 const styles = StyleSheet.create({
   Phoneplaceholder: {
     position: "absolute",
-    top: 14, 
+    top: 14,
     left: 16,
     zIndex: 100,
     color: "#797979",

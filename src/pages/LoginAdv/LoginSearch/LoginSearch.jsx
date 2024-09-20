@@ -11,6 +11,7 @@ import {
   Keyboard,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useNavigation } from "@react-navigation/native";
 import BottomImage from "../BottomImage";
 import BACK_ICON from "../../../assets/Login/login-back-icon.png";
 import SEARCH_ICON from "../../../assets/Login/magnify.png";
@@ -50,6 +51,7 @@ const LoginSearch = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [flag, setFlag] = useState(false);
   const debounceTimeout = useRef(null);
+  const navigation = useNavigation();
 
   const handleSearch = (text) => {
     setSearchText(text);
@@ -87,8 +89,11 @@ const LoginSearch = () => {
   }, [searchText]);
 
   const handleSelect = (item) => {
-    setSearchText(item);
+    setSearchText(item.slice(4));
     setSearchResults([]);
+
+    // Navigate back to AsEmplayee screen with the selected search text
+    navigation.navigate("AdvLoginPage", { selectedContact: item.slice(4) });
   };
 
   return (
