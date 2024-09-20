@@ -2,8 +2,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { styles } from "./toggleButton.style";
 
-const ToggleButtons = () => {
-  const [selected, setSelected] = useState(0);
+const ToggleButtons = ({ selected, setSelected }) => {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.userCodeContainer}>
