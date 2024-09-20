@@ -7,6 +7,7 @@ import NavigationsTab from "../Tabs/NavigationsTab";
 import ActivitiesList from "../components/Activity";
 import NotificationsList from "../components/Notifications";
 import { StatusBar } from "expo-status-bar";
+import Dashboard from "../components/Dashboard";
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState("Notifications");
@@ -14,13 +15,14 @@ const Home = () => {
   return (
     <View style={styles.mainContainer}>
       <SafeAreaView style={styles.safeAreaView}>
-        <Header title={"Your Profile"} />
+        {/* <Header title={"Your Profile"} />
         <NavigationsTab activeTab={activeTab} setActiveTab={setActiveTab} />
         {activeTab === "Notifications" ? (
           <NotificationsList />
         ) : (
           <ActivitiesList />
-        )}
+        )} */}
+        <Dashboard/>
       </SafeAreaView>
       <StatusBar style="dark" />
     </View>
