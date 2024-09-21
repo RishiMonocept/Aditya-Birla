@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 
-export default function InputBox() {
+export default function InputBox({ value, setValue }) {
   const animatedValue = useRef(new Animated.Value(0)).current;
   const inputRef = useRef(null);
   const [isFocused, setIsFocused] = useState(false);
@@ -65,7 +65,11 @@ export default function InputBox() {
         style={styles.input}
         placeholderTextColor="#797979"
         onFocus={onFocus}
-        onBlur={onBlur}
+        onBlur={!value && onBlur}
+        value={value}
+        onChangeText={(e) => setValue(e)}
+        keyboardType="numeric"
+        maxLength={10}
       />
     </View>
   );

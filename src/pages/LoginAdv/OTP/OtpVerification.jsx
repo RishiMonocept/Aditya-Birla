@@ -49,7 +49,7 @@ const OTPVerification = ({ title, accessId }) => {
     <View style={styles.container}>
       <Text
         style={styles.title}
-      >{`The OTP has been sent to +91 ***** ***${title.slice(9)}`}</Text>
+      >{`The OTP has been sent to +91 ***** ***${title.slice(8)}`}</Text>
       <View style={styles.otpContainer}>
         {otp.map((digit, index) => (
           <TextInput

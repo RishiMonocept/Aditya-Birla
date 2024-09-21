@@ -8,17 +8,20 @@ import {
 } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
-export default function EmployeeLogin({ setInputNum }) {
+export default function EmployeeLogin({ setInputNum,searchText, setSearchText  }) {
   const navigation = useNavigation();
   const route = useRoute();
-  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     if (route.params?.selectedContact) {
       setSearchText(route.params.selectedContact);
       setInputNum(route.params.selectedContact);
+      console.log(route.params.selectedContact);
+    } else {
+      // setSearchText()
+      setInputNum(searchText);
     }
-  }, [route.params?.selectedContact]);
+  }, [route.params?.selectedContact, searchText]);
 
   const handleSearchNavigation = () => {
     console.log("Navigating to LoginSearch");
