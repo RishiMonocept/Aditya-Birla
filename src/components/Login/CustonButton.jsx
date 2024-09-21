@@ -6,6 +6,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
 export default function CustomButton({
   loading,
@@ -14,8 +15,22 @@ export default function CustomButton({
   title,
   subTitle,
   sendOTP,
+  inputBoxValue,
+  setInputBoxValue,
+  inputNum,
+  setInputNum,
+  searchText,
+  setSearchText,
 }) {
+  // console.log(inputBoxValue?.length < 10, "InputBoxValue");
+  // console.log(loading, "Loading");
+  // console.log(inputNum, "inputNum");
+  // console.log(inputBoxValue?.length !== 10 && subTitle === "I'm an employee");
+  const navigation = useNavigation();
+
   const handlePress = () => {
+    if (subTitle === "Login as Customer") setInputBoxValue(null);
+
     if (title === "Send OTP") {
       sendOTP();
     } else {
@@ -23,11 +38,33 @@ export default function CustomButton({
     }
   };
 
+  const handlePressB2 = () => {
+    setInputBoxValue(null);
+    setSearchText(null);
+    setInputNum(null);
+    onPressB2();
+    // if (title === "Verify OTP") {
+    //   navigation.goBack();
+    // }
+  };
+
   return (
     <View style={{ gap: 13 }}>
       <TouchableOpacity
         style={styles.loginButton}
-        disabled={loading}
+        disabled={
+          loading ||
+          (!inputBoxValue &&
+            subTitle === "I'm an employee" &&
+            title != "Login") ||
+          (inputBoxValue?.length !== 10 &&
+            subTitle === "I'm an employee" &&
+            title != "Login") ||
+          (!inputNum && subTitle === "Login as Customer" && title != "Login") ||
+          (inputNum?.length < 10 &&
+            subTitle === "Login as Customer" &&
+            title != "Login")
+        }
         onPress={handlePress}
       >
         {loading ? (
@@ -37,7 +74,7 @@ export default function CustomButton({
         )}
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={onPressB2}>
+      <TouchableOpacity onPress={handlePressB2}>
         <Text style={styles.employeeText}>{subTitle}</Text>
       </TouchableOpacity>
     </View>

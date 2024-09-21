@@ -33,6 +33,8 @@ const LoginAdv = () => {
   const [isEmployee, setIsEmployee] = useState(false);
   const [sendOTP, setSendOTP] = useState(false);
   const [inputNum, setInputNum] = useState("");
+  const [inputBoxValue, setInputBoxValue] = useState(null);
+  const [searchText, setSearchText] = useState("");
 
   // Reset states when selected changes to 0
   useEffect(() => {
@@ -40,6 +42,8 @@ const LoginAdv = () => {
       setIsEmployee(false);
       setSendOTP(false);
       setInputNum("");
+      setInputBoxValue("");
+      setSearchText("");
     }
   }, [selected]);
 
@@ -133,11 +137,17 @@ const LoginAdv = () => {
                 setInputValue={setLoginData}
               />
             ) : sendOTP ? (
-              <OTPVerification title={inputNum} />
+              <OTPVerification
+                title={inputNum ? inputNum : " " + inputBoxValue}
+              />
             ) : !isEmployee ? (
-              <InputBox />
+              <InputBox value={inputBoxValue} setValue={setInputBoxValue} />
             ) : (
-              <AsEmplayee setInputNum={(num) => setInputNum(num)} />
+              <AsEmplayee
+                setInputNum={(num) => setInputNum(num)}
+                searchText={searchText}
+                setSearchText={setSearchText}
+              />
             )}
             <CustomButton
               loading={loading}
@@ -155,11 +165,17 @@ const LoginAdv = () => {
                 // Logic for sending OTP
                 setSendOTP(true);
               }}
+              inputBoxValue={inputBoxValue}
+              setInputBoxValue={setInputBoxValue}
+              inputNum={inputNum}
+              setInputNum={setInputNum}
+              searchText={searchText}
+              setSearchText={setSearchText}
             />
           </View>
         </KeyboardAvoidingView>
         <BottomImage />
-        <StatusBar backgroundColor={"#F7F7F7"} barStyle={"light-content"} />
+        <StatusBar backgroundColor={"#F7F7F7"} barStyle={"dark-content"} />
       </SafeAreaView>
     </TouchableWithoutFeedback>
   );

@@ -8,18 +8,21 @@ import {
 } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
-export default function AsEmplayee({ setInputNum }) {
+export default function AsEmplayee({ setInputNum, searchText, setSearchText }) {
   const navigation = useNavigation();
   const route = useRoute();
-  const [searchText, setSearchText] = useState("");
 
   // Capture the search result when navigating back from LoginSearch
   useEffect(() => {
     if (route.params?.selectedContact) {
       setSearchText(route.params.selectedContact);
       setInputNum(route.params.selectedContact);
+      console.log(route.params.selectedContact);
+    } else {
+      // setSearchText()
+      setInputNum(searchText);
     }
-  }, [route.params?.selectedContact]);
+  }, [route.params?.selectedContact, searchText]);
 
   const handleSearchNavigation = () => {
     console.log("Navigating to LoginSearch");
