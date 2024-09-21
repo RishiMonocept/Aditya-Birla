@@ -18,7 +18,7 @@ export default function InputPassword({ inputValue, setInputValue }) {
   };
 
   return (
-    <>
+    <View style={styles.mainContainer}>
       <TextInput
         ref={inputRef1}
         placeholder="User Code"
@@ -32,83 +32,77 @@ export default function InputPassword({ inputValue, setInputValue }) {
         onSubmitEditing={handleSubmitEditing}
         returnKeyType="next"
       />
-      <View style={styles.passwordContainer}>
-        <TextInput
-          ref={inputRef2}
-          placeholder="Password"
-          secureTextEntry={!passwordVisible}
-          style={{ width: "90%" }}
-          placeholderTextColor="#797979"
-          keyboardType={passwordVisible ? "visible-password" : "default"}
-          value={inputValue?.password}
-          onChangeText={(e) =>
-            setInputValue((prevData) => ({ ...prevData, password: e }))
-          }
-        />
-        <TouchableOpacity
-          style={styles.showHideIcon}
-          onPress={() => setPasswordVisible(!passwordVisible)}
-        >
-          <Ionicons
-            name={passwordVisible ? "eye-off" : "eye"}
-            size={20}
-            color="#797979"
+      <View style={{ gap: 8 }}>
+        <View style={styles.passwordContainer}>
+          <TextInput
+            ref={inputRef2}
+            placeholder="Password"
+            secureTextEntry={!passwordVisible}
+            style={{ width: "90%" }}
+            placeholderTextColor="#797979"
+            keyboardType={passwordVisible ? "visible-password" : "default"}
+            value={inputValue?.password}
+            onChangeText={(e) =>
+              setInputValue((prevData) => ({ ...prevData, password: e }))
+            }
           />
+          <TouchableOpacity
+            style={styles.showHideIcon}
+            onPress={() => setPasswordVisible(!passwordVisible)}
+          >
+            <Ionicons
+              name={passwordVisible ? "eye-off" : "eye"}
+              size={20}
+              color="#797979"
+            />
+          </TouchableOpacity>
+        </View>
+        <TouchableOpacity
+          onPress={() => console.log("Forgot Password pressed")}
+          style={styles.forgotPasswordContainer}
+        >
+          <Text style={styles.forgotPasswordText}>Forgot Password</Text>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity
-        onPress={() => console.log("Forgot Password pressed")}
-        style={styles.forgotPasswordContainer}
-      >
-        <Text style={styles.forgotPasswordText}>Forgot Password</Text>
-      </TouchableOpacity>
-    </>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    gap: 24,
+  },
   passwordContainer: {
     width: "100%",
-    // height: 40,
     flexDirection: "row",
-    alignItems: "center",
     paddingVertical: 8,
-    paddingLeft: 8,
-    paddingRight: 16,
+    paddingHorizontal: 16,
     backgroundColor: "#FFFFFF",
     borderColor: "#F1F3F6",
     borderWidth: 1,
     borderRadius: 12,
-    marginBottom: 12,
-    position: "relative",
+    justifyContent: "space-between",
   },
   input: {
-    marginVertical: 24,
     width: "100%",
-    // height: 40,
     borderColor: "#F1F3F6",
     backgroundColor: "#FFFFFF",
     borderWidth: 1,
     borderRadius: 12,
     paddingVertical: 8,
-    paddingLeft: 8,
-    paddingRight: 16,
+    paddingRight: 6,
+    paddingLeft: 16,
   },
   showHideIcon: {
-    position: "absolute",
-    right: 10,
-    height: 33,
-    top: 11,
+    justifyContent: "center",
   },
   forgotPasswordContainer: {
-    marginTop: -35,
     alignSelf: "flex-end",
-    marginRight: 2,
   },
   forgotPasswordText: {
     color: "#C7222A",
     fontSize: 12,
     fontWeight: "400",
-    marginRight: 3,
+    lineHeight: 13.2,
   },
 });
