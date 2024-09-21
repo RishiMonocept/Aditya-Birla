@@ -1,0 +1,72 @@
+{
+  "formTitle": "Leads",
+  "saveBtnTitle": "Save",
+  "prevBtnTitle": "",
+  "resetBtnTitle": "",
+  "calculateBtnTitle": "",
+  "saveBtnFunction": "getPremiumAmount",
+  "themeFile": "ABHI.css",
+  "formSections": [
+    {
+      "sectionTitle": "Personal Details",
+      "visibleLabel": true,
+      "visible": true,
+      "class": "col-md-12 section-title",
+      "formControls": [
+        {
+          "name": "productVariant",
+          "label": "Product Variant",
+          "visibleLabel": true,
+          "visible": true,
+          "type": "text",
+          "disabled": false,
+          "value": "VIP",
+          "class": "col-12 col-md-6 col-lg-4"
+        },
+        {
+          "name": "memberPlan",
+          "label": "Activ Health Platinum Plus",
+          "visibleLabel": true,
+          "type": "text",
+          "visible": true,
+          "value": "VIP",
+          "class": "col-12 col-md-6 col-lg-4",
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Plan is required field."
+            }
+          ]
+        },
+        {
+          "name": "productType",
+          "label": "Product Type",
+          "visibleLabel": false,
+          "type": "text",
+          "value": "AO",
+          "class": "",
+          "visible": false
+        },
+        {
+          "name": "productName",
+          "label": "Product Name",
+          "visibleLabel": true,
+          "type": "text",
+          "value": "Active One VIP",
+          "class": "",
+          "visible": true
+        },
+        {
+          "name": "planCode",
+          "label": "Product Code",
+          "visibleLabel": false,
+          "type": "text",
+          "value": "VIP",
+          "class": "",
+          "visible": false
+        }
+      ]
+    }
+  ]
+}
