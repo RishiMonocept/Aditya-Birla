@@ -30,6 +30,7 @@ const RenderInput = ({ item, onChange }) => {
             value={value}
             onChangeText={handleChange}
             placeholder={label}
+            placeholderTextColor={"#979CAE"}
           />
         </View>
       );
@@ -37,32 +38,38 @@ const RenderInput = ({ item, onChange }) => {
     case "select":
       return (
         <View style={styles.inputContainer}>
-          {item.visibleLabel && <Text>{label}</Text>}
-          <Picker
-            selectedValue={value}
-            onValueChange={handleChange}
-            style={styles.picker}
-          >
-            {options.map((option) => (
-              <Picker.Item
-                key={option.value}
-                label={option.name}
-                value={option.value}
-              />
-            ))}
-          </Picker>
+          {/* {item.visibleLabel && <Text>{label}</Text>} */}
+          <View style={styles.pickerContainer}>
+            <Picker
+              selectedValue={value}
+              dropdownIconRippleColor={"#ccc"}
+              onValueChange={(item) => handleChange(item)}
+              style={styles.picker}
+              // pickerStyleType=""
+            >
+              {options.map((option) => (
+                // console.log(option),
+                <Picker.Item
+                  key={option.value}
+                  label={option.name}
+                  value={option.value}
+                />
+              ))}
+            </Picker>
+          </View>
         </View>
       );
 
     case "date":
       return (
         <View style={styles.inputContainer}>
-          {item.visibleLabel && <Text>{label}</Text>}
+          {/* {item.visibleLabel && <Text>{label}</Text>} */}
           <TextInput
             style={styles.textInput}
             value={value}
             onChangeText={handleChange}
             placeholder={label}
+            placeholderTextColor={"#979CAE"}
           />
         </View>
       );
@@ -87,7 +94,7 @@ const LeadsForm = () => {
     }));
   };
 
-  console.log(formData);
+  // console.log(formData);
 
   return (
     <KeyboardAvoidingView
@@ -117,7 +124,7 @@ const LeadsForm = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    // padding: 16,
     backgroundColor: "#fff",
   },
   title: {
@@ -129,15 +136,21 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   textInput: {
-    borderWidth: 1,
+    // borderWidth: 1,
     borderColor: "#ccc",
-    borderRadius: 5,
-    padding: 10,
+    backgroundColor: "#f1f3f6",
+    borderRadius: 20,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+  },
+  pickerContainer: {
+    overflow: "hidden",
+    borderRadius: 20,
   },
   picker: {
     borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 5,
+    // borderColor: "#ccc",
+    backgroundColor: "#f1f3f6",
   },
 });
 
