@@ -125,9 +125,7 @@ const BottomNavigation = () => {
 
   return (
     <Tab.Navigator
-      tabBar={(props) =>
-        !isKeyboardVisible ? <CustomTabBar {...props} /> : null
-      }
+      tabBar={(props) => !isKeyboardVisible && <CustomTabBar {...props} />}
       screenOptions={{
         headerShown: false,
         tabBarHideOnKeyboard: true,

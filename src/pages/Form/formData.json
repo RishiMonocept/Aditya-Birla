@@ -270,7 +270,33 @@
           "value": "",
           "methodName": "getIdentityProof",
           "class": "col-12 col-md-6 col-lg-4",
-          "options": [],
+          "options": [
+            {
+              "id": "2",
+              "value": "Aadhar Card",
+              "name": "Aadhar Card"
+            },
+            {
+              "id": "3",
+              "value": "Passport",
+              "name": "Passport"
+            },
+            {
+              "id": "4",
+              "value": "Driving License",
+              "name": "Driving License"
+            },
+            {
+              "id": "5",
+              "value": "Voter ID",
+              "name": "Voter ID"
+            },
+            {
+              "id": "6",
+              "value": "10th (SSC) Mark sheet",
+              "name": "10th (SSC) Mark sheet"
+            }
+          ],
           "validators": [
             {
               "validatorName": "required",
@@ -363,7 +389,298 @@
           "visible": true,
           "value": "",
           "class": "col-12 col-md-6 col-lg-4",
-          "options": [],
+          "options": [
+            {
+              "id": "O464",
+              "value": "Retired",
+              "name": "Retired"
+            },
+            {
+              "id": "O490",
+              "value": "STUDENT",
+              "name": "STUDENT"
+            },
+            {
+              "id": "O553",
+              "value": "Salaried",
+              "name": "Salaried"
+            },
+            {
+              "id": "O554",
+              "value": "Not Employed",
+              "name": "Not Employed"
+            },
+            {
+              "id": "O555",
+              "value": "House Wife/Husband",
+              "name": "House Wife/Husband"
+            },
+            {
+              "id": "O556",
+              "value": "Self Employed",
+              "name": "Self Employed"
+            },
+            {
+              "id": "O014",
+              "value": "Accountants",
+              "name": "Accountants"
+            },
+            {
+              "id": "O140",
+              "value": "Ambulance Attendant",
+              "name": "Ambulance Attendant"
+            },
+            {
+              "id": "O015",
+              "value": "Architects",
+              "name": "Architects"
+            },
+            {
+              "id": "O018",
+              "value": "Bankers",
+              "name": "Bankers"
+            },
+            {
+              "id": "O041",
+              "value": "Big game hunting",
+              "name": "Big game hunting"
+            },
+            {
+              "id": "O019",
+              "value": "Builders",
+              "name": "Builders"
+            },
+            {
+              "id": "O051",
+              "value": "business",
+              "name": "business"
+            },
+            {
+              "id": "O103",
+              "value": "business1",
+              "name": "business1"
+            },
+            {
+              "id": "O104",
+              "value": "business2",
+              "name": "business2"
+            },
+            {
+              "id": "O105",
+              "value": "business3",
+              "name": "business3"
+            },
+            {
+              "id": "O106",
+              "value": "business4",
+              "name": "business4"
+            },
+            {
+              "id": "O024",
+              "value": "Businessmen",
+              "name": "Businessmen"
+            },
+            {
+              "id": "O025",
+              "value": "Clerical & Administrative functions",
+              "name": "Clerical & Administrative functions"
+            },
+            {
+              "id": "O016",
+              "value": "Consulting engineers",
+              "name": "Consulting engineers"
+            },
+            {
+              "id": "O020",
+              "value": "Contractors",
+              "name": "Contractors"
+            },
+            {
+              "id": "O012",
+              "value": "Doctors",
+              "name": "Doctors"
+            },
+            {
+              "id": "O032",
+              "value": "Drivers",
+              "name": "Drivers"
+            },
+            {
+              "id": "O052",
+              "value": "Employee",
+              "name": "Employee"
+            },
+            {
+              "id": "O022",
+              "value": "Engineers",
+              "name": "Engineers"
+            },
+            {
+              "id": "O021",
+              "value": "Engineers on site engaged in superintending functi",
+              "name": "Engineers on site engaged in superintending functi"
+            },
+            {
+              "id": "O066",
+              "value": "Engineers on site engaged in superintending functions only",
+              "name": "Engineers on site engaged in superintending functions only"
+            },
+            {
+              "id": "O110",
+              "value": "Factory Worker",
+              "name": "Factory Worker"
+            },
+            {
+              "id": "O107",
+              "value": "Government Employee",
+              "name": "Government Employee"
+            },
+            {
+              "id": "O004",
+              "value": "Housewife",
+              "name": "Housewife"
+            },
+            {
+              "id": "O095",
+              "value": "IT Professionals",
+              "name": "IT Professionals"
+            },
+            {
+              "id": "O013",
+              "value": "Lawyers",
+              "name": "Lawyers"
+            },
+            {
+              "id": "O033",
+              "value": "Manual laborers (except those falling under Group",
+              "name": "Manual laborers (except those falling under Group"
+            },
+            {
+              "id": "O077",
+              "value": "Manual laborers (except those falling under Group III)",
+              "name": "Manual laborers (except those falling under Group III)"
+            },
+            {
+              "id": "O112",
+              "value": "Mass Affluent",
+              "name": "Mass Affluent"
+            },
+            {
+              "id": "O031",
+              "value": "Mechanics",
+              "name": "Mechanics"
+            },
+            {
+              "id": "O113",
+              "value": "Micro & SME Owner/Trader",
+              "name": "Micro & SME Owner/Trader"
+            },
+            {
+              "id": "O009",
+              "value": "Others",
+              "name": "Others"
+            },
+            {
+              "id": "O034",
+              "value": "Persons working in underground mines,explosives, m",
+              "name": "Persons working in underground mines,explosives, m"
+            },
+            {
+              "id": "O078",
+              "value": "Persons working in underground mines,explosives, magazines",
+              "name": "Persons working in underground mines,explosives, magazines"
+            },
+            {
+              "id": "O002",
+              "value": "Private Service",
+              "name": "Private Service"
+            },
+            {
+              "id": "O027",
+              "value": "Professional Athletics",
+              "name": "Professional Athletics"
+            },
+            {
+              "id": "O101",
+              "value": "Sailors",
+              "name": "Sailors"
+            },
+            {
+              "id": "O109",
+              "value": "Urban Aspirer",
+              "name": "Urban Aspirer"
+            },
+            {
+              "id": "O111",
+              "value": "Small & Marginal Farmers",
+              "name": "Small & Marginal Farmers"
+            },
+            {
+              "id": "O028",
+              "value": "Sportsmen",
+              "name": "Sportsmen"
+            },
+            {
+              "id": "O017",
+              "value": "Teachers",
+              "name": "Teachers"
+            },
+            {
+              "id": "O023",
+              "value": "Veterinary Doctors",
+              "name": "Veterinary Doctors"
+            },
+            {
+              "id": "O029",
+              "value": "Wood working Machinists",
+              "name": "Wood working Machinists"
+            },
+            {
+              "id": "O030",
+              "value": "Workers",
+              "name": "Workers"
+            },
+            {
+              "id": "O035",
+              "value": "workers involved in electrical installation with h",
+              "name": "workers involved in electrical installation with h"
+            },
+            {
+              "id": "O079",
+              "value": "Workers involved in electrical installation with high tension supply",
+              "name": "Workers involved in electrical installation with high tension supply"
+            },
+            {
+              "id": "O042",
+              "value": "Persons engaged in activities like racing on wheel",
+              "name": "Persons engaged in activities like racing on wheel"
+            },
+            {
+              "id": "O040",
+              "value": "Persons engaged in Adventurous  Sports",
+              "name": "Persons engaged in Adventurous  Sports"
+            },
+            {
+              "id": "O039",
+              "value": "Persons working as Air Crew and Ship Crew",
+              "name": "Persons working as Air Crew and Ship Crew"
+            },
+            {
+              "id": "O190",
+              "value": "Bus Guards/cleaner",
+              "name": "Bus Guards/cleaner"
+            },
+            {
+              "id": "1070",
+              "value": "Detective - Private",
+              "name": "Detective - Private"
+            },
+            {
+              "id": "1038",
+              "value": "Paramedical Personnel",
+              "name": "Paramedical Personnel"
+            }
+          ],
           "validators": [
             {
               "validatorName": "required",
@@ -381,7 +698,38 @@
           "value": "",
           "getAllOption": "getMaritalStatus",
           "class": "col-12 col-md-6 col-lg-4",
-          "options": [],
+          "options": [
+            {
+              "id": "M",
+              "value": "Married",
+              "name": "Married"
+            },
+            {
+              "id": "S",
+              "value": "Single",
+              "name": "Single"
+            },
+            {
+              "id": "W",
+              "value": "Widow(er)",
+              "name": "Widow(er)"
+            },
+            {
+              "id": "PS",
+              "value": "Separated",
+              "name": "Separated"
+            },
+            {
+              "id": "D",
+              "value": "Divorced",
+              "name": "Divorced"
+            },
+            {
+              "id": "L",
+              "value": "Live In",
+              "name": "Live In"
+            }
+          ],
           "validators": [
             {
               "validatorName": "required",
@@ -399,7 +747,48 @@
           "value": "",
           "getAllOption": "getEducationType",
           "class": "col-12 col-md-6 col-lg-4",
-          "options": [],
+          "options": [
+            {
+              "id": "2",
+              "value": "Below Metric",
+              "name": "Below Metric"
+            },
+            {
+              "id": "3",
+              "value": "Metric",
+              "name": "Metric"
+            },
+            {
+              "id": "4",
+              "value": "Under Graduate",
+              "name": "Under Graduate"
+            },
+            {
+              "id": "5",
+              "value": "Graduate",
+              "name": "Graduate"
+            },
+            {
+              "id": "6",
+              "value": "Post Graduate",
+              "name": "Post Graduate"
+            },
+            {
+              "id": "7",
+              "value": "Diploma",
+              "name": "Diploma"
+            },
+            {
+              "id": "8",
+              "value": "Professional",
+              "name": "Professional"
+            },
+            {
+              "id": "9",
+              "value": "Other",
+              "name": "Other"
+            }
+          ],
           "validators": [
             {
               "validatorName": "required",
