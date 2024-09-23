@@ -48,23 +48,30 @@ export default function CustomButton({
     // }
   };
 
+  const isDisabled = () => {
+    console.log("disabled");
+    return (
+      loading ||
+      (!inputBoxValue && subTitle === "I'm an employee" && title !== "Login") ||
+      (inputBoxValue?.length !== 10 &&
+        subTitle === "I'm an employee" &&
+        title !== "Login") ||
+      (!inputNum && subTitle === "Login as Customer" && title !== "Login") ||
+      (inputNum?.length < 10 &&
+        subTitle === "Login as Customer" &&
+        title !== "Login")
+    );
+  };
+
   return (
     <View style={{ gap: 13 }}>
       <TouchableOpacity
-        style={styles.loginButton}
-        disabled={
-          loading ||
-          (!inputBoxValue &&
-            subTitle === "I'm an employee" &&
-            title != "Login") ||
-          (inputBoxValue?.length !== 10 &&
-            subTitle === "I'm an employee" &&
-            title != "Login") ||
-          (!inputNum && subTitle === "Login as Customer" && title != "Login") ||
-          (inputNum?.length < 10 &&
-            subTitle === "Login as Customer" &&
-            title != "Login")
+        style={
+          !isDisabled()
+            ? styles.loginButton
+            : { ...styles.loginButton, backgroundColor: "#E6E6E6" }
         }
+        disabled={isDisabled()}
         onPress={handlePress}
       >
         {loading ? (
