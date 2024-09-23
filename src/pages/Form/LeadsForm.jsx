@@ -7,6 +7,7 @@ import {
   KeyboardAvoidingView,
   StyleSheet,
   Platform,
+  ScrollView,
 } from "react-native";
 import formJsonData from "./formData.json";
 import { Picker } from "@react-native-picker/picker";
@@ -104,19 +105,15 @@ const LeadsForm = () => {
       <Text style={styles.title}>
         {formJsonData.formSections[0].sectionTitle}
       </Text>
-      <FlatList
-        data={formJsonData.formSections[0].formControls}
-        renderItem={({ item }) =>
-          item.visible && (
-            <RenderInput
-              item={{ ...item, value: formData[item.name] }}
-              onChange={handleFormDataChange}
-            />
-          )
-        }
-        keyExtractor={(item) => item.name}
-        showsVerticalScrollIndicator={false}
-      />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {formJsonData.formSections[0].formControls.map((item) => (
+          <RenderInput
+            key={item.name}
+            item={{ ...item, value: formData[item.name] }}
+            onChange={handleFormDataChange}
+          />
+        ))}
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 };
