@@ -13,8 +13,6 @@ export default function SingleProgressBar({ item, width }) {
         borderRadius: 4,
       }}
     />
-    // <View >
-    //   {/* <View style={{ backgroundColor: "#8DCDA9", height: 4, width: 43.43,borderRadius:4 }}></View> */}
-    // </View>
+   
   );
 }
