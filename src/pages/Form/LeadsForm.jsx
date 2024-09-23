@@ -2,17 +2,16 @@ import React, { useState } from "react";
 import {
   View,
   Text,
-  TextInput,
-  FlatList,
   KeyboardAvoidingView,
   StyleSheet,
   Platform,
   ScrollView,
 } from "react-native";
 import formJsonData from "./formData.json";
-import { Picker } from "@react-native-picker/picker";
-import { fontSize14 } from "../../res/theme/fonts";
-
+import FormProgressHeader from "../../components/LeadsForm/FormProgressHeader";
+import GenericButton from "../../components/ButtonsUIs/GenericButton";
+import PickerInput from "../../components/TextInputUIs/PickerInput";
+import GenericInput from "../../components/TextInputUIs/GenericInput";
 const RenderInput = ({ item, onChange }) => {
   if (!item.visible) return null;
   const { type, label, value, name, options } = item;
@@ -24,55 +23,40 @@ const RenderInput = ({ item, onChange }) => {
   switch (type) {
     case "text":
       return (
-        <View style={styles.inputContainer}>
-          {/* {item.visibleLabel && <Text>{label}</Text>} */}
-          <TextInput
-            style={styles.textInput}
-            value={value}
-            onChangeText={handleChange}
-            placeholder={label}
-            placeholderTextColor={"#979CAE"}
-          />
-        </View>
+        // {/* {item.visibleLabel && <Text>{label}</Text>} */}
+        <GenericInput
+          placeholder={label}
+          value={value}
+          onChangeText={handleChange}
+        />
       );
 
     case "select":
       return (
-        <View style={styles.inputContainer}>
-          {/* {item.visibleLabel && <Text>{label}</Text>} */}
-          <View style={styles.pickerContainer}>
-            <Picker
-              selectedValue={value}
-              dropdownIconRippleColor={"#ccc"}
-              onValueChange={(item) => handleChange(item)}
-              style={styles.picker}
-              // pickerStyleType=""
-            >
-              {options.map((option) => (
-                // console.log(option),
-                <Picker.Item
-                  key={option.value}
-                  label={option.name}
-                  value={option.value}
-                />
-              ))}
-            </Picker>
-          </View>
-        </View>
+        // {/* {item.visibleLabel && <Text>{label}</Text>} */}
+        <PickerInput
+          label={label}
+          onValueChange={(item) => handleChange(item)}
+          options={options}
+          selectedValue={value}
+        />
       );
 
     case "date":
       return (
-        <View style={styles.inputContainer}>
-          {/* {item.visibleLabel && <Text>{label}</Text>} */}
-          <TextInput
-            style={styles.textInput}
-            value={value}
-            onChangeText={handleChange}
-            placeholder={label}
-            placeholderTextColor={"#979CAE"}
-          />
-        </View>
+        //{/* {item.visibleLabel && <Text>{label}</Text>} */}
+        // <TextInput
+        //   style={styles.textInput}
+        //   value={value}
+        //   onChangeText={handleChange}
+        //   placeholder={label}
+        //   placeholderTextColor={"#979CAE"}
+        // />
+        <GenericInput
+          placeholder={label}
+          value={value}
+          onChangeText={handleChange}
+        />
       );
 
     default:
@@ -95,25 +79,28 @@ const LeadsForm = () => {
     }));
   };
 
-  // console.log(formData);
-
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}
     >
+      <FormProgressHeader />
+      {/* <LeadsFormDetails /> */}
       <Text style={styles.title}>
         {formJsonData.formSections[0].sectionTitle}
       </Text>
       <ScrollView showsVerticalScrollIndicator={false}>
-        {formJsonData.formSections[0].formControls.map((item) => (
-          <RenderInput
-            key={item.name}
-            item={{ ...item, value: formData[item.name] }}
-            onChange={handleFormDataChange}
-          />
-        ))}
+        <View style={{ gap: 16, marginBottom: 36 }}>
+          {formJsonData.formSections[0].formControls.map((item) => (
+            <RenderInput
+              key={item.name}
+              item={{ ...item, value: formData[item.name] }}
+              onChange={handleFormDataChange}
+            />
+          ))}
+        </View>
       </ScrollView>
+      <GenericButton title={"Continue"} />
     </KeyboardAvoidingView>
   );
 };
@@ -125,29 +112,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   title: {
-    fontSize14,
-    fontWeight: "bold",
-    marginBottom: 20,
-  },
-  inputContainer: {
+    lineHeight: 17.6,
+    fontSize: 16,
+    fontWeight: "500",
+    marginTop: 24,
     marginBottom: 16,
-  },
-  textInput: {
-    // borderWidth: 1,
-    borderColor: "#ccc",
-    backgroundColor: "#f1f3f6",
-    borderRadius: 20,
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-  },
-  pickerContainer: {
-    overflow: "hidden",
-    borderRadius: 20,
-  },
-  picker: {
-    borderWidth: 1,
-    // borderColor: "#ccc",
-    backgroundColor: "#f1f3f6",
   },
 });
 

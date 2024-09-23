@@ -2,7 +2,6 @@ import { View, Text } from "react-native";
 import React from "react";
 
 export default function SingleProgressBar({ item, width }) {
-  console.log(item);
   return (
     <View
       style={{
@@ -13,6 +12,5 @@ export default function SingleProgressBar({ item, width }) {
         borderRadius: 4,
       }}
     />
-   
   );
 }

@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { fontSize14 } from "../../../res/theme/fonts";
 
 export const styles = StyleSheet.create({
   mainContainer: {

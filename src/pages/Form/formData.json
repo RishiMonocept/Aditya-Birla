@@ -991,7 +991,7 @@
           "label": "Add Members",
           "type": "paragraph",
           "visibleLabel": true,
-          "visible": true,
+          "visible": false,
           "class": "col-12 col-md-6 col-lg-4 addMember"
         },
         {
