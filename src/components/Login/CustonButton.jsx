@@ -49,7 +49,6 @@ export default function CustomButton({
   };
 
   const isDisabled = () => {
-    console.log("disabled");
     return (
       loading ||
       (!inputBoxValue && subTitle === "I'm an employee" && title !== "Login") ||
