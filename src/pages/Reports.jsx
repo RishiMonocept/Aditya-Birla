@@ -9,16 +9,16 @@ import AllReportsCard from "../components/My_Performance/AllReportsCard";
 
 const Reports = () => {
   return (
-    <View style={styles.mainContainer}>
-      <SafeAreaView style={styles.safeAreaView}>
+    <SafeAreaView style={styles.safeAreaView}>
+      <View style={styles.mainContainer}>
         <Header title={"All Reports"} />
         <Search />
         <FilterSlide />
-      </SafeAreaView>
-      <View style={{ ...styles.safeAreaView, flex: 1 }}>
+      </View>
+      <View style={{ flex: 1 }}>
         <AllReportsCard />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
