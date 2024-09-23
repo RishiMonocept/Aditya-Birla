@@ -633,7 +633,7 @@
           "name": "insuredMembers",
           "label": "Number of Insured Members",
           "visibleLabel": false,
-          "visible": true,
+          "visible": false,
           "type": "multiSelectCheckbox",
           "methodName": "getProposerRelationship",
           "class": "",
