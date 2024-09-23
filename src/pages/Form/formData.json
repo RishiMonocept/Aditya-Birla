@@ -16,10 +16,10 @@
         {
           "name": "productVariant",
           "label": "Product Variant",
-          "visibleLabel": true,
-          "visible": true,
+          "visibleLabel": false,
+          "visible": false,
           "type": "text",
-          "disabled": false,
+          "disabled": true,
           "value": "VIP",
           "class": "col-12 col-md-6 col-lg-4"
         },
@@ -28,7 +28,7 @@
           "label": "Activ Health Platinum Plus",
           "visibleLabel": true,
           "type": "text",
-          "visible": true,
+          "visible": false,
           "value": "VIP",
           "class": "col-12 col-md-6 col-lg-4",
           "validators": [
@@ -51,11 +51,11 @@
         {
           "name": "productName",
           "label": "Product Name",
-          "visibleLabel": true,
+          "visibleLabel": false,
           "type": "text",
           "value": "Active One VIP",
           "class": "",
-          "visible": true
+          "visible": false
         },
         {
           "name": "planCode",
@@ -65,6 +65,589 @@
           "value": "VIP",
           "class": "",
           "visible": false
+        },
+        {
+          "name": "productId",
+          "label": "Product Id",
+          "visibleLabel": false,
+          "type": "text",
+          "value": "7200",
+          "class": "",
+          "visible": false
+        },
+        {
+          "name": "memberPlanPolicy",
+          "label": "Policy Type",
+          "visibleLabel": true,
+          "type": "select",
+          "visible": true,
+          "value": "",
+          "subType": "",
+          "class": "col-12 col-md-6 col-lg-3",
+          "options": [
+            {
+              "name": "New Business",
+              "value": "New Business",
+              "selected": true
+            },
+            {
+              "name": "Portability",
+              "value": "Portability",
+              "selected": false
+            }
+          ],
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Policy Type is required field."
+            }
+          ]
+        },
+        {
+          "name": "firstName",
+          "label": "First Name",
+          "visibleLabel": true,
+          "type": "text",
+          "value": "",
+          "visible": true,
+          "class": "col-12 col-md-6 col-lg-3",
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "First Name is required"
+            }
+          ]
+        },
+        {
+          "name": "middleName",
+          "label": "Middle Name",
+          "visibleLabel": true,
+          "type": "text",
+          "value": "",
+          "visible": true,
+          "class": "col-12 col-md-6 col-lg-3"
+        },
+        {
+          "name": "lastName",
+          "label": "Last Name",
+          "visibleLabel": true,
+          "type": "text",
+          "value": "",
+          "visible": true,
+          "class": "col-12 col-md-6 col-lg-3",
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Last Name is required"
+            }
+          ]
+        },
+        {
+          "name": "memberDobProposer",
+          "label": "Date of Birth",
+          "visibleLabel": true,
+          "type": "date",
+          "value": "",
+          "class": "col-12 col-md-6 col-lg-4",
+          "dependentControls": ["memberAgeProposer"],
+          "visible": true,
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "DOB is required field."
+            },
+            {
+              "validatorName": "pattern",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+              "message": "DOB should be in dd/mm/yyyy format."
+            }
+          ]
+        },
+        {
+          "name": "memberAgeProposer",
+          "label": "Age",
+          "visibleLabel": true,
+          "type": "text",
+          "disabled": true,
+          "value": "",
+          "visible": true,
+          "class": "col-12 col-md-6 col-lg-4",
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Age is required field."
+            },
+            {
+              "validatorName": "pattern",
+              "pattern": "^(1[8-9]|[2-9][0-9]|1[0-1][0-9]|120)$",
+              "message": "Age should be between 18-120years"
+            }
+          ]
+        },
+        {
+          "name": "proposerGender",
+          "label": "Gender",
+          "visibleLabel": true,
+          "type": "select",
+          "value": "",
+          "class": "col-12 col-md-6 col-lg-4",
+          "visible": true,
+          "options": [
+            {
+              "name": "Male",
+              "value": "M"
+            },
+            {
+              "name": "Female",
+              "value": "F"
+            },
+            {
+              "name": "Others",
+              "value": "O"
+            }
+          ],
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Gender is required field."
+            }
+          ]
+        },
+        {
+          "name": "emailId",
+          "label": "Email Address",
+          "visible": true,
+          "visibleLabel": true,
+          "type": "email",
+          "value": "",
+          "class": "col-12 col-md-6 col-lg-4",
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Email Id is required field"
+            },
+            {
+              "validatorName": "pattern",
+              "pattern": "^(?!.*[._-]{2})[a-zA-Z0-9]+([._-][a-zA-Z0-9]+)*@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$",
+              "message": "Email Id is not valid"
+            }
+          ]
+        },
+        {
+          "name": "mobileNumber",
+          "label": "Mobile Number",
+          "visibleLabel": true,
+          "visible": true,
+          "type": "phonenumber",
+          "value": "",
+          "class": "col-12 col-md-6 col-lg-4",
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Mobile No is required field"
+            },
+            {
+              "validatorName": "pattern",
+              "pattern": "^[6-9]\\d{9}$",
+              "message": "Mobile No is not valid"
+            }
+          ]
+        },
+        {
+          "name": "idProof",
+          "label": "ID Type",
+          "visibleLabel": true,
+          "visible": true,
+          "type": "select",
+          "value": "",
+          "methodName": "getIdentityProof",
+          "class": "col-12 col-md-6 col-lg-4",
+          "options": [],
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Id is required field"
+            }
+          ]
+        },
+        {
+          "name": "idNo",
+          "label": "ID Number",
+          "visibleLabel": true,
+          "type": "idnumber",
+          "visible": true,
+          "value": "",
+          "class": "col-12 col-md-6 col-lg-4",
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "ID No is required field"
+            }
+          ]
+        },
+        {
+          "name": "panNo",
+          "label": "PAN Card Number",
+          "visibleLabel": true,
+          "type": "text",
+          "value": "",
+          "visible": true,
+          "class": "col-12 col-md-6 col-lg-4",
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "PAN No is required field"
+            },
+            {
+              "validatorName": "pattern",
+              "pattern": "[A-Za-z]{5}[0-9]{4}[A-Za-z]{1}",
+              "message": "PAN No is not valid"
+            }
+          ]
+        },
+        {
+          "name": "annualIncome",
+          "label": "Annual Income",
+          "visibleLabel": true,
+          "type": "select",
+          "visible": false,
+          "value": "",
+          "class": "col-12 col-md-6 col-lg-4",
+          "options": [
+            {
+              "name": "Upto 5L",
+              "value": "500000"
+            },
+            {
+              "name": "5L to 10L",
+              "value": "1000000"
+            },
+            {
+              "name": "10L to 15L",
+              "value": "1500000"
+            },
+            {
+              "name": "15L to 20L",
+              "value": "2000000"
+            },
+            {
+              "name": ">20L",
+              "value": "2500000"
+            }
+          ],
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Annual Income is required field"
+            }
+          ]
+        },
+        {
+          "name": "occupation",
+          "label": "Occupation",
+          "visibleLabel": true,
+          "getAllOption": "getAllOccupation",
+          "type": "select",
+          "visible": true,
+          "value": "",
+          "class": "col-12 col-md-6 col-lg-4",
+          "options": [],
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Occupation is required field"
+            }
+          ]
+        },
+        {
+          "name": "maritalStatus",
+          "label": "Marital Status",
+          "visibleLabel": true,
+          "type": "select",
+          "visible": true,
+          "value": "",
+          "getAllOption": "getMaritalStatus",
+          "class": "col-12 col-md-6 col-lg-4",
+          "options": [],
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Marital Status is required field"
+            }
+          ]
+        },
+        {
+          "name": "educationDetails",
+          "label": "Education",
+          "visibleLabel": true,
+          "visible": true,
+          "type": "select",
+          "value": "",
+          "getAllOption": "getEducationType",
+          "class": "col-12 col-md-6 col-lg-4",
+          "options": [],
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Education is required field"
+            }
+          ]
+        },
+        {
+          "name": "nationality",
+          "label": "Nationality",
+          "visibleLabel": true,
+          "type": "select",
+          "visible": true,
+          "value": "",
+          "class": "col-12 col-md-6 col-lg-4",
+          "options": [
+            {
+              "id": "1",
+              "value": "Indian",
+              "name": "Indian",
+              "selected": true
+            },
+            {
+              "id": "2",
+              "value": "Non Resident Indian",
+              "name": "Non Resident Indian",
+              "selected": false
+            },
+            {
+              "id": "3",
+              "value": "Foreign National with Indian Origin",
+              "name": "Foreign National with Indian Origin",
+              "selected": false
+            },
+            {
+              "id": "4",
+              "value": "Person of Indian Origin",
+              "name": "Person of Indian Origin",
+              "selected": false
+            }
+          ],
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Nationality is required field"
+            }
+          ]
+        },
+        {
+          "name": "memberPolicyType",
+          "label": "Select Policy Type",
+          "visibleLabel": true,
+          "visible": false,
+          "type": "select",
+          "dependentControls": ["sumInsured", "pincode", "city", "zone"],
+          "onChangeMethod": "handlePolicyTypeChange",
+          "methodName": "handlePolicyTypeChange",
+          "value": "",
+          "class": "col-12 col-md-6 col-lg-4",
+          "options": [
+            {
+              "name": "FAMILY FLOATER",
+              "value": "Family Floater",
+              "selected": true
+            },
+            {
+              "name": "MULTI INDIVIDUAL",
+              "value": "Multi Individual",
+              "selected": false
+            }
+          ],
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Policy Type is required field."
+            }
+          ]
+        },
+        {
+          "name": "sumInsured",
+          "label": "Select Sum Insured for Family",
+          "visibleLabel": true,
+          "visible": false,
+          "type": "select",
+          "value": "",
+          "class": "col-12 col-md-6 col-lg-4",
+          "options": [
+            {
+              "name": "5000000",
+              "value": 5000000
+            },
+            {
+              "name": "7500000",
+              "value": 75000000
+            },
+            {
+              "name": "10000000",
+              "value": 10000000
+            },
+            {
+              "name": "20000000",
+              "value": 20000000
+            },
+            {
+              "name": "30000000",
+              "value": 30000000
+            },
+            {
+              "name": "40000000",
+              "value": 40000000
+            },
+            {
+              "name": "50000000",
+              "value": 50000000
+            },
+            {
+              "name": "60000000",
+              "value": 60000000
+            }
+          ],
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Sum Insured is required field"
+            }
+          ]
+        },
+        {
+          "name": "pincode",
+          "label": "Pincode",
+          "visibleLabel": true,
+          "visible": true,
+          "type": "number",
+          "value": "",
+          "class": "col-12 col-md-6 col-lg-4",
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Pincode is required field"
+            },
+            {
+              "validatorName": "pattern",
+              "pattern": "^[1-9][0-9]{5}$",
+              "message": "Pincode is not valid"
+            }
+          ]
+        },
+        {
+          "name": "city",
+          "label": "City",
+          "class": "col-12 col-md-6 col-lg-3",
+          "disabled": true,
+          "visible": false,
+          "visibleLabel": true,
+          "value": "",
+          "type": "text"
+        },
+        {
+          "name": "zone",
+          "label": "Zone",
+          "class": "col-12 col-md-6 col-lg-3",
+          "visible": false,
+          "visibleLabel": true,
+          "disabled": true,
+          "value": "",
+          "type": "text"
+        },
+        {
+          "name": "zoneValue",
+          "label": "zoneMapValue",
+          "class": "col-12 col-md-6 col-lg-4",
+          "visibleLabel": false,
+          "visible": false,
+          "value": "",
+          "type": "text"
+        },
+        {
+          "name": "state",
+          "label": "State",
+          "class": "col-md-2",
+          "visibleLabel": true,
+          "disabled": true,
+          "visible": true,
+          "value": "",
+          "type": "text"
+        },
+        {
+          "name": "horizontalLine",
+          "type": "line",
+          "visible": false,
+          "class": "custom-line"
+        },
+        {
+          "name": "addMembers",
+          "label": "Add Members",
+          "type": "paragraph",
+          "visibleLabel": true,
+          "visible": true,
+          "class": "col-12 col-md-6 col-lg-4 addMember"
+        },
+        {
+          "name": "insureMem",
+          "visibleLabel": true,
+          "label": "Who do you want to insure?",
+          "type": "paragraph",
+          "visible": false,
+          "class": "col-12 col-md-6 col-lg-6 insureMember"
+        },
+        {
+          "name": "numberOfInsuredMembers",
+          "label": "Number of Insured Members",
+          "visibleLabel": false,
+          "visible": true,
+          "type": "text",
+          "class": "",
+          "value": 0,
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Select Relationhip"
+            }
+          ]
+        },
+        {
+          "name": "insuredMembers",
+          "label": "Number of Insured Members",
+          "visibleLabel": false,
+          "visible": true,
+          "type": "multiSelectCheckbox",
+          "methodName": "getProposerRelationship",
+          "class": "",
+          "idProperty": "insuredMemberDetails",
+          "text": "insuredMemberDetails",
+          "value": "",
+          "selectCheckboxOptions": [],
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Minimum number of selected member should be "
+            }
+          ]
         }
       ]
     }
