@@ -13,7 +13,7 @@ const FormScreen = () => {
   const [activeTab, setActiveTab] = useState("Notifications");
 
   return (
-    <View style={styles.mainContainer}>
+    <View style={{ ...styles.mainContainer, backgroundColor: "#fff" }}>
       <SafeAreaView style={styles.safeAreaView}>
         {/* <Header title={"Your Profile"} /> */}
         {/* <NavigationsTab activeTab={activeTab} setActiveTab={setActiveTab} />
