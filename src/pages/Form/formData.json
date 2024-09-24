@@ -162,7 +162,7 @@
             },
             {
               "validatorName": "pattern",
-              "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+              "pattern": "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/(\\d{4})$",
               "message": "DOB should be in dd/mm/yyyy format."
             }
           ]
@@ -230,7 +230,7 @@
           "validators": [
             {
               "validatorName": "required",
-              "required": true,
+              "required": false,
               "message": "Email Id is required field"
             },
             {
@@ -244,7 +244,7 @@
           "name": "mobileNumber",
           "label": "Mobile Number",
           "visibleLabel": true,
-          "visible": true,
+          "visible": false,
           "type": "phonenumber",
           "value": "",
           "class": "col-12 col-md-6 col-lg-4",
@@ -991,7 +991,7 @@
           "label": "Add Members",
           "type": "paragraph",
           "visibleLabel": true,
-          "visible": true,
+          "visible": false,
           "class": "col-12 col-md-6 col-lg-4 addMember"
         },
         {

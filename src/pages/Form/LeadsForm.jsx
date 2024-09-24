@@ -1,154 +1,236 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   View,
   Text,
-  TextInput,
-  FlatList,
   KeyboardAvoidingView,
   StyleSheet,
   Platform,
   ScrollView,
+  Animated,
+  Vibration,
+  Modal,
+  TouchableOpacity,
 } from "react-native";
 import formJsonData from "./formData.json";
-import { Picker } from "@react-native-picker/picker";
-import { fontSize14 } from "../../res/theme/fonts";
+import FormProgressHeader from "../../components/LeadsForm/FormProgressHeader";
+import GenericButton from "../../components/ButtonsUIs/GenericButton";
+import PickerInput from "../../components/TextInputUIs/PickerInput";
+import GenericInput from "../../components/TextInputUIs/GenericInput";
+import Toast from "react-native-toast-message";
+import Header from "../../components/Header/Header";
 
-const RenderInput = ({ item, onChange }) => {
-  if (!item.visible) return null;
-  const { type, label, value, name, options } = item;
+const RenderInput = ({ item, onChange, shakeAnimation, hasError }) => {
+  const { type, label, value, name, options, message } = item;
 
-  const handleChange = (text) => {
-    onChange(name, text);
+  if (!item.visible || !["text", "select", "date"].includes(type)) return null;
+
+  const handleChange = (text) => onChange(name, text);
+
+  const renderInputComponent = () => {
+    switch (type) {
+      case "text":
+      case "date":
+        return (
+          <GenericInput
+            placeholder={label}
+            value={value}
+            onChangeText={handleChange}
+          />
+        );
+      case "select":
+        return (
+          <PickerInput
+            label={label}
+            onValueChange={(item) => handleChange(item)}
+            options={options}
+            selectedValue={value}
+          />
+        );
+      default:
+        return null;
+    }
   };
 
-  switch (type) {
-    case "text":
-      return (
-        <View style={styles.inputContainer}>
-          {/* {item.visibleLabel && <Text>{label}</Text>} */}
-          <TextInput
-            style={styles.textInput}
-            value={value}
-            onChangeText={handleChange}
-            placeholder={label}
-            placeholderTextColor={"#979CAE"}
-          />
-        </View>
-      );
-
-    case "select":
-      return (
-        <View style={styles.inputContainer}>
-          {/* {item.visibleLabel && <Text>{label}</Text>} */}
-          <View style={styles.pickerContainer}>
-            <Picker
-              selectedValue={value}
-              dropdownIconRippleColor={"#ccc"}
-              onValueChange={(item) => handleChange(item)}
-              style={styles.picker}
-              // pickerStyleType=""
-            >
-              {options.map((option) => (
-                // console.log(option),
-                <Picker.Item
-                  key={option.value}
-                  label={option.name}
-                  value={option.value}
-                />
-              ))}
-            </Picker>
-          </View>
-        </View>
-      );
-
-    case "date":
-      return (
-        <View style={styles.inputContainer}>
-          {/* {item.visibleLabel && <Text>{label}</Text>} */}
-          <TextInput
-            style={styles.textInput}
-            value={value}
-            onChangeText={handleChange}
-            placeholder={label}
-            placeholderTextColor={"#979CAE"}
-          />
-        </View>
-      );
-
-    default:
-      return null;
-  }
+  return (
+    <Animated.View style={{ transform: [{ translateX: shakeAnimation }] }}>
+      {renderInputComponent()}
+      {hasError && <Text style={styles.errorText}>{message}</Text>}
+    </Animated.View>
+  );
 };
 
-const LeadsForm = () => {
+export default function LeadsForm({ isVisible, onClose }) {
   const [formData, setFormData] = useState(
     formJsonData.formSections[0].formControls.reduce((acc, control) => {
-      acc[control.name] = control.value || "";
+      if (
+        ["text", "select", "date"].includes(control.type) &&
+        control.visible
+      ) {
+        acc[control.name] = control.value || "";
+      }
       return acc;
     }, {})
   );
+  const [errors, setErrors] = useState({});
+  const shakeAnimation = useRef(new Animated.Value(0)).current;
 
   const handleFormDataChange = (key, value) => {
     setFormData((prevData) => ({
       ...prevData,
       [key]: value,
     }));
+    if (errors[key]) {
+      setErrors((prevErrors) => ({ ...prevErrors, [key]: false }));
+    }
   };
 
-  // console.log(formData);
+  const triggerShakeAnimation = () => {
+    Vibration.vibrate(500);
+    Animated.sequence([
+      Animated.timing(shakeAnimation, {
+        toValue: 10,
+        duration: 100,
+        useNativeDriver: true,
+      }),
+      Animated.timing(shakeAnimation, {
+        toValue: -10,
+        duration: 100,
+        useNativeDriver: true,
+      }),
+      Animated.timing(shakeAnimation, {
+        toValue: 0,
+        duration: 100,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  };
+
+  const handleSubmit = () => {
+    const newErrors = formJsonData.formSections[0].formControls.reduce(
+      (acc, item) => {
+        const { name, type, validators, visible } = item;
+
+        if (!["text", "select", "date"].includes(type) || !visible) return acc;
+
+        const requiredValidator = validators?.find((v) => v.required);
+        if (requiredValidator && !formData[name]) {
+          acc[name] = {
+            message: requiredValidator.message,
+          };
+          return acc;
+        }
+
+        const patternValidator = validators?.find((v) => v.pattern);
+        if (
+          patternValidator &&
+          formData[name] &&
+          !new RegExp(patternValidator.pattern).test(formData[name])
+        ) {
+          acc[name] = {
+            message: patternValidator.message || "Invalid format.",
+          };
+        }
+
+        return acc;
+      },
+      {}
+    );
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      triggerShakeAnimation();
+      return;
+    }
+
+    console.log("Form submitted successfully", formData);
+    Toast.show({
+      type: "success",
+      position: "top",
+      text1: "Submitted Successfully",
+      visibilityTime: 3000,
+    });
+    setFormData(
+      formJsonData.formSections[0].formControls.reduce((acc, control) => {
+        if (
+          ["text", "select", "date"].includes(control.type) &&
+          control.visible
+        ) {
+          acc[control.name] = control.value || "";
+        }
+        return acc;
+      }, {})
+    );
+    onClose();
+  };
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.container}
-    >
-      <Text style={styles.title}>
-        {formJsonData.formSections[0].sectionTitle}
-      </Text>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {formJsonData.formSections[0].formControls.map((item) => (
-          <RenderInput
-            key={item.name}
-            item={{ ...item, value: formData[item.name] }}
-            onChange={handleFormDataChange}
-          />
-        ))}
-      </ScrollView>
-    </KeyboardAvoidingView>
+    <Modal visible={isVisible} animationType="slide" onRequestClose={onClose}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.container}
+      >
+        <Header title={"Proposal"} onPress={onClose} />
+        <FormProgressHeader />
+        <Text style={styles.title}>
+          {formJsonData.formSections[0].sectionTitle}
+        </Text>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={{ gap: 16, marginBottom: 36 }}>
+            {formJsonData.formSections[0].formControls.map((item, index) => (
+              <RenderInput
+                key={index}
+                item={{
+                  ...item,
+                  value: formData[item.name],
+                  required: item.validators?.some(
+                    (validator) => validator.required
+                  ),
+                  message:
+                    errors[item.name]?.message ||
+                    item.validators?.find((v) => v.required)?.message,
+                }}
+                onChange={handleFormDataChange}
+                shakeAnimation={
+                  errors[item.name] ? shakeAnimation : new Animated.Value(0)
+                }
+                hasError={errors[item.name]}
+              />
+            ))}
+          </View>
+        </ScrollView>
+        <GenericButton title={"Continue"} onPress={handleSubmit} />
+      </KeyboardAvoidingView>
+    </Modal>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // padding: 16,
     backgroundColor: "#fff",
+    paddingTop: 14,
+    marginHorizontal: 16,
   },
   title: {
-    fontSize14,
-    fontWeight: "bold",
-    marginBottom: 20,
-  },
-  inputContainer: {
+    lineHeight: 17.6,
+    fontSize: 16,
+    fontWeight: "500",
+    marginTop: 24,
     marginBottom: 16,
   },
-  textInput: {
-    // borderWidth: 1,
-    borderColor: "#ccc",
-    backgroundColor: "#f1f3f6",
-    borderRadius: 20,
-    paddingVertical: 12,
-    paddingHorizontal: 16,
+  errorText: {
+    color: "#C7222A",
+    fontSize: 12,
+    marginTop: 4,
   },
-  pickerContainer: {
-    overflow: "hidden",
-    borderRadius: 20,
+  closeButton: {
+    marginTop: 16,
+    padding: 10,
+    backgroundColor: "#C7222A",
+    alignItems: "center",
   },
-  picker: {
-    borderWidth: 1,
-    // borderColor: "#ccc",
-    backgroundColor: "#f1f3f6",
+  closeButtonText: {
+    color: "#fff",
+    fontWeight: "bold",
   },
 });
-
-export default LeadsForm;
