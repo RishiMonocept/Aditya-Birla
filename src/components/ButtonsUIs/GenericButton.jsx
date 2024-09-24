@@ -1,11 +1,13 @@
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 
 export default function GenericButton({ title, onPress }) {
   return (
-    <TouchableOpacity style={styles.mainContainer} onPress={onPress}>
-      <Text style={styles.text}>{title}</Text>
-    </TouchableOpacity>
+    <View style={{ paddingVertical: 10 }}>
+      <TouchableOpacity style={styles.mainContainer} onPress={onPress}>
+        <Text style={styles.text}>{title}</Text>
+      </TouchableOpacity>
+    </View>
   );
 }
 
@@ -16,6 +18,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingVertical: 12,
     paddingHorizontal: 32,
+    // marginVertical: 10,
   },
   text: {
     color: "#ffffff",

@@ -1,12 +1,14 @@
 import { View, StyleSheet, KeyboardAvoidingView, Platform } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "../components/Header/Header";
 import { styles } from "./home.style";
 import { StatusBar } from "expo-status-bar";
 import LeadsForm from "./Form/LeadsForm";
+import GenericButton from "../components/ButtonsUIs/GenericButton";
 
 const FormScreen = () => {
+  const [modalVisible, setModalVisible] = useState(false);
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -16,7 +18,16 @@ const FormScreen = () => {
         <SafeAreaView style={styles.safeAreaView}>
           <Header title={"Proposal"} />
           <StatusBar style="dark" />
-          <LeadsForm />
+          <GenericButton
+            title={"Leads Form"}
+            onPress={() => setModalVisible(true)}
+          />
+          <LeadsForm
+            isVisible={modalVisible}
+            onClose={() => setModalVisible(false)}
+          />
+
+          {/* <LeadsForm /> */}
         </SafeAreaView>
       </View>
     </KeyboardAvoidingView>

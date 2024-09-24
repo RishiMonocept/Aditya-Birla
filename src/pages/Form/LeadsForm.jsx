@@ -8,6 +8,8 @@ import {
   ScrollView,
   Animated,
   Vibration,
+  Modal,
+  TouchableOpacity,
 } from "react-native";
 import formJsonData from "./formData.json";
 import FormProgressHeader from "../../components/LeadsForm/FormProgressHeader";
@@ -15,9 +17,8 @@ import GenericButton from "../../components/ButtonsUIs/GenericButton";
 import PickerInput from "../../components/TextInputUIs/PickerInput";
 import GenericInput from "../../components/TextInputUIs/GenericInput";
 import Toast from "react-native-toast-message";
+import Header from "../../components/Header/Header";
 
-// Currently we have considered only of the type !item.visible || !["text", "select", "date"]
-// We need to make it versetile for all as soon as we build other inpyt types
 const RenderInput = ({ item, onChange, shakeAnimation, hasError }) => {
   const { type, label, value, name, options, message } = item;
 
@@ -28,13 +29,6 @@ const RenderInput = ({ item, onChange, shakeAnimation, hasError }) => {
   const renderInputComponent = () => {
     switch (type) {
       case "text":
-        return (
-          <GenericInput
-            placeholder={label}
-            value={value}
-            onChangeText={handleChange}
-          />
-        );
       case "date":
         return (
           <GenericInput
@@ -59,15 +53,13 @@ const RenderInput = ({ item, onChange, shakeAnimation, hasError }) => {
 
   return (
     <Animated.View style={{ transform: [{ translateX: shakeAnimation }] }}>
-      <View style={[styles.inputContainer, hasError && styles.errorBorder]}>
-        {renderInputComponent()}
-      </View>
+      {renderInputComponent()}
       {hasError && <Text style={styles.errorText}>{message}</Text>}
     </Animated.View>
   );
 };
 
-const LeadsForm = () => {
+export default function LeadsForm({ isVisible, onClose }) {
   const [formData, setFormData] = useState(
     formJsonData.formSections[0].formControls.reduce((acc, control) => {
       if (
@@ -157,50 +149,67 @@ const LeadsForm = () => {
       text1: "Submitted Successfully",
       visibilityTime: 3000,
     });
+    setFormData(
+      formJsonData.formSections[0].formControls.reduce((acc, control) => {
+        if (
+          ["text", "select", "date"].includes(control.type) &&
+          control.visible
+        ) {
+          acc[control.name] = control.value || "";
+        }
+        return acc;
+      }, {})
+    );
+    onClose();
   };
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.container}
-    >
-      <FormProgressHeader />
-      <Text style={styles.title}>
-        {formJsonData.formSections[0].sectionTitle}
-      </Text>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={{ gap: 16, marginBottom: 36 }}>
-          {formJsonData.formSections[0].formControls.map((item, index) => (
-            <RenderInput
-              key={index}
-              item={{
-                ...item,
-                value: formData[item.name],
-                required: item.validators?.some(
-                  (validator) => validator.required
-                ),
-                message:
-                  errors[item.name]?.message ||
-                  item.validators?.find((v) => v.required)?.message,
-              }}
-              onChange={handleFormDataChange}
-              shakeAnimation={
-                errors[item.name] ? shakeAnimation : new Animated.Value(0)
-              }
-              hasError={errors[item.name]}
-            />
-          ))}
-        </View>
-      </ScrollView>
-      <GenericButton title={"Continue"} onPress={handleSubmit} />
-    </KeyboardAvoidingView>
+    <Modal visible={isVisible} animationType="slide" onRequestClose={onClose}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.container}
+      >
+        <Header title={"Proposal"} onPress={onClose} />
+        <FormProgressHeader />
+        <Text style={styles.title}>
+          {formJsonData.formSections[0].sectionTitle}
+        </Text>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={{ gap: 16, marginBottom: 36 }}>
+            {formJsonData.formSections[0].formControls.map((item, index) => (
+              <RenderInput
+                key={index}
+                item={{
+                  ...item,
+                  value: formData[item.name],
+                  required: item.validators?.some(
+                    (validator) => validator.required
+                  ),
+                  message:
+                    errors[item.name]?.message ||
+                    item.validators?.find((v) => v.required)?.message,
+                }}
+                onChange={handleFormDataChange}
+                shakeAnimation={
+                  errors[item.name] ? shakeAnimation : new Animated.Value(0)
+                }
+                hasError={errors[item.name]}
+              />
+            ))}
+          </View>
+        </ScrollView>
+        <GenericButton title={"Continue"} onPress={handleSubmit} />
+      </KeyboardAvoidingView>
+    </Modal>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+    paddingTop: 14,
+    marginHorizontal: 16,
   },
   title: {
     lineHeight: 17.6,
@@ -209,18 +218,19 @@ const styles = StyleSheet.create({
     marginTop: 24,
     marginBottom: 16,
   },
-  inputContainer: {
-    // Base input container styles
-  },
-  errorBorder: {
-    // borderColor: "red",
-    // borderWidth: 1,
-  },
   errorText: {
     color: "#C7222A",
     fontSize: 12,
     marginTop: 4,
   },
+  closeButton: {
+    marginTop: 16,
+    padding: 10,
+    backgroundColor: "#C7222A",
+    alignItems: "center",
+  },
+  closeButtonText: {
+    color: "#fff",
+    fontWeight: "bold",
+  },
 });
-
-export default LeadsForm;
