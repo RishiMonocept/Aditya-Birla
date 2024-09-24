@@ -10,6 +10,7 @@ export default function GenericInput({ placeholder, onChangeText, value }) {
         value={value}
         onChangeText={onChangeText}
         keyboardType="visible-password"
+        dataDetectorTypes={"calendarEvent"}
       />
     </View>
   );

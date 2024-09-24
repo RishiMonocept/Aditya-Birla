@@ -14,7 +14,10 @@ import FormProgressHeader from "../../components/LeadsForm/FormProgressHeader";
 import GenericButton from "../../components/ButtonsUIs/GenericButton";
 import PickerInput from "../../components/TextInputUIs/PickerInput";
 import GenericInput from "../../components/TextInputUIs/GenericInput";
+import Toast from "react-native-toast-message";
 
+// Currently we have considered only of the type !item.visible || !["text", "select", "date"]
+// We need to make it versetile for all as soon as we build other inpyt types
 const RenderInput = ({ item, onChange, shakeAnimation, hasError }) => {
   const { type, label, value, name, options, message } = item;
 
@@ -113,14 +116,29 @@ const LeadsForm = () => {
   const handleSubmit = () => {
     const newErrors = formJsonData.formSections[0].formControls.reduce(
       (acc, item) => {
-        if (
-          ["text", "select", "date"].includes(item.type) &&
-          item.visible &&
-          item.validators?.some((validator) => validator.required) &&
-          !formData[item.name]
-        ) {
-          acc[item.name] = true;
+        const { name, type, validators, visible } = item;
+
+        if (!["text", "select", "date"].includes(type) || !visible) return acc;
+
+        const requiredValidator = validators?.find((v) => v.required);
+        if (requiredValidator && !formData[name]) {
+          acc[name] = {
+            message: requiredValidator.message,
+          };
+          return acc;
         }
+
+        const patternValidator = validators?.find((v) => v.pattern);
+        if (
+          patternValidator &&
+          formData[name] &&
+          !new RegExp(patternValidator.pattern).test(formData[name])
+        ) {
+          acc[name] = {
+            message: patternValidator.message || "Invalid format.",
+          };
+        }
+
         return acc;
       },
       {}
@@ -133,6 +151,12 @@ const LeadsForm = () => {
     }
 
     console.log("Form submitted successfully", formData);
+    Toast.show({
+      type: "success",
+      position: "top",
+      text1: "Submitted Successfully",
+      visibilityTime: 3000,
+    });
   };
 
   return (
@@ -155,9 +179,9 @@ const LeadsForm = () => {
                 required: item.validators?.some(
                   (validator) => validator.required
                 ),
-                message: item.validators?.find(
-                  (validator) => validator.required
-                )?.message,
+                message:
+                  errors[item.name]?.message ||
+                  item.validators?.find((v) => v.required)?.message,
               }}
               onChange={handleFormDataChange}
               shakeAnimation={
