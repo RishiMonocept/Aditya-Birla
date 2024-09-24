@@ -230,7 +230,7 @@
           "validators": [
             {
               "validatorName": "required",
-              "required": true,
+              "required": false,
               "message": "Email Id is required field"
             },
             {
@@ -244,7 +244,7 @@
           "name": "mobileNumber",
           "label": "Mobile Number",
           "visibleLabel": true,
-          "visible": true,
+          "visible": false,
           "type": "phonenumber",
           "value": "",
           "class": "col-12 col-md-6 col-lg-4",
