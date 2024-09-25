@@ -17,7 +17,6 @@ export const styles = StyleSheet.create({
     // borderWidth:2,
     paddingHorizontal: 16,
     // backgroundColor:""
-  
   },
   titleContainer: {
     borderWidth: 1,
