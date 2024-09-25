@@ -18,6 +18,7 @@ import PickerInput from "../../components/TextInputUIs/PickerInput";
 import GenericInput from "../../components/TextInputUIs/GenericInput";
 import Toast from "react-native-toast-message";
 import Header from "../../components/Header/Header";
+import DateInput from "../../components/TextInputUIs/DateInput";
 
 const RenderInput = ({ item, onChange, shakeAnimation, hasError }) => {
   const { type, label, value, name, options, message } = item;
@@ -29,9 +30,16 @@ const RenderInput = ({ item, onChange, shakeAnimation, hasError }) => {
   const renderInputComponent = () => {
     switch (type) {
       case "text":
-      case "date":
         return (
           <GenericInput
+            placeholder={label}
+            value={value}
+            onChangeText={handleChange}
+          />
+        );
+      case "date":
+        return (
+          <DateInput
             placeholder={label}
             value={value}
             onChangeText={handleChange}

@@ -1,8 +1,8 @@
 {
   "expo": {
     "name": "ABHI",
-    "slug": "ABHI",
-    "version": "1.0.0",
+    "slug": "adityaBirla",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./src/assets/icon.png",
     "userInterfaceStyle": "light",
