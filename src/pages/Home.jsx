@@ -15,21 +15,18 @@ const Home = () => {
   const [activeTab, setActiveTab] = useState("Notifications");
 
   return (
-    <View style={styles.mainContainer}>
-      <SafeAreaView style={styles.safeAreaView}>
-        {/* <Header title={"Your Profile"} />
+    <SafeAreaView style={styles.safeAreaView}>
+      <View style={styles.mainContainer}>
+        <Header title={"Your Profile"} />
         <NavigationsTab activeTab={activeTab} setActiveTab={setActiveTab} />
         {activeTab === "Notifications" ? (
           <NotificationsList />
         ) : (
           <ActivitiesList />
-        )} */}
-        <Dashboard />
-
-       
-      </SafeAreaView>
-      <StatusBar style="dark" />
-    </View>
+        )}
+        <StatusBar style="dark" />
+      </View>
+    </SafeAreaView>
   );
 };
 

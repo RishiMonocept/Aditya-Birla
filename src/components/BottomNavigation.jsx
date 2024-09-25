@@ -18,6 +18,7 @@ import MENU from "../assets/BottomTab/Menu.png";
 import PRODUCT from "../assets/BottomTab/Product.png";
 import ENDORSEMENTS from "../assets/BottomTab/Endorsements.png";
 import MORE from "../assets/BottomTab/More.png";
+import FormScreen from "../pages/FormScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -33,7 +34,7 @@ const tabs = [
     label: "Product",
   },
   {
-    name: "Endorsements",
+    name: "FormScreen",
     icon: ENDORSEMENTS,
     label: "Endorsements",
   },
@@ -124,9 +125,7 @@ const BottomNavigation = () => {
 
   return (
     <Tab.Navigator
-      tabBar={(props) =>
-        !isKeyboardVisible ? <CustomTabBar {...props} /> : null
-      }
+      tabBar={(props) => !isKeyboardVisible && <CustomTabBar {...props} />}
       screenOptions={{
         headerShown: false,
         tabBarHideOnKeyboard: true,
@@ -135,7 +134,7 @@ const BottomNavigation = () => {
     >
       <Tab.Screen name="Dashboard" component={Reports} />
       <Tab.Screen name="Product" component={Home} />
-      <Tab.Screen name="Endorsements" component={Reports} />
+      <Tab.Screen name="FormScreen" component={FormScreen} />
       <Tab.Screen name="More" component={Reports} />
     </Tab.Navigator>
   );

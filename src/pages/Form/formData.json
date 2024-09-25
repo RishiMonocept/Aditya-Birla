@@ -1,0 +1,1044 @@
+{
+  "formTitle": "Leads",
+  "saveBtnTitle": "Save",
+  "prevBtnTitle": "",
+  "resetBtnTitle": "",
+  "calculateBtnTitle": "",
+  "saveBtnFunction": "getPremiumAmount",
+  "themeFile": "ABHI.css",
+  "formSections": [
+    {
+      "sectionTitle": "Personal Details",
+      "visibleLabel": true,
+      "visible": true,
+      "class": "col-md-12 section-title",
+      "formControls": [
+        {
+          "name": "productVariant",
+          "label": "Product Variant",
+          "visibleLabel": false,
+          "visible": false,
+          "type": "text",
+          "disabled": true,
+          "value": "VIP",
+          "class": "col-12 col-md-6 col-lg-4"
+        },
+        {
+          "name": "memberPlan",
+          "label": "Activ Health Platinum Plus",
+          "visibleLabel": true,
+          "type": "text",
+          "visible": false,
+          "value": "VIP",
+          "class": "col-12 col-md-6 col-lg-4",
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Plan is required field."
+            }
+          ]
+        },
+        {
+          "name": "productType",
+          "label": "Product Type",
+          "visibleLabel": false,
+          "type": "text",
+          "value": "AO",
+          "class": "",
+          "visible": false
+        },
+        {
+          "name": "productName",
+          "label": "Product Name",
+          "visibleLabel": false,
+          "type": "text",
+          "value": "Active One VIP",
+          "class": "",
+          "visible": false
+        },
+        {
+          "name": "planCode",
+          "label": "Product Code",
+          "visibleLabel": false,
+          "type": "text",
+          "value": "VIP",
+          "class": "",
+          "visible": false
+        },
+        {
+          "name": "productId",
+          "label": "Product Id",
+          "visibleLabel": false,
+          "type": "text",
+          "value": "7200",
+          "class": "",
+          "visible": false
+        },
+        {
+          "name": "memberPlanPolicy",
+          "label": "Policy Type",
+          "visibleLabel": true,
+          "type": "select",
+          "visible": true,
+          "value": "",
+          "subType": "",
+          "class": "col-12 col-md-6 col-lg-3",
+          "options": [
+            {
+              "name": "New Business",
+              "value": "New Business",
+              "selected": true
+            },
+            {
+              "name": "Portability",
+              "value": "Portability",
+              "selected": false
+            }
+          ],
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Policy Type is required field."
+            }
+          ]
+        },
+        {
+          "name": "firstName",
+          "label": "First Name",
+          "visibleLabel": true,
+          "type": "text",
+          "value": "",
+          "visible": true,
+          "class": "col-12 col-md-6 col-lg-3",
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "First Name is required"
+            }
+          ]
+        },
+        {
+          "name": "middleName",
+          "label": "Middle Name",
+          "visibleLabel": true,
+          "type": "text",
+          "value": "",
+          "visible": true,
+          "class": "col-12 col-md-6 col-lg-3"
+        },
+        {
+          "name": "lastName",
+          "label": "Last Name",
+          "visibleLabel": true,
+          "type": "text",
+          "value": "",
+          "visible": true,
+          "class": "col-12 col-md-6 col-lg-3",
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Last Name is required"
+            }
+          ]
+        },
+        {
+          "name": "memberDobProposer",
+          "label": "Date of Birth",
+          "visibleLabel": true,
+          "type": "date",
+          "value": "",
+          "class": "col-12 col-md-6 col-lg-4",
+          "dependentControls": ["memberAgeProposer"],
+          "visible": true,
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "DOB is required field."
+            },
+            {
+              "validatorName": "pattern",
+              "pattern": "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/(\\d{4})$",
+              "message": "DOB should be in dd/mm/yyyy format."
+            }
+          ]
+        },
+        {
+          "name": "memberAgeProposer",
+          "label": "Age",
+          "visibleLabel": true,
+          "type": "text",
+          "disabled": true,
+          "value": "",
+          "visible": true,
+          "class": "col-12 col-md-6 col-lg-4",
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Age is required field."
+            },
+            {
+              "validatorName": "pattern",
+              "pattern": "^(1[8-9]|[2-9][0-9]|1[0-1][0-9]|120)$",
+              "message": "Age should be between 18-120years"
+            }
+          ]
+        },
+        {
+          "name": "proposerGender",
+          "label": "Gender",
+          "visibleLabel": true,
+          "type": "select",
+          "value": "",
+          "class": "col-12 col-md-6 col-lg-4",
+          "visible": true,
+          "options": [
+            {
+              "name": "Male",
+              "value": "M"
+            },
+            {
+              "name": "Female",
+              "value": "F"
+            },
+            {
+              "name": "Others",
+              "value": "O"
+            }
+          ],
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Gender is required field."
+            }
+          ]
+        },
+        {
+          "name": "emailId",
+          "label": "Email Address",
+          "visible": true,
+          "visibleLabel": true,
+          "type": "email",
+          "value": "",
+          "class": "col-12 col-md-6 col-lg-4",
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": false,
+              "message": "Email Id is required field"
+            },
+            {
+              "validatorName": "pattern",
+              "pattern": "^(?!.*[._-]{2})[a-zA-Z0-9]+([._-][a-zA-Z0-9]+)*@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$",
+              "message": "Email Id is not valid"
+            }
+          ]
+        },
+        {
+          "name": "mobileNumber",
+          "label": "Mobile Number",
+          "visibleLabel": true,
+          "visible": false,
+          "type": "phonenumber",
+          "value": "",
+          "class": "col-12 col-md-6 col-lg-4",
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Mobile No is required field"
+            },
+            {
+              "validatorName": "pattern",
+              "pattern": "^[6-9]\\d{9}$",
+              "message": "Mobile No is not valid"
+            }
+          ]
+        },
+        {
+          "name": "idProof",
+          "label": "ID Type",
+          "visibleLabel": true,
+          "visible": true,
+          "type": "select",
+          "value": "",
+          "methodName": "getIdentityProof",
+          "class": "col-12 col-md-6 col-lg-4",
+          "options": [
+            {
+              "id": "2",
+              "value": "Aadhar Card",
+              "name": "Aadhar Card"
+            },
+            {
+              "id": "3",
+              "value": "Passport",
+              "name": "Passport"
+            },
+            {
+              "id": "4",
+              "value": "Driving License",
+              "name": "Driving License"
+            },
+            {
+              "id": "5",
+              "value": "Voter ID",
+              "name": "Voter ID"
+            },
+            {
+              "id": "6",
+              "value": "10th (SSC) Mark sheet",
+              "name": "10th (SSC) Mark sheet"
+            }
+          ],
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Id is required field"
+            }
+          ]
+        },
+        {
+          "name": "idNo",
+          "label": "ID Number",
+          "visibleLabel": true,
+          "type": "idnumber",
+          "visible": true,
+          "value": "",
+          "class": "col-12 col-md-6 col-lg-4",
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "ID No is required field"
+            }
+          ]
+        },
+        {
+          "name": "panNo",
+          "label": "PAN Card Number",
+          "visibleLabel": true,
+          "type": "text",
+          "value": "",
+          "visible": true,
+          "class": "col-12 col-md-6 col-lg-4",
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "PAN No is required field"
+            },
+            {
+              "validatorName": "pattern",
+              "pattern": "[A-Za-z]{5}[0-9]{4}[A-Za-z]{1}",
+              "message": "PAN No is not valid"
+            }
+          ]
+        },
+        {
+          "name": "annualIncome",
+          "label": "Annual Income",
+          "visibleLabel": true,
+          "type": "select",
+          "visible": false,
+          "value": "",
+          "class": "col-12 col-md-6 col-lg-4",
+          "options": [
+            {
+              "name": "Upto 5L",
+              "value": "500000"
+            },
+            {
+              "name": "5L to 10L",
+              "value": "1000000"
+            },
+            {
+              "name": "10L to 15L",
+              "value": "1500000"
+            },
+            {
+              "name": "15L to 20L",
+              "value": "2000000"
+            },
+            {
+              "name": ">20L",
+              "value": "2500000"
+            }
+          ],
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Annual Income is required field"
+            }
+          ]
+        },
+        {
+          "name": "occupation",
+          "label": "Occupation",
+          "visibleLabel": true,
+          "getAllOption": "getAllOccupation",
+          "type": "select",
+          "visible": true,
+          "value": "",
+          "class": "col-12 col-md-6 col-lg-4",
+          "options": [
+            {
+              "id": "O464",
+              "value": "Retired",
+              "name": "Retired"
+            },
+            {
+              "id": "O490",
+              "value": "STUDENT",
+              "name": "STUDENT"
+            },
+            {
+              "id": "O553",
+              "value": "Salaried",
+              "name": "Salaried"
+            },
+            {
+              "id": "O554",
+              "value": "Not Employed",
+              "name": "Not Employed"
+            },
+            {
+              "id": "O555",
+              "value": "House Wife/Husband",
+              "name": "House Wife/Husband"
+            },
+            {
+              "id": "O556",
+              "value": "Self Employed",
+              "name": "Self Employed"
+            },
+            {
+              "id": "O014",
+              "value": "Accountants",
+              "name": "Accountants"
+            },
+            {
+              "id": "O140",
+              "value": "Ambulance Attendant",
+              "name": "Ambulance Attendant"
+            },
+            {
+              "id": "O015",
+              "value": "Architects",
+              "name": "Architects"
+            },
+            {
+              "id": "O018",
+              "value": "Bankers",
+              "name": "Bankers"
+            },
+            {
+              "id": "O041",
+              "value": "Big game hunting",
+              "name": "Big game hunting"
+            },
+            {
+              "id": "O019",
+              "value": "Builders",
+              "name": "Builders"
+            },
+            {
+              "id": "O051",
+              "value": "business",
+              "name": "business"
+            },
+            {
+              "id": "O103",
+              "value": "business1",
+              "name": "business1"
+            },
+            {
+              "id": "O104",
+              "value": "business2",
+              "name": "business2"
+            },
+            {
+              "id": "O105",
+              "value": "business3",
+              "name": "business3"
+            },
+            {
+              "id": "O106",
+              "value": "business4",
+              "name": "business4"
+            },
+            {
+              "id": "O024",
+              "value": "Businessmen",
+              "name": "Businessmen"
+            },
+            {
+              "id": "O025",
+              "value": "Clerical & Administrative functions",
+              "name": "Clerical & Administrative functions"
+            },
+            {
+              "id": "O016",
+              "value": "Consulting engineers",
+              "name": "Consulting engineers"
+            },
+            {
+              "id": "O020",
+              "value": "Contractors",
+              "name": "Contractors"
+            },
+            {
+              "id": "O012",
+              "value": "Doctors",
+              "name": "Doctors"
+            },
+            {
+              "id": "O032",
+              "value": "Drivers",
+              "name": "Drivers"
+            },
+            {
+              "id": "O052",
+              "value": "Employee",
+              "name": "Employee"
+            },
+            {
+              "id": "O022",
+              "value": "Engineers",
+              "name": "Engineers"
+            },
+            {
+              "id": "O021",
+              "value": "Engineers on site engaged in superintending functi",
+              "name": "Engineers on site engaged in superintending functi"
+            },
+            {
+              "id": "O066",
+              "value": "Engineers on site engaged in superintending functions only",
+              "name": "Engineers on site engaged in superintending functions only"
+            },
+            {
+              "id": "O110",
+              "value": "Factory Worker",
+              "name": "Factory Worker"
+            },
+            {
+              "id": "O107",
+              "value": "Government Employee",
+              "name": "Government Employee"
+            },
+            {
+              "id": "O004",
+              "value": "Housewife",
+              "name": "Housewife"
+            },
+            {
+              "id": "O095",
+              "value": "IT Professionals",
+              "name": "IT Professionals"
+            },
+            {
+              "id": "O013",
+              "value": "Lawyers",
+              "name": "Lawyers"
+            },
+            {
+              "id": "O033",
+              "value": "Manual laborers (except those falling under Group",
+              "name": "Manual laborers (except those falling under Group"
+            },
+            {
+              "id": "O077",
+              "value": "Manual laborers (except those falling under Group III)",
+              "name": "Manual laborers (except those falling under Group III)"
+            },
+            {
+              "id": "O112",
+              "value": "Mass Affluent",
+              "name": "Mass Affluent"
+            },
+            {
+              "id": "O031",
+              "value": "Mechanics",
+              "name": "Mechanics"
+            },
+            {
+              "id": "O113",
+              "value": "Micro & SME Owner/Trader",
+              "name": "Micro & SME Owner/Trader"
+            },
+            {
+              "id": "O009",
+              "value": "Others",
+              "name": "Others"
+            },
+            {
+              "id": "O034",
+              "value": "Persons working in underground mines,explosives, m",
+              "name": "Persons working in underground mines,explosives, m"
+            },
+            {
+              "id": "O078",
+              "value": "Persons working in underground mines,explosives, magazines",
+              "name": "Persons working in underground mines,explosives, magazines"
+            },
+            {
+              "id": "O002",
+              "value": "Private Service",
+              "name": "Private Service"
+            },
+            {
+              "id": "O027",
+              "value": "Professional Athletics",
+              "name": "Professional Athletics"
+            },
+            {
+              "id": "O101",
+              "value": "Sailors",
+              "name": "Sailors"
+            },
+            {
+              "id": "O109",
+              "value": "Urban Aspirer",
+              "name": "Urban Aspirer"
+            },
+            {
+              "id": "O111",
+              "value": "Small & Marginal Farmers",
+              "name": "Small & Marginal Farmers"
+            },
+            {
+              "id": "O028",
+              "value": "Sportsmen",
+              "name": "Sportsmen"
+            },
+            {
+              "id": "O017",
+              "value": "Teachers",
+              "name": "Teachers"
+            },
+            {
+              "id": "O023",
+              "value": "Veterinary Doctors",
+              "name": "Veterinary Doctors"
+            },
+            {
+              "id": "O029",
+              "value": "Wood working Machinists",
+              "name": "Wood working Machinists"
+            },
+            {
+              "id": "O030",
+              "value": "Workers",
+              "name": "Workers"
+            },
+            {
+              "id": "O035",
+              "value": "workers involved in electrical installation with h",
+              "name": "workers involved in electrical installation with h"
+            },
+            {
+              "id": "O079",
+              "value": "Workers involved in electrical installation with high tension supply",
+              "name": "Workers involved in electrical installation with high tension supply"
+            },
+            {
+              "id": "O042",
+              "value": "Persons engaged in activities like racing on wheel",
+              "name": "Persons engaged in activities like racing on wheel"
+            },
+            {
+              "id": "O040",
+              "value": "Persons engaged in Adventurous  Sports",
+              "name": "Persons engaged in Adventurous  Sports"
+            },
+            {
+              "id": "O039",
+              "value": "Persons working as Air Crew and Ship Crew",
+              "name": "Persons working as Air Crew and Ship Crew"
+            },
+            {
+              "id": "O190",
+              "value": "Bus Guards/cleaner",
+              "name": "Bus Guards/cleaner"
+            },
+            {
+              "id": "1070",
+              "value": "Detective - Private",
+              "name": "Detective - Private"
+            },
+            {
+              "id": "1038",
+              "value": "Paramedical Personnel",
+              "name": "Paramedical Personnel"
+            }
+          ],
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Occupation is required field"
+            }
+          ]
+        },
+        {
+          "name": "maritalStatus",
+          "label": "Marital Status",
+          "visibleLabel": true,
+          "type": "select",
+          "visible": true,
+          "value": "",
+          "getAllOption": "getMaritalStatus",
+          "class": "col-12 col-md-6 col-lg-4",
+          "options": [
+            {
+              "id": "M",
+              "value": "Married",
+              "name": "Married"
+            },
+            {
+              "id": "S",
+              "value": "Single",
+              "name": "Single"
+            },
+            {
+              "id": "W",
+              "value": "Widow(er)",
+              "name": "Widow(er)"
+            },
+            {
+              "id": "PS",
+              "value": "Separated",
+              "name": "Separated"
+            },
+            {
+              "id": "D",
+              "value": "Divorced",
+              "name": "Divorced"
+            },
+            {
+              "id": "L",
+              "value": "Live In",
+              "name": "Live In"
+            }
+          ],
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Marital Status is required field"
+            }
+          ]
+        },
+        {
+          "name": "educationDetails",
+          "label": "Education",
+          "visibleLabel": true,
+          "visible": true,
+          "type": "select",
+          "value": "",
+          "getAllOption": "getEducationType",
+          "class": "col-12 col-md-6 col-lg-4",
+          "options": [
+            {
+              "id": "2",
+              "value": "Below Metric",
+              "name": "Below Metric"
+            },
+            {
+              "id": "3",
+              "value": "Metric",
+              "name": "Metric"
+            },
+            {
+              "id": "4",
+              "value": "Under Graduate",
+              "name": "Under Graduate"
+            },
+            {
+              "id": "5",
+              "value": "Graduate",
+              "name": "Graduate"
+            },
+            {
+              "id": "6",
+              "value": "Post Graduate",
+              "name": "Post Graduate"
+            },
+            {
+              "id": "7",
+              "value": "Diploma",
+              "name": "Diploma"
+            },
+            {
+              "id": "8",
+              "value": "Professional",
+              "name": "Professional"
+            },
+            {
+              "id": "9",
+              "value": "Other",
+              "name": "Other"
+            }
+          ],
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Education is required field"
+            }
+          ]
+        },
+        {
+          "name": "nationality",
+          "label": "Nationality",
+          "visibleLabel": true,
+          "type": "select",
+          "visible": true,
+          "value": "",
+          "class": "col-12 col-md-6 col-lg-4",
+          "options": [
+            {
+              "id": "1",
+              "value": "Indian",
+              "name": "Indian",
+              "selected": true
+            },
+            {
+              "id": "2",
+              "value": "Non Resident Indian",
+              "name": "Non Resident Indian",
+              "selected": false
+            },
+            {
+              "id": "3",
+              "value": "Foreign National with Indian Origin",
+              "name": "Foreign National with Indian Origin",
+              "selected": false
+            },
+            {
+              "id": "4",
+              "value": "Person of Indian Origin",
+              "name": "Person of Indian Origin",
+              "selected": false
+            }
+          ],
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Nationality is required field"
+            }
+          ]
+        },
+        {
+          "name": "memberPolicyType",
+          "label": "Select Policy Type",
+          "visibleLabel": true,
+          "visible": false,
+          "type": "select",
+          "dependentControls": ["sumInsured", "pincode", "city", "zone"],
+          "onChangeMethod": "handlePolicyTypeChange",
+          "methodName": "handlePolicyTypeChange",
+          "value": "",
+          "class": "col-12 col-md-6 col-lg-4",
+          "options": [
+            {
+              "name": "FAMILY FLOATER",
+              "value": "Family Floater",
+              "selected": true
+            },
+            {
+              "name": "MULTI INDIVIDUAL",
+              "value": "Multi Individual",
+              "selected": false
+            }
+          ],
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Policy Type is required field."
+            }
+          ]
+        },
+        {
+          "name": "sumInsured",
+          "label": "Select Sum Insured for Family",
+          "visibleLabel": true,
+          "visible": false,
+          "type": "select",
+          "value": "",
+          "class": "col-12 col-md-6 col-lg-4",
+          "options": [
+            {
+              "name": "5000000",
+              "value": 5000000
+            },
+            {
+              "name": "7500000",
+              "value": 75000000
+            },
+            {
+              "name": "10000000",
+              "value": 10000000
+            },
+            {
+              "name": "20000000",
+              "value": 20000000
+            },
+            {
+              "name": "30000000",
+              "value": 30000000
+            },
+            {
+              "name": "40000000",
+              "value": 40000000
+            },
+            {
+              "name": "50000000",
+              "value": 50000000
+            },
+            {
+              "name": "60000000",
+              "value": 60000000
+            }
+          ],
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Sum Insured is required field"
+            }
+          ]
+        },
+        {
+          "name": "pincode",
+          "label": "Pincode",
+          "visibleLabel": true,
+          "visible": true,
+          "type": "number",
+          "value": "",
+          "class": "col-12 col-md-6 col-lg-4",
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Pincode is required field"
+            },
+            {
+              "validatorName": "pattern",
+              "pattern": "^[1-9][0-9]{5}$",
+              "message": "Pincode is not valid"
+            }
+          ]
+        },
+        {
+          "name": "city",
+          "label": "City",
+          "class": "col-12 col-md-6 col-lg-3",
+          "disabled": true,
+          "visible": false,
+          "visibleLabel": true,
+          "value": "",
+          "type": "text"
+        },
+        {
+          "name": "zone",
+          "label": "Zone",
+          "class": "col-12 col-md-6 col-lg-3",
+          "visible": false,
+          "visibleLabel": true,
+          "disabled": true,
+          "value": "",
+          "type": "text"
+        },
+        {
+          "name": "zoneValue",
+          "label": "zoneMapValue",
+          "class": "col-12 col-md-6 col-lg-4",
+          "visibleLabel": false,
+          "visible": false,
+          "value": "",
+          "type": "text"
+        },
+        {
+          "name": "state",
+          "label": "State",
+          "class": "col-md-2",
+          "visibleLabel": true,
+          "disabled": true,
+          "visible": true,
+          "value": "",
+          "type": "text"
+        },
+        {
+          "name": "horizontalLine",
+          "type": "line",
+          "visible": false,
+          "class": "custom-line"
+        },
+        {
+          "name": "addMembers",
+          "label": "Add Members",
+          "type": "paragraph",
+          "visibleLabel": true,
+          "visible": false,
+          "class": "col-12 col-md-6 col-lg-4 addMember"
+        },
+        {
+          "name": "insureMem",
+          "visibleLabel": true,
+          "label": "Who do you want to insure?",
+          "type": "paragraph",
+          "visible": false,
+          "class": "col-12 col-md-6 col-lg-6 insureMember"
+        },
+        {
+          "name": "numberOfInsuredMembers",
+          "label": "Number of Insured Members",
+          "visibleLabel": false,
+          "visible": true,
+          "type": "text",
+          "class": "",
+          "value": 0,
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Select Relationhip"
+            }
+          ]
+        },
+        {
+          "name": "insuredMembers",
+          "label": "Number of Insured Members",
+          "visibleLabel": false,
+          "visible": false,
+          "type": "multiSelectCheckbox",
+          "methodName": "getProposerRelationship",
+          "class": "",
+          "idProperty": "insuredMemberDetails",
+          "text": "insuredMemberDetails",
+          "value": "",
+          "selectCheckboxOptions": [],
+          "validators": [
+            {
+              "validatorName": "required",
+              "required": true,
+              "message": "Minimum number of selected member should be "
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
