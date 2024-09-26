@@ -25,6 +25,7 @@ import pharmacy from "../assets/Dashboard/pharmacy.png";
 import exploreMore from "../assets/Dashboard/ExploreMorebtn.png";
 import PerformanceOverview from "./DashboardComponent/PerformanceOverview";
 import ImportantTask from "./DashboardComponent/ImportantTask";
+import DHA_HR_Portfolio from "./DashboardComponent/DHA_HR_Portfolio/DHA_HR_Portfolio";
 
 export default function Dashboard() {
   const data = [
@@ -159,67 +160,68 @@ export default function Dashboard() {
         </View>
       </View>
 
-      <ScrollView
-        // style={{ marginHorizontal: -16 }}
-        showsVerticalScrollIndicator={false}
-      >
-        <ImportantTask/>
-        <View
-          // colors={["#FFF5EC", "#FFFFFF"]}
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={{ gap: 40, marginBottom: 81.6 }}>
+          <ImportantTask />
+          <View
+            // colors={["#FFF5EC", "#FFFFFF"]}
 
-          style={{
-            borderColor: "red",
-            gap: 32,
-            // paddingHorizontal: 16,
-            paddingBottom: 24,
-            marginTop: 23,
-            // borderWidth:1,
-            backgroundColor: "#F7F7F7",
-          }}
-        >
-          <View style={styles.headerContainer}>
-            <View style={styles.titleContainer}>
-              <Text style={styles.titleText}>Latest from ABHI</Text>
+            style={{
+              borderColor: "red",
+              gap: 32,
+              // paddingHorizontal: 16,
+              paddingBottom: 24,
+              marginTop: 23,
+              // borderWidth:1,
+              backgroundColor: "#F7F7F7",
+            }}
+          >
+            <View style={styles.headerContainer}>
+              <View style={styles.titleContainer}>
+                <Text style={styles.titleText}>Latest from ABHI</Text>
+              </View>
+              <View style={styles.exploreContainer}>
+                <Text style={styles.exploreText}>Explore More</Text>
+                <Image
+                  source={Explore}
+                  style={styles.exploreIcon}
+                  resizeMode="contain"
+                />
+              </View>
             </View>
-            <View style={styles.exploreContainer}>
-              <Text style={styles.exploreText}>Explore More</Text>
-              <Image
-                source={Explore}
-                style={styles.exploreIcon}
-                resizeMode="contain"
-              />
-            </View>
+            <FlatList
+              // style={{top:32}}
+              data={data}
+              keyExtractor={(item) => item.id}
+              renderItem={({ item }) => (
+                <LatestFromAbhiSlides
+                  icon={item.icon}
+                  exploreMore={item.exploreMore}
+                  title={item.title}
+                  desc={item.desc}
+                />
+              )}
+              horizontal={true}
+              ItemSeparatorComponent={() => <View style={{ width: 17 }} />}
+            />
           </View>
-          <FlatList
-            // style={{top:32}}
-            data={data}
-            keyExtractor={(item) => item.id}
-            renderItem={({ item }) => (
-              <LatestFromAbhiSlides
-                icon={item.icon}
-                exploreMore={item.exploreMore}
-                title={item.title}
-                desc={item.desc}
-              />
-            )}
-            horizontal={true}
-            ItemSeparatorComponent={() => <View style={{ width: 17 }} />}
-          />
-        </View>
 
-        <View
-          style={{
-            // borderWidth: 1,
-            // borderColor:"red",
-            marginTop: 22,
-            paddingHorizontal: 22,
-            paddingVertical: 16,
-            backgroundColor: "#fff",
-            gap: 12,
-            // height:900
-          }}
-        >
-          <PerformanceOverview />
+          <View
+            style={{
+              // borderWidth: 1,
+              // borderColor:"red",
+              marginTop: 22,
+              paddingHorizontal: 22,
+              paddingVertical: 16,
+              backgroundColor: "#fff",
+              gap: 12,
+              // height:900
+            }}
+          >
+            <PerformanceOverview />
+          </View>
+
+          <DHA_HR_Portfolio />
         </View>
       </ScrollView>
     </>
