@@ -161,16 +161,17 @@ export default function Dashboard() {
       </View>
 
 <ScrollView style={{marginHorizontal: -16,}} showsVerticalScrollIndicator={false}>
-      <LinearGradient
-        colors={["#FFF5EC", "#FFFFFF"]}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 0, y: 1 }}
+      <View
+        // colors={["#FFF5EC", "#FFFFFF"]}
+       
         style={{
           borderColor: "red",
           gap: 32,
           paddingHorizontal: 16,
           paddingBottom: 24,
           marginTop: 23,
+          // borderWidth:1,
+          backgroundColor:"#F7F7F7"
         }}
       >
         <View style={styles.headerContainer}>
@@ -201,12 +202,12 @@ export default function Dashboard() {
           horizontal={true}
           ItemSeparatorComponent={() => <View style={{ width: 17 }} />}
         />
-      </LinearGradient>
+      </View>
 
       <View
         style={{
-          borderWidth: 1,
-          borderColor:"red",
+          // borderWidth: 1,
+          // borderColor:"red",
           marginTop: 22,
           paddingHorizontal: 22,
           paddingVertical:16,
