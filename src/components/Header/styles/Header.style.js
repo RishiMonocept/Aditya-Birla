@@ -16,6 +16,8 @@ export const styles = StyleSheet.create({
     borderRadius: 7,
     alignItems: "center",
     justifyContent: "center",
+    elevation: 10,
+    shadowColor: "grey",
   },
   logo: {
     width: 7.41,

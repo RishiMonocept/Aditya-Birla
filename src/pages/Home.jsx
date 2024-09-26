@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { Image, Text, View } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "../components/Header/Header";
@@ -7,13 +7,16 @@ import NavigationsTab from "../Tabs/NavigationsTab";
 import ActivitiesList from "../components/Activity";
 import NotificationsList from "../components/Notifications";
 import { StatusBar } from "expo-status-bar";
+import Dashboard from "../components/Dashboard";
+
+
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState("Notifications");
 
   return (
-    <View style={styles.mainContainer}>
-      <SafeAreaView style={styles.safeAreaView}>
+    <SafeAreaView style={styles.safeAreaView}>
+      <View style={styles.mainContainer}>
         <Header title={"Your Profile"} />
         <NavigationsTab activeTab={activeTab} setActiveTab={setActiveTab} />
         {activeTab === "Notifications" ? (
@@ -21,9 +24,9 @@ const Home = () => {
         ) : (
           <ActivitiesList />
         )}
-      </SafeAreaView>
-      <StatusBar style="dark" />
-    </View>
+        <StatusBar style="dark" />
+      </View>
+    </SafeAreaView>
   );
 };
 
