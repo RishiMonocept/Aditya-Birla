@@ -208,10 +208,11 @@ export default function Dashboard() {
           borderWidth: 1,
           borderColor:"red",
           marginTop: 22,
-          paddingHorizontal: 16,
+          paddingHorizontal: 22,
+          paddingVertical:16,
           backgroundColor:"#fff",
           gap:12,
-          height:900
+          // height:900
         }}
       >
         <PerformanceOverview />

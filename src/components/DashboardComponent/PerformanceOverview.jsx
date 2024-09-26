@@ -11,6 +11,10 @@ import policySold from "../../assets/Dashboard/policySold.png";
 import premium from "../../assets/Dashboard/premium.png"
 import commissions from "../../assets/Dashboard/commissonEarnd.png"
 import myPerformance from "../../assets/Dashboard/myPerformance.png"
+import policysold2 from "../../assets/Dashboard/policysold2.png";
+import coin from "../../assets/Dashboard/coin.png";
+import exploreMore from "../../assets/Dashboard/ExploreMorebtn.png";
+import chart from "../../assets/Dashboard/MyperformanceChart.png";
 
 export default function PerformanceOverview() {
   const data = [
@@ -53,18 +57,97 @@ export default function PerformanceOverview() {
         </View>
       </View>
       <FlatList
-        data={data}
-        keyExtractor={(item) => item?.id}
-        renderItem={({ item }) => (
-          <PerformacneOverviewSlides
-            icon={item.icon}
-            title={item.title}
-            number={item.number}
+  data={data}
+  keyExtractor={(item) => item?.id}
+  renderItem={({ item }) => (
+    <PerformacneOverviewSlides
+      icon={item.icon}
+      title={item.title}
+      number={item.number}
+      id={item.id}
+    >
+      {item.id === "1" && (
+        <View style={styles.policysold2}>
+          <Image
+            style={{ width: 12.18, height: 12.2 }}
+            source={policysold2}
+            resizeMethod="contain"
           />
-        )}
-        horizontal={true}
-        ItemSeparatorComponent={() => <View style={{ width: 17 }} />}
-      />
+          <Text
+            style={{
+              fontSize: 12,
+              lineHeight: 16,
+              fontWeight: "400",
+              color: "#2E2E2E",
+            }}
+          >
+            You seem to be selling a majority{"\n"}of Activ Fit plans
+          </Text>
+        </View>
+      )}
+      {item.id === "2" && (
+        <View style={styles.goalAchieved}>
+          <Text style={styles.goalAchievedText}>
+            78% of monthly goal achieved
+          </Text>
+          <View style={styles.backprogressBar}>
+            <View style={styles.progressBar}></View>
+          </View>
+        </View>
+      )}
+      {item.id === "3" && (
+        <View style={styles.coinwithActionable}>
+          <View style={styles.coinwithActionablechild}>
+            <Image
+              style={{ width: 12.18, height: 12.2 }}
+              source={coin}
+              resizeMethod="contain"
+            />
+            <Text
+              style={{
+                fontSize: 12,
+                lineHeight: 16,
+                fontWeight: "400",
+                color: "#2E2E2E",
+              }}
+            >
+              You can potentially earn 10,000{"\n"}more with just 2 more policies
+            </Text>
+          </View>
+          <View style={styles.Actionable}>
+            <Text
+              style={{
+                fontSize: 14,
+                fontWeight: "500",
+                lineHeight: 24,
+                color: "#C7222A",
+              }}
+            >
+              Actionable link
+            </Text>
+            <Image
+              style={{ width: 6.67, height: 3.33 }}
+              source={exploreMore}
+              resizeMethod="contain"
+            />
+          </View>
+        </View>
+      )}
+      {item.id === "4" && (
+        <View>
+          <Image
+            style={{ height: 86, width: 162 }}
+            source={chart}
+            resizeMethod="contain"
+          />
+        </View>
+      )}
+    </PerformacneOverviewSlides>
+  )}
+  horizontal={true}
+  ItemSeparatorComponent={() => <View style={{ width: 17 }} />}
+/>
+
     </>
   );
 }
@@ -118,7 +201,7 @@ const styles = StyleSheet.create({
     borderColor: "#e6e6e6",
     borderRadius: 20,
     paddingHorizontal: 12,
-    paddingTop: 4,
+    paddingVertical: 4,
     backgroundColor: "#fff",
     gap: 4,
     alignItems: "center",
@@ -137,5 +220,70 @@ const styles = StyleSheet.create({
     width: 6.67,
     height: 4.44,
     color: "#000",
+  },
+
+
+  
+  coinwithActionable: {
+    paddingVertical: 6,
+    paddingHorizontal: 8,
+    borderRadius: 10,
+    borderWidth: 0.5,
+    borderColor: "#FFDE32",
+    backgroundColor: "#FFF4CE50",
+    // justifyContent: "center",
+    gap: 10,
+   
+  },
+  coinwithActionablechild: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+    backgroundColor: "#FFF4CE50",
+    // paddingHorizontal: 8,
+    borderRadius: 10,
+    // borderWidth:1
+  
+  },
+  policysold2: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+    borderWidth: 0.5,
+    borderColor: "#FFDE32",
+    backgroundColor: "#FFF4CE50",
+    paddingHorizontal: 8,
+    paddingVertical:6,
+    borderRadius: 10,
+    borderWidth: 0.5,
+  },
+  goalAchieved: {
+    paddingHorizontal: 0,
+    paddingVertical: 6,
+    gap: 9,
+  },
+  goalAchievedText: {
+    fontSize: 12,
+    fontWeight: "500",
+    lineHeight: 13.8,
+  },
+  backprogressBar: {
+    height: 13,
+    backgroundColor: "#E7FCF4",
+    borderRadius: 16,
+    justifyContent: "center",
+  },
+  progressBar: {
+    height: 7,
+    width: 154,
+    backgroundColor: "#1F874C",
+    borderTopLeftRadius: 16,
+    borderBottomLeftRadius: 16,
+    left: 2.5,
+  },
+  Actionable: {
+    flexDirection: "row",
+    gap: 6,
+    alignItems: "center",
   },
 });
