@@ -24,6 +24,7 @@ import notes from "../assets/Dashboard/notesIcon.png";
 import pharmacy from "../assets/Dashboard/pharmacy.png";
 import exploreMore from "../assets/Dashboard/ExploreMorebtn.png";
 import PerformanceOverview from "./DashboardComponent/PerformanceOverview";
+import ImportantTask from "./DashboardComponent/ImportantTask";
 
 export default function Dashboard() {
   const data = [
@@ -54,7 +55,6 @@ export default function Dashboard() {
       desc: "Partner with us to silence noise and \ncreate peaceful communities \nworldwide.",
       icon: AbhiId,
     },
-    
   ];
   const [activeButton, setActiveButton] = useState("RaiseATicket");
 
@@ -64,7 +64,6 @@ export default function Dashboard() {
 
   return (
     <>
-    
       <View style={styles.maincontainer}>
         <View style={styles.MainChild1}>
           <View style={styles.textView}>
@@ -160,64 +159,68 @@ export default function Dashboard() {
         </View>
       </View>
 
-<ScrollView style={{marginHorizontal: -16,}} showsVerticalScrollIndicator={false}>
-      <View
-        // colors={["#FFF5EC", "#FFFFFF"]}
-       
-        style={{
-          borderColor: "red",
-          gap: 32,
-          paddingHorizontal: 16,
-          paddingBottom: 24,
-          marginTop: 23,
-          // borderWidth:1,
-          backgroundColor:"#F7F7F7"
-        }}
+      <ScrollView
+        // style={{ marginHorizontal: -16 }}
+        showsVerticalScrollIndicator={false}
       >
-        <View style={styles.headerContainer}>
-          <View style={styles.titleContainer}>
-            <Text style={styles.titleText}>Latest from ABHI</Text>
-          </View>
-          <View style={styles.exploreContainer}>
-            <Text style={styles.exploreText}>Explore More</Text>
-            <Image
-              source={Explore}
-              style={styles.exploreIcon}
-              resizeMode="contain"
-            />
-          </View>
-        </View>
-        <FlatList
-          // style={{top:32}}
-          data={data}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <LatestFromAbhiSlides
-              icon={item.icon}
-              exploreMore={item.exploreMore}
-              title={item.title}
-              desc={item.desc}
-            />
-          )}
-          horizontal={true}
-          ItemSeparatorComponent={() => <View style={{ width: 17 }} />}
-        />
-      </View>
+        <ImportantTask/>
+        <View
+          // colors={["#FFF5EC", "#FFFFFF"]}
 
-      <View
-        style={{
-          // borderWidth: 1,
-          // borderColor:"red",
-          marginTop: 22,
-          paddingHorizontal: 22,
-          paddingVertical:16,
-          backgroundColor:"#fff",
-          gap:12,
-          // height:900
-        }}
-      >
-        <PerformanceOverview />
-      </View>
+          style={{
+            borderColor: "red",
+            gap: 32,
+            // paddingHorizontal: 16,
+            paddingBottom: 24,
+            marginTop: 23,
+            // borderWidth:1,
+            backgroundColor: "#F7F7F7",
+          }}
+        >
+          <View style={styles.headerContainer}>
+            <View style={styles.titleContainer}>
+              <Text style={styles.titleText}>Latest from ABHI</Text>
+            </View>
+            <View style={styles.exploreContainer}>
+              <Text style={styles.exploreText}>Explore More</Text>
+              <Image
+                source={Explore}
+                style={styles.exploreIcon}
+                resizeMode="contain"
+              />
+            </View>
+          </View>
+          <FlatList
+            // style={{top:32}}
+            data={data}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => (
+              <LatestFromAbhiSlides
+                icon={item.icon}
+                exploreMore={item.exploreMore}
+                title={item.title}
+                desc={item.desc}
+              />
+            )}
+            horizontal={true}
+            ItemSeparatorComponent={() => <View style={{ width: 17 }} />}
+          />
+        </View>
+
+        <View
+          style={{
+            // borderWidth: 1,
+            // borderColor:"red",
+            marginTop: 22,
+            paddingHorizontal: 22,
+            paddingVertical: 16,
+            backgroundColor: "#fff",
+            gap: 12,
+            // height:900
+          }}
+        >
+          <PerformanceOverview />
+        </View>
       </ScrollView>
     </>
   );
@@ -229,7 +232,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     gap: 12,
     display: "flex",
-    marginBottom:23
+    marginBottom: 23,
   },
   MainChild1: {
     flexDirection: "row",
