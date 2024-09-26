@@ -29,7 +29,7 @@ const fontWeight = {
 };
 export const lineHeight = {
   lineHeight11: verticalScale(11.2),
-  lineHeight14: 14,
+  lineHeight36: scale(36),
   lineHeight18dot2: 18.2,
   lineHeight19dot6: 19.6,
   lineHeight22dot4: 22.4,
