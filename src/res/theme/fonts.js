@@ -10,6 +10,7 @@ export const fontSize = {
   font12: RFValue(12, standardScreenHeight),
   font13: RFValue(13, standardScreenHeight),
   font14: RFValue(14, standardScreenHeight),
+  font18: RFValue(18, standardScreenHeight),
   font16: RFValue(16, standardScreenHeight),
   font18: RFValue(18, standardScreenHeight),
   font24: RFValue(24, standardScreenHeight),
@@ -18,6 +19,7 @@ export const fontSize = {
   font40: RFValue(40, standardScreenHeight),
   font48: RFValue(48, standardScreenHeight),
   font62: RFValue(62, standardScreenHeight),
+  font24: RFValue(24, standardScreenHeight),
   font25: RFValue(25, standardScreenHeight),
   font20: RFValue(20, standardScreenHeight),
   font8: RFValue(8, standardScreenHeight),
@@ -40,8 +42,8 @@ export const lineHeight = {
   lineHeight19dot6: 19.6,
   lineHeight22dot4: 22.4,
   lineHeight21dot6: 21.6,
-  lineHeight14dot4:14.4,
-  lineHeight17dot6:17.6,
+  lineHeight14dot4: 14.4,
+  lineHeight17dot6: 17.6,
   lineHeight15dot4: 15.4,
   lineHeight24: scale(24),
   lineHeight28dot8: scale(28.8),
@@ -55,6 +57,7 @@ export const fontType = {
   manrope: "Manrope",
   manropeBold: "Manrope-Bold",
   manropeMedium: "Manrope-Medium",
+  anekLatin: "Anek Latin",
 };
 
 export const letterSpacing = {
@@ -252,5 +255,12 @@ export const fontStyle = StyleSheet.create({
     fontSize: fontSize.font10,
     lineHeight: lineHeight.lineHeight18dot2,
     letterSpacing: letterSpacing.minus0045,
+  },
+  // DashBard Styles
+  subHeading: {
+    fontSize: fontSize.font24,
+    fontWeight: fontWeight.weight700,
+    lineHeight: 28.8,
+    fontFamily: fontType.anekLatin,
   },
 });

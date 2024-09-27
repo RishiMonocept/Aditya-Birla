@@ -7,41 +7,44 @@ import {
   StyleSheet,
   TouchableOpacity,
   Animated,
-  Image,
   Keyboard,
 } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Reports from "../pages/Reports";
 import Home from "../pages/Home";
 import ChatButton from "./ChatButton";
-import MENU from "../assets/BottomTab/Menu.png";
-import PRODUCT from "../assets/BottomTab/Product.png";
-import ENDORSEMENTS from "../assets/BottomTab/Endorsements.png";
-import MORE from "../assets/BottomTab/More.png";
-import FormScreen from "../pages/FormScreen";
 import DashBoardScreen from "../pages/DashBoardScreen";
+import FormScreen from "../pages/FormScreen";
+import DASHBOARD_ICON from "../assets/BottomTab/Dashboard_icon.svg";
+import PRODUCT_ICON from "../assets/BottomTab/Product_icon.svg";
+import ENDORSEMENT_ICON from "../assets/BottomTab/ENDORSEMENT_ICON.svg";
+import MORE_ICON from "../assets/BottomTab/More_icon.svg";
+import DASHBOARD_ICON_SELECTED from "../assets/BottomTab/DASHBOARD_ICON_SELECTED.svg";
+import PRODUCT_ICON_SELECTED from "../assets/BottomTab/PRODUCT_ICON_SELECTED.svg";
+import ENDORSEMENT_ICON_SELECTED from "../assets/BottomTab/ENDORSEMENT_ICON_SELECTED.svg";
+import MORE_ICON_SELECTED from "../assets/BottomTab/MORE_ICON_SELECTED.svg";
 
 const Tab = createBottomTabNavigator();
 
-const tabs = [
+const tabs = (isFocused) => [
   {
     name: "Dashboard",
-    icon: MENU,
+    icon: isFocused ? <DASHBOARD_ICON_SELECTED /> : <DASHBOARD_ICON />,
     label: "Dashboard",
   },
   {
     name: "Product",
-    icon: PRODUCT,
+    icon: isFocused ? <PRODUCT_ICON_SELECTED /> : <PRODUCT_ICON />,
     label: "Product",
   },
   {
     name: "FormScreen",
-    icon: ENDORSEMENTS,
+    icon: isFocused ? <ENDORSEMENT_ICON_SELECTED /> : <ENDORSEMENT_ICON />,
     label: "Endorsements",
   },
   {
     name: "More",
-    icon: MORE,
+    icon: isFocused ? <MORE_ICON_SELECTED /> : <MORE_ICON />,
     label: "More",
   },
 ];
@@ -70,9 +73,13 @@ const BottomNavigation = () => {
           {state.routes.map((route, index) => {
             const { options } = descriptors[route.key];
             const label = options.tabBarLabel || route.name;
-            const tabInfo = tabs.find((tab) => tab.name === route.name);
-            const icon = tabInfo?.icon;
             const isFocused = state.index === index;
+
+            // Get icon from the tabs array
+            const tabInfo = tabs(isFocused).find(
+              (tab) => tab.name === route.name
+            );
+            const icon = tabInfo?.icon;
 
             const onPress = useCallback(() => {
               navigation.navigate(route.name);
@@ -99,13 +106,7 @@ const BottomNavigation = () => {
                     },
                   ]}
                 >
-                  <Image
-                    source={icon}
-                    style={[
-                      styles.icon,
-                      { tintColor: isFocused ? "#C7222A" : "#797979" },
-                    ]}
-                  />
+                  {icon}
                 </Animated.View>
                 <Text
                   style={[
@@ -143,8 +144,6 @@ const BottomNavigation = () => {
 
 const styles = StyleSheet.create({
   bottomNavigation: {
-    // position: "absolute",
-    // bottom: 0,
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-around",
@@ -165,10 +164,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 4,
-  },
-  icon: {
-    width: 24,
-    height: 24,
   },
   buttonText: {
     fontSize: 13,

@@ -8,9 +8,9 @@ import PerformacneOverviewSlides from "./PerformacneOverviewSlides";
 import policySold from "../../assets/Dashboard/policySold.png";
 // import premium from "../../assets/Dashboard/premium.png
 // import commission from "../../assets/Dashboard/commissionEarned.png;
-import premium from "../../assets/Dashboard/premium.png"
-import commissions from "../../assets/Dashboard/commissonEarnd.png"
-import myPerformance from "../../assets/Dashboard/myPerformance.png"
+import premium from "../../assets/Dashboard/premium.png";
+import commissions from "../../assets/Dashboard/commissonEarnd.png";
+import myPerformance from "../../assets/Dashboard/myPerformance.png";
 import policysold2 from "../../assets/Dashboard/policysold2.png";
 import coin from "../../assets/Dashboard/coin.png";
 import exploreMore from "../../assets/Dashboard/ExploreMorebtn.png";
@@ -20,8 +20,13 @@ export default function PerformanceOverview() {
   const data = [
     { id: "1", title: "Policies Sold", icon: policySold, number: 1295 },
     { id: "2", title: "Premium", icon: premium, number: "₹ 369.96 L" },
-    { id: "3", title: "Commission Earned", icon: commissions, number: "₹ 50,000" },
-    { id: "4", title: "My Performance", icon: myPerformance,},
+    {
+      id: "3",
+      title: "Commission Earned",
+      icon: commissions,
+      number: "₹ 50,000",
+    },
+    { id: "4", title: "My Performance", icon: myPerformance },
   ];
   return (
     <>
@@ -57,97 +62,97 @@ export default function PerformanceOverview() {
         </View>
       </View>
       <FlatList
-  data={data}
-  keyExtractor={(item) => item?.id}
-  renderItem={({ item }) => (
-    <PerformacneOverviewSlides
-      icon={item.icon}
-      title={item.title}
-      number={item.number}
-      id={item.id}
-    >
-      {item.id === "1" && (
-        <View style={styles.policysold2}>
-          <Image
-            style={{ width: 12.18, height: 12.2 }}
-            source={policysold2}
-            resizeMethod="contain"
-          />
-          <Text
-            style={{
-              fontSize: 12,
-              lineHeight: 16,
-              fontWeight: "400",
-              color: "#2E2E2E",
-            }}
+        data={data}
+        keyExtractor={(item) => item?.id}
+        renderItem={({ item }) => (
+          <PerformacneOverviewSlides
+            icon={item.icon}
+            title={item.title}
+            number={item.number}
+            id={item.id}
           >
-            You seem to be selling a majority{"\n"}of Activ Fit plans
-          </Text>
-        </View>
-      )}
-      {item.id === "2" && (
-        <View style={styles.goalAchieved}>
-          <Text style={styles.goalAchievedText}>
-            78% of monthly goal achieved
-          </Text>
-          <View style={styles.backprogressBar}>
-            <View style={styles.progressBar}></View>
-          </View>
-        </View>
-      )}
-      {item.id === "3" && (
-        <View style={styles.coinwithActionable}>
-          <View style={styles.coinwithActionablechild}>
-            <Image
-              style={{ width: 12.18, height: 12.2 }}
-              source={coin}
-              resizeMethod="contain"
-            />
-            <Text
-              style={{
-                fontSize: 12,
-                lineHeight: 16,
-                fontWeight: "400",
-                color: "#2E2E2E",
-              }}
-            >
-              You can potentially earn 10,000{"\n"}more with just 2 more policies
-            </Text>
-          </View>
-          <View style={styles.Actionable}>
-            <Text
-              style={{
-                fontSize: 14,
-                fontWeight: "500",
-                lineHeight: 24,
-                color: "#C7222A",
-              }}
-            >
-              Actionable link
-            </Text>
-            <Image
-              style={{ width: 6.67, height: 3.33 }}
-              source={exploreMore}
-              resizeMethod="contain"
-            />
-          </View>
-        </View>
-      )}
-      {item.id === "4" && (
-        <View>
-          <Image
-            style={{ height: 86, width: 162 }}
-            source={chart}
-            resizeMethod="contain"
-          />
-        </View>
-      )}
-    </PerformacneOverviewSlides>
-  )}
-  horizontal={true}
-  ItemSeparatorComponent={() => <View style={{ width: 17 }} />}
-/>
-
+            {item.id === "1" && (
+              <View style={styles.policysold2}>
+                <Image
+                  style={{ width: 12.18, height: 12.2 }}
+                  source={policysold2}
+                  resizeMethod="contain"
+                />
+                <Text
+                  style={{
+                    fontSize: 12,
+                    lineHeight: 16,
+                    fontWeight: "400",
+                    color: "#2E2E2E",
+                  }}
+                >
+                  You seem to be selling a majority{"\n"}of Activ Fit plans
+                </Text>
+              </View>
+            )}
+            {item.id === "2" && (
+              <View style={styles.goalAchieved}>
+                <Text style={styles.goalAchievedText}>
+                  78% of monthly goal achieved
+                </Text>
+                <View style={styles.backprogressBar}>
+                  <View style={styles.progressBar}></View>
+                </View>
+              </View>
+            )}
+            {item.id === "3" && (
+              <View style={styles.coinwithActionable}>
+                <View style={styles.coinwithActionablechild}>
+                  <Image
+                    style={{ width: 12.18, height: 12.2 }}
+                    source={coin}
+                    resizeMethod="contain"
+                  />
+                  <Text
+                    style={{
+                      fontSize: 12,
+                      lineHeight: 16,
+                      fontWeight: "400",
+                      color: "#2E2E2E",
+                    }}
+                  >
+                    You can potentially earn 10,000{"\n"}more with just 2 more
+                    policies
+                  </Text>
+                </View>
+                <View style={styles.Actionable}>
+                  <Text
+                    style={{
+                      fontSize: 14,
+                      fontWeight: "500",
+                      lineHeight: 24,
+                      color: "#C7222A",
+                    }}
+                  >
+                    Actionable link
+                  </Text>
+                  <Image
+                    style={{ width: 6.67, height: 3.33 }}
+                    source={exploreMore}
+                    resizeMethod="contain"
+                  />
+                </View>
+              </View>
+            )}
+            {item.id === "4" && (
+              <View>
+                <Image
+                  style={{ height: 86, width: 162 }}
+                  source={chart}
+                  resizeMethod="contain"
+                />
+              </View>
+            )}
+          </PerformacneOverviewSlides>
+        )}
+        horizontal={true}
+        ItemSeparatorComponent={() => <View style={{ width: 17 }} />}
+      />
     </>
   );
 }
@@ -223,8 +228,6 @@ const styles = StyleSheet.create({
     color: "#000",
   },
 
-
-  
   coinwithActionable: {
     paddingVertical: 6,
     paddingHorizontal: 8,
@@ -234,7 +237,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFF4CE50",
     // justifyContent: "center",
     gap: 10,
-   
   },
   coinwithActionablechild: {
     flexDirection: "row",
@@ -244,7 +246,6 @@ const styles = StyleSheet.create({
     // paddingHorizontal: 8,
     borderRadius: 10,
     // borderWidth:1
-  
   },
   policysold2: {
     flexDirection: "row",
@@ -254,7 +255,7 @@ const styles = StyleSheet.create({
     borderColor: "#FFDE32",
     backgroundColor: "#FFF4CE50",
     paddingHorizontal: 8,
-    paddingVertical:6,
+    paddingVertical: 6,
     borderRadius: 10,
     borderWidth: 0.5,
   },
