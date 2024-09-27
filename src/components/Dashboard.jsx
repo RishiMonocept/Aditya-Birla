@@ -25,6 +25,7 @@ import pharmacy from "../assets/Dashboard/pharmacy.png";
 import exploreMore from "../assets/Dashboard/ExploreMorebtn.png";
 import PerformanceOverview from "./DashboardComponent/PerformanceOverview";
 import ImportantTask from "./DashboardComponent/ImportantTask";
+import ProgressMeter from "./Dashboard/ProgressMeter";
 
 export default function Dashboard() {
   const data = [
@@ -159,7 +160,9 @@ export default function Dashboard() {
         </View>
       </View>
 
-      <ScrollView
+      <ProgressMeter />
+
+      {/* <ScrollView
         // style={{ marginHorizontal: -16 }}
         showsVerticalScrollIndicator={false}
       >
@@ -221,7 +224,7 @@ export default function Dashboard() {
         >
           <PerformanceOverview />
         </View>
-      </ScrollView>
+      </ScrollView> */}
     </>
   );
 }
