@@ -8,6 +8,7 @@ const standardScreenHeight = Dimensions.get("window").height;
 export const fontSize = {
   font10: RFValue(10, standardScreenHeight),
   font13: RFValue(13, standardScreenHeight),
+  font18: RFValue(18, standardScreenHeight),
   font16: RFValue(16, standardScreenHeight),
   font32: RFValue(32, standardScreenHeight),
   font11: RFValue(11, standardScreenHeight),
