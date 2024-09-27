@@ -7,8 +7,12 @@ import { Dimensions } from "react-native";
 const standardScreenHeight = Dimensions.get("window").height;
 export const fontSize = {
   font10: RFValue(10, standardScreenHeight),
+  font12: RFValue(12, standardScreenHeight),
   font13: RFValue(13, standardScreenHeight),
+  font14: RFValue(14, standardScreenHeight),
   font16: RFValue(16, standardScreenHeight),
+  font18: RFValue(18, standardScreenHeight),
+  font24: RFValue(24, standardScreenHeight),
   font32: RFValue(32, standardScreenHeight),
   font11: RFValue(11, standardScreenHeight),
   font40: RFValue(40, standardScreenHeight),
@@ -22,20 +26,25 @@ export const fontSize = {
 export const fontSize14 = {
   fontSize14: moderateScale(14),
 };
-const fontWeight = {
+export const fontWeight = {
   weight400: "400",
   weight500: "500",
+  weight600: "600",
   weight700: "700",
 };
 export const lineHeight = {
   lineHeight11: verticalScale(11.2),
   lineHeight36: scale(36),
-  lineHeight18dot2: 18.2,
+  lineHeight16: 16,
+  lineHeight16dot8: 16.8,
   lineHeight19dot6: 19.6,
   lineHeight22dot4: 22.4,
+  lineHeight21dot6: 21.6,
+  lineHeight14dot4:14.4,
+  lineHeight17dot6:17.6,
   lineHeight15dot4: 15.4,
   lineHeight24: scale(24),
-  lineHeight28: scale(28),
+  lineHeight28dot8: scale(28.8),
   lineHeight35: scale(35),
   lineHeight44: scale(44.8),
   linHeight67: 67.2,

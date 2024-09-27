@@ -8,6 +8,13 @@ const colors = {
     lightGreen: "#B3E796",
     lighterGreen: "#CEEBDC",
     grey: "#EEEEEF",
+    warmIvory:"#FFF4D9",
+    naturalGray:"#2E2E2E",
+    lingtShadeBlue:"#F3F6FE",
+    lightCream:"#FFF4CE50",
+    yellow23:"#FFDE32",
+    abc:"#FF7A00",
+    vibrantRed:"#C7222A"
   },
   secondaryColors: {
     summerSky: "#3597EC",
@@ -36,6 +43,7 @@ const colors = {
     n70: "#DCDDE0",
     n60: "#EEEEEF",
     selfTeam: "#3597EC",
+    lightGray:"#E6E6E6"
   },
 
   textShadowColor: {

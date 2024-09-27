@@ -167,6 +167,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     flexDirection: "row",
     // opacity:0.39
+    borderRadius:4
   },
   tipsText: {
     fontSize: 13,

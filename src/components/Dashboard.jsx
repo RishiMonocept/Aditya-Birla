@@ -25,6 +25,10 @@ import pharmacy from "../assets/Dashboard/pharmacy.png";
 import exploreMore from "../assets/Dashboard/ExploreMorebtn.png";
 import PerformanceOverview from "./DashboardComponent/PerformanceOverview";
 import ImportantTask from "./DashboardComponent/ImportantTask";
+// import star from "../assets/Dashboard/
+import star from "../assets/Dashboard/star.png";
+import AllTasks from "./DashboardComponent/AllTasks";
+import TopSellingProduct from "./DashboardComponent/TopSellingProduct";
 
 export default function Dashboard() {
   const data = [
@@ -163,7 +167,8 @@ export default function Dashboard() {
         // style={{ marginHorizontal: -16 }}
         showsVerticalScrollIndicator={false}
       >
-        <ImportantTask/>
+        <ImportantTask />
+
         <View
           // colors={["#FFF5EC", "#FFFFFF"]}
 
@@ -221,6 +226,9 @@ export default function Dashboard() {
         >
           <PerformanceOverview />
         </View>
+
+        <AllTasks />
+        <TopSellingProduct />
       </ScrollView>
     </>
   );
