@@ -4,6 +4,7 @@ import { borderRadius, sizeWithoutScale, spacing } from "../../res/dimension";
 import colors from "../../res/theme/colors";
 import { fontSize, fontWeight, lineHeight } from "../../res/theme/fonts";
 import { LinearGradient } from "expo-linear-gradient";
+import UpSellOffers from "./UpSellOffers";
 
 export default function AllTasksCard({
   name,
@@ -19,31 +20,17 @@ export default function AllTasksCard({
         <Image style={styles.profilePics} source={profilePic} />
         <Text style={styles.profileName}>{name}</Text>
       </View>
-      <LinearGradient
-        colors={[colors.primaryColors.yellow23, colors.primaryColors.abc]} // Gradient colors
-        start={{ x: 0, y: 0.5 }}
-        end={{ x: 1, y: 0.5 }}
-        style={styles.gradientBorder}
-      >
-        <View style={styles.messageContainer}>
-          <Image
-            style={styles.coinIcon}
-            source={coinIcon}
-            resizeMethod="contain"
-          />
-          <Text style={styles.messageText}>{message}</Text>
-        </View>
-      </LinearGradient>
+
+      <UpSellOffers icon={coinIcon} description={message} />
 
       <TouchableOpacity style={styles.actionContainer}>
         <Text style={styles.actionText}>{actionText}</Text>
-       
-          <Image
-            style={styles.nextbtnicon}
-            source={nextbtnicon}
-            resizeMethod="contain"
-          />
-       
+
+        <Image
+          style={styles.nextbtnicon}
+          source={nextbtnicon}
+          resizeMethod="contain"
+        />
       </TouchableOpacity>
     </View>
   );
@@ -92,7 +79,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff4ce",
     flexDirection: "row",
     // alignItems:"center"
-    
   },
   coinIcon: {
     width: 17.5,
@@ -108,7 +94,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     // borderWidth:1,
-    paddingRight:spacing.space_10
+    paddingRight: spacing.space_10,
   },
   actionText: {
     fontSize: fontSize.font14,

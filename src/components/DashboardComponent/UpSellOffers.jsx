@@ -6,6 +6,8 @@ export default function UpSellOffers({ icon, description }) {
   return (
     <LinearGradient
       colors={["#FFDE32", "#FF7A00"]}
+      start={{ x: 0, y: 0.5 }}
+      end={{ x: 1, y: 0.5 }}
       style={styles.gradientBorder}
     >
       <View style={styles.innerContainer}>
@@ -18,7 +20,7 @@ export default function UpSellOffers({ icon, description }) {
 
 const styles = StyleSheet.create({
   gradientBorder: {
-    padding: 1,
+    padding: 0.5,
     borderRadius: 10,
   },
   innerContainer: {

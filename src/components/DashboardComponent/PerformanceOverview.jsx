@@ -15,6 +15,7 @@ import policysold2 from "../../assets/Dashboard/policysold2.png";
 import coin from "../../assets/Dashboard/coin.png";
 import exploreMore from "../../assets/Dashboard/ExploreMorebtn.png";
 import chart from "../../assets/Dashboard/MyperformanceChart.png";
+import { fontStyle } from "../../res/theme/fonts";
 
 export default function PerformanceOverview() {
   const data = [
@@ -31,7 +32,7 @@ export default function PerformanceOverview() {
   return (
     <>
       <View>
-        <Text style={styles.performanceText}>Performance Overview</Text>
+        <Text style={fontStyle.subHeading}>Performance Overview</Text>
       </View>
       <View style={styles.tips}>
         <Image
