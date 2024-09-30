@@ -1,11 +1,37 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, FlatList } from "react-native";
 import React from "react";
 import { fontStyle } from "../../../res/theme/fonts";
-import FORWARDRED_ICON from "../../../assets/Dashboard/forwardRedIcon.svg"
+import FORWARDRED_ICON from "../../../assets/Dashboard/forwardRedIcon.svg";
+import KnowledgeCenterCard from "./KnowledgeCenterCard";
+import IMAGE_ICON from "../../../assets/Dashboard/insuranceSellingImage.svg";
 
 export default function KnowledgeCenter() {
+  const KnowledgeCenterData = [
+    {
+      id: "1",
+      title: "Insurance Selling\nMasterclass",
+      btnText: "Resume",
+      icon: <FORWARDRED_ICON />,
+      imageIcon: <IMAGE_ICON />,
+    },
+    {
+      id: "2",
+      title: "Insurance Selling\nMasterclass",
+      btnText: "Resume",
+      icon: <FORWARDRED_ICON />,
+      imageIcon: <IMAGE_ICON />,
+    },
+    {
+        id: "3",
+        title: "Insurance Selling\nMasterclass",
+        btnText: "Resume",
+        icon: <FORWARDRED_ICON />,
+        imageIcon: <IMAGE_ICON />,
+      },
+  ];
+
   return (
-    <View style={{gap:32}}>
+    <View style={{ gap: 32 }}>
       <View style={styles.headerContainer}>
         <View style={styles.titleContainer}>
           <Text style={fontStyle.subHeading}>Knowledge Centre</Text>
@@ -13,9 +39,26 @@ export default function KnowledgeCenter() {
         <View style={styles.exploreContainer}>
           <Text style={styles.exploreText}>Explore More</Text>
           <View>
-            <FORWARDRED_ICON/>
+            <FORWARDRED_ICON />
           </View>
         </View>
+      </View>
+
+      <View style={{ gap: 12 }}>
+        <FlatList
+          data={KnowledgeCenterData}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <KnowledgeCenterCard
+              imageIcon={item.imageIcon}
+              title={item.title}
+                btnText={item.btnText}
+                icon={item.icon}
+            />
+          )}
+          horizontal={true}
+          ItemSeparatorComponent={() => <View style={{ width: 12 }} />}
+        />
       </View>
     </View>
   );
