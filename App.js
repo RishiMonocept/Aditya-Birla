@@ -21,7 +21,7 @@ export default function App() {
     <NavigationContainer ref={navigationRef}>
       <View style={{ flex: 1, backgroundColor: "#F1F3F6" }}>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-          {/* <Stack.Screen name="AdvLoginPage" component={LoginAdv} /> */}
+          <Stack.Screen name="AdvLoginPage" component={LoginAdv} />
           {/* <Stack.Screen name="LoginPage" component={Login} /> */}
           <Stack.Screen name="BottomTabs" component={BottomNavigation} />
           <Stack.Screen name="LoginSearch" component={LoginSearch} />

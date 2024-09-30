@@ -9,14 +9,13 @@ import RUPEE_ICON from "../../../assets/Dashboard/RUPEE_ICON.svg";
 import UpSellOffers from "../UpSellOffers";
 import dhaHrPortfolioData from "./dhaHrPortfolioData.json";
 
-const iconMapping = {
-  DHA_ICON: <DHA_ICON />,
-  HR_ICON: <HR_ICON />,
-  BULB_ICON: <BULB_ICON />,
-  RUPEE_ICON: <RUPEE_ICON />,
-};
-
 export default function DHA_HR_Portfolio() {
+  const iconMapping = {
+    DHA_ICON: <DHA_ICON />,
+    HR_ICON: <HR_ICON />,
+    BULB_ICON: <BULB_ICON />,
+    RUPEE_ICON: <RUPEE_ICON />,
+  };
   const subHeading = "DHA & HR Portfolio";
 
   const renderItem = ({ item }) => (
