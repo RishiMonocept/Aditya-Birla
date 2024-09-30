@@ -19,7 +19,9 @@ import DropDownIcon from "../../../assets/Dashboard/dropdownIcon.svg";
 import ACTIVEONEICON from "../../../assets/Dashboard/ActiveOneIcon.svg";
 // import CHECKEDiCON from "../../../assets/Dashboard/checkedIcon.svg";
 import TopSellingProductCard from "./TopSellingProductCard";
-import ICON2 from "../../../assets/Dashboard/checkedIcon.svg"
+import ICON2 from "../../../assets/Dashboard/checkedIcon.svg";
+import TIPS from "../../../assets/Dashboard/TipsIcon.svg";
+import FORWARD_ICON from "../../../assets/Dashboard/forwardIcon.svg"
 
 export default function TopSellingProduct() {
   const topSellingProductsData = [
@@ -31,7 +33,10 @@ export default function TopSellingProduct() {
       coverage: "5X Coverage of Base Sum",
       benifits1: "Health Assessment",
       benifits2: "Cover Home-based Treatments",
-      checkedIcon: <ICON2/>
+      checkedIcon: <ICON2 />,
+      tips: <TIPS />,
+      forward:<FORWARD_ICON/>,
+      tipsMessage:"Show selling tips for me"
     },
     {
       id: "2",
@@ -41,7 +46,10 @@ export default function TopSellingProduct() {
       coverage: "5X Coverage of Base Sum",
       benifits1: "Health Assessment",
       benifits2: "Cover Home-based Treatments",
-      checkedIcon:<ICON2/>
+      checkedIcon: <ICON2 />,
+      tips: <TIPS />,
+      forward:<FORWARD_ICON/>,
+      tipsMessage:"Show selling tips for me"
     },
   ];
 
@@ -68,7 +76,9 @@ export default function TopSellingProduct() {
               coverage={item.coverage}
               benifits1={item.benifits1}
               benifits2={item.benifits2}
-              
+              tips={item.tips}
+              tipsMessage={item.tipsMessage}
+              forward={item.forward}
             />
           )}
           horizontal={true}

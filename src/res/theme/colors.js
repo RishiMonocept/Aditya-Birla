@@ -14,7 +14,8 @@ const colors = {
     lightCream:"#FFF4CE50",
     yellow23:"#FFDE32",
     abc:"#FF7A00",
-    vibrantRed:"#C7222A"
+    vibrantRed:"#C7222A",
+    darkGray:"#4C4C4C"
   },
   secondaryColors: {
     summerSky: "#3597EC",

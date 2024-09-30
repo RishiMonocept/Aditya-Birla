@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import colors from "../../../res/theme/colors";
 import {
@@ -7,6 +7,7 @@ import {
   spacing,
 } from "../../../res/dimension";
 import { fontSize, fontWeight, lineHeight } from "../../../res/theme/fonts";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function TopSellingProductCard({
   icon,
@@ -16,6 +17,9 @@ export default function TopSellingProductCard({
   benifits1,
   benifits2,
   checkedIcon,
+  tips,
+  forward,
+  tipsMessage,
 }) {
   return (
     <View style={styles.cardContainer}>
@@ -43,6 +47,17 @@ export default function TopSellingProductCard({
           <Text>{benifits2}</Text>
         </View>
       </View>
+
+      <LinearGradient
+        colors={["#FFDC63", "#FFF4CE"]}
+        start={{ x: 0.1, y: 0.4 }}
+        end={{ x: 0.4, y: 1 }}
+        style={styles.tipsContainer}
+      >
+        <View style={styles.tipsIcon}>{tips}</View>
+        <Text style={styles.tipsText}>{tipsMessage}</Text>
+        <TouchableOpacity style={styles.forward}>{forward}</TouchableOpacity>
+      </LinearGradient>
     </View>
   );
 }
@@ -90,5 +105,27 @@ const styles = StyleSheet.create({
   benifits1: {
     flexDirection: "row",
     gap: spacing.space_base,
+  },
+  tipsContainer: {
+    paddingVertical: 6,
+    paddingHorizontal: 11,
+    borderRadius: 38,
+    justifyContent: "space-between",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  tipsIcon: {
+    height: 12,
+    width: 9,
+  },
+  tipsText: {
+    fontSize: fontSize.font12,
+    fontWeight: fontWeight.weight400,
+    lineHeight: lineHeight.lineHeight16,
+    color: colors.primaryColors.darkGray,
+  },
+  forward: {
+    height: spacing.space_m3,
+    width: spacing.space_m3,
   },
 });
