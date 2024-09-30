@@ -31,6 +31,7 @@ import AllTasks from "./DashboardComponent/AllTasks";
 import TopSellingProduct from "./DashboardComponent/TopSellingProduct";
 import DHA_HR_Portfolio from "./DashboardComponent/DHA_HR_Portfolio/DHA_HR_Portfolio";
 import { fontStyle } from "../res/theme/fonts";
+import AllTasks2 from "./DashboardComponent/ALL_TASKS/AllTasks2";
 
 export default function Dashboard() {
   const data = [
@@ -224,6 +225,7 @@ export default function Dashboard() {
             <PerformanceOverview />
           </View>
           <AllTasks />
+          <AllTasks2 />
           <TopSellingProduct />
           <DHA_HR_Portfolio />
         </View>
