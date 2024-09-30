@@ -1,0 +1,29 @@
+[
+  {
+    "icon": "DHA_ICON",
+    "title": "Digital Health \nAssessments",
+    "value": [
+      {
+        "amount": "241",
+        "label": "Total Assessments"
+      },
+      {
+        "amount": "199",
+        "label": "Users"
+      }
+    ],
+    "upSellOffer": {
+      "icon": "BULB_ICON",
+      "description": "Dummy placeholder text"
+    }
+  },
+  {
+    "icon": "HR_ICON",
+    "title": "Health \nReturns",
+    "value": "₹50,000",
+    "upSellOffer": {
+      "icon": "RUPEE_ICON",
+      "description": "Nudge your users to actively \nparticipate to save more"
+    }
+  }
+]

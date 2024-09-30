@@ -7,45 +7,25 @@ import HR_ICON from "../../../assets/Dashboard/HR_ICON.svg";
 import BULB_ICON from "../../../assets/Dashboard/bulb-icon.svg";
 import RUPEE_ICON from "../../../assets/Dashboard/RUPEE_ICON.svg";
 import UpSellOffers from "../UpSellOffers";
+import dhaHrPortfolioData from "./dhaHrPortfolioData.json";
+
+const iconMapping = {
+  DHA_ICON: <DHA_ICON />,
+  HR_ICON: <HR_ICON />,
+  BULB_ICON: <BULB_ICON />,
+  RUPEE_ICON: <RUPEE_ICON />,
+};
 
 export default function DHA_HR_Portfolio() {
   const subHeading = "DHA & HR Portfolio";
-
-  const dhaHrPortfolioData = [
-    {
-      icon: <DHA_ICON />,
-      title: "Digital Health \nAssessments",
-      value: [
-        {
-          amount: "241",
-          label: "Total Assessments",
-        },
-        {
-          amount: "199",
-          label: "Users",
-        },
-      ],
-      upSellOffer: {
-        icon: <BULB_ICON />,
-        description: "Dummy placeholder text",
-      },
-    },
-    {
-      icon: <HR_ICON />,
-      title: "Health \nReturns",
-      value: "₹50,000",
-      upSellOffer: {
-        icon: <RUPEE_ICON />,
-        description: "Nudge your users to actively \nparticipate to save more",
-      },
-    },
-  ];
 
   const renderItem = ({ item }) => (
     <View style={styles.itemContainer}>
       <View style={styles.itemDetailsView}>
         <View style={{ gap: 16, flexDirection: "row" }}>
-          <View style={{ justifyContent: "center" }}>{item.icon}</View>
+          <View style={{ justifyContent: "center" }}>
+            {iconMapping[item.icon]}
+          </View>
           <Text style={styles.itemTitle}>{item.title}</Text>
         </View>
         {item.title === "Health \nReturns" && (
@@ -54,12 +34,7 @@ export default function DHA_HR_Portfolio() {
           </Text>
         )}
         {item.title === "Digital Health \nAssessments" && (
-          <View
-            style={{
-              gap: 16,
-              flexDirection: "row",
-            }}
-          >
+          <View style={{ gap: 16, flexDirection: "row" }}>
             {item.value.map((data, index) => (
               <View key={index} style={{ gap: 6 }}>
                 <Text
@@ -78,7 +53,7 @@ export default function DHA_HR_Portfolio() {
         )}
       </View>
       <UpSellOffers
-        icon={item.upSellOffer.icon}
+        icon={iconMapping[item.upSellOffer.icon]}
         description={item.upSellOffer.description}
       />
     </View>
