@@ -161,7 +161,6 @@ export default function AllTasks2() {
           <Text>Renewals View</Text>
         </View>
       )}
-
       {selectedItem === "Proposal" && (
         <View>
           <Text>Proposal View</Text>
