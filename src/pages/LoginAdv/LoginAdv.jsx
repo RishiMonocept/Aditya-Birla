@@ -112,8 +112,49 @@ const LoginAdv = () => {
     }
   };
 
+  // const checkNumEntered = () => {
+  //   console.log("Verify OTP pressed without num");
+  // };
   const checkNumEntered = () => {
     console.log("Verify OTP pressed without num");
+    Toast.show({
+      type: "success",
+      position: "top",
+      text1: "OTP Verified",
+      text2: "You have successfully verified your OTP.",
+      visibilityTime: 3000,
+    });
+
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [{ name: "BottomTabs" }],
+      })
+    );
+    // if (inputNum) {
+    //   Toast.show({
+    //     type: "success",
+    //     position: "top",
+    //     text1: "OTP Verified",
+    //     text2: "You have successfully verified your OTP.",
+    //     visibilityTime: 3000,
+    //   });
+
+    //   navigation.dispatch(
+    //     CommonActions.reset({
+    //       index: 0,
+    //       routes: [{ name: "BottomTabs" }],
+    //     })
+    //   );
+    // } else {
+    //   Toast.show({
+    //     type: "error",
+    //     position: "top",
+    //     text1: "Error",
+    //     text2: "Please enter a valid OTP.",
+    //     visibilityTime: 3000,
+    //   });
+    // }
   };
 
   return (
