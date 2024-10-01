@@ -1,11 +1,18 @@
 import { View, Text, StyleSheet, FlatList } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { fontStyle } from "../../../res/theme/fonts";
 import FORWARDRED_ICON from "../../../assets/Dashboard/forwardRedIcon.svg";
 import KnowledgeCenterCard from "./KnowledgeCenterCard";
 import IMAGE_ICON from "../../../assets/Dashboard/insuranceSellingImage.svg";
+import ToggleList1 from "../../ToggleList/ToggleList1";
 
 export default function KnowledgeCenter() {
+  const toggleItemListData = ["Completed", "In Progress", "Pending"];
+  const [selectedItem, setSelectedItem] = useState("Completed");
+
+  const toggleHandler = (item) => {
+    setSelectedItem(item);
+  };
   const KnowledgeCenterData = [
     {
       id: "1",
@@ -22,12 +29,12 @@ export default function KnowledgeCenter() {
       imageIcon: <IMAGE_ICON />,
     },
     {
-        id: "3",
-        title: "Insurance Selling\nMasterclass",
-        btnText: "Resume",
-        icon: <FORWARDRED_ICON />,
-        imageIcon: <IMAGE_ICON />,
-      },
+      id: "3",
+      title: "Insurance Selling\nMasterclass",
+      btnText: "Resume",
+      icon: <FORWARDRED_ICON />,
+      imageIcon: <IMAGE_ICON />,
+    },
   ];
 
   return (
@@ -45,6 +52,11 @@ export default function KnowledgeCenter() {
       </View>
 
       <View style={{ gap: 12 }}>
+        <ToggleList1
+          toggleItemList={toggleItemListData}
+          toggleHandler={toggleHandler}
+          selectedItem={selectedItem}
+        />
         <FlatList
           data={KnowledgeCenterData}
           keyExtractor={(item) => item.id}
@@ -52,8 +64,8 @@ export default function KnowledgeCenter() {
             <KnowledgeCenterCard
               imageIcon={item.imageIcon}
               title={item.title}
-                btnText={item.btnText}
-                icon={item.icon}
+              btnText={item.btnText}
+              icon={item.icon}
             />
           )}
           horizontal={true}
