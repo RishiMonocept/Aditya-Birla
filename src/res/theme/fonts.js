@@ -59,7 +59,8 @@ export const fontType = {
   manrope: "Manrope",
   manropeBold: "Manrope-Bold",
   manropeMedium: "Manrope-Medium",
-  anekLatin: "Anek Latin",
+  // anekLatin: "Anek Latin",
+  anekLatin: "AnekLatin_400Regular",
 };
 
 export const letterSpacing = {
