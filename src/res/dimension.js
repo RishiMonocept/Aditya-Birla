@@ -8,6 +8,7 @@ export const spacing = {
   space_base: 8,
   space_10: 10,
   space_m1: 12,
+  space_13:13,
   space_m2: 14,
   space_m3: 16,
   space_m4: 20,

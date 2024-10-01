@@ -38,6 +38,8 @@ export const lineHeight = {
   lineHeight11: verticalScale(11.2),
   lineHeight36: scale(36),
   lineHeight16: 16,
+  lineHeight18: 18,
+  lineHeight14: 14,
   lineHeight16dot8: 16.8,
   lineHeight19dot6: 19.6,
   lineHeight22dot4: 22.4,
