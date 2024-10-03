@@ -69,6 +69,7 @@ export default function KnowledgeCenter() {
             />
           )}
           horizontal={true}
+          showsHorizontalScrollIndicator={false}
           ItemSeparatorComponent={() => <View style={{ width: 12 }} />}
         />
       </View>
