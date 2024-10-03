@@ -45,10 +45,10 @@ export default function PerformanceOverview() {
           You've converted 10% more people this month compared to last month
         </Text>
       </View>
-      <View style={styles.proSellerView}>
+      {/* <View style={styles.proSellerView}>
         <Image style={styles.badge} source={badge} resizeMethod="contain" />
         <Text style={styles.proSeller}>Pro Seller</Text>
-      </View>
+      </View> */}
       <View style={styles.timeFrame}>
         <View style={styles.calender}>
           <Text style={styles.calendertext}>As of 24th July 2024</Text>
