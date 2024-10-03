@@ -77,10 +77,9 @@ const styles = StyleSheet.create({
     borderColor: colors.primaryColors.white,
     backgroundColor: colors.primaryColors.warmIvory,
     borderRadius: borderRadius.borderRadius12,
-    opacity: shadowOpacityElevation.opacity1,
-    paddingBottom: spacing.space_m4,
+    // opacity: shadowOpacityElevation.opacity1,
+    paddingVertical: spacing.space_m4,
     paddingLeft: spacing.space_m4,
-    paddingTop: spacing.space_m4,
     // flex:1
   },
   ImportantTaskText: {

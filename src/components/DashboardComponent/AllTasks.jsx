@@ -89,6 +89,7 @@ export default function AllTasks() {
         )}
         horizontal={true}
         ItemSeparatorComponent={() => <View style={{ width: 12 }} />}
+        showsHorizontalScrollIndicator={false}
       />
     </View>
   );

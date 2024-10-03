@@ -208,6 +208,7 @@ export default function Dashboard() {
               )}
               horizontal={true}
               ItemSeparatorComponent={() => <View style={{ width: 17 }} />}
+              showsHorizontalScrollIndicator={false}
             />
           </View>
 
@@ -223,14 +224,13 @@ export default function Dashboard() {
             }}
           >
             <PerformanceOverview />
-            {/* <PerformanceCard /> */}
           </View>
           <AllTasks />
           <AllTasks2 />
           <KnowledgeCenter />
           <TopSellingProduct />
           <DHA_HR_Portfolio />
-          <ParticipateInChallengeTo/>
+          <ParticipateInChallengeTo />
         </View>
       </ScrollView>
     </>

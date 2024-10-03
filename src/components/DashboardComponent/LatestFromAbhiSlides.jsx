@@ -56,21 +56,15 @@ export default function LatestFromAbhiSlides({
 }
 
 const styles = StyleSheet.create({
-    mainContainer: {
-        paddingHorizontal: 12,
-        paddingVertical: 12,
-        borderWidth: 1,
-        borderColor: "#E6E6E6",
-        borderRadius: 12 ,
-        gap: 8,
-        backgroundColor: "#FFF",
-        elevation: 5, 
-        shadowColor: "#5680B3",
-        shadowOffset: { width: 2, height: 2 }, 
-        shadowOpacity: 0.12, 
-        shadowRadius: 10,
-    }
-    ,
+  mainContainer: {
+    paddingHorizontal: 12,
+    paddingVertical: 12,
+    borderWidth: 1,
+    borderColor: "#E6E6E6",
+    borderRadius: 12,
+    gap: 8,
+    backgroundColor: "#FFF",
+  },
   icon: {
     width: 36,
     height: 34,
