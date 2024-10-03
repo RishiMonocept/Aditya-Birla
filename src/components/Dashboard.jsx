@@ -25,7 +25,7 @@ import pharmacy from "../assets/Dashboard/pharmacy.png";
 import exploreMore from "../assets/Dashboard/ExploreMorebtn.png";
 import PerformanceOverview from "./DashboardComponent/PerformanceOverview";
 import ImportantTask from "./DashboardComponent/ImportantTask";
-import ProgressMeter from "./Dashboard/ProgressMeter";
+import PerformanceCard from "./Dashboard/PerformanceOverview/PerformanceCard/PerformanceCard";
 
 export default function Dashboard() {
   const data = [
@@ -160,13 +160,11 @@ export default function Dashboard() {
         </View>
       </View>
 
-      <ProgressMeter />
-
-      {/* <ScrollView
+      <ScrollView
         // style={{ marginHorizontal: -16 }}
         showsVerticalScrollIndicator={false}
       >
-        <ImportantTask/>
+        <ImportantTask />
         <View
           // colors={["#FFF5EC", "#FFFFFF"]}
 
@@ -215,16 +213,17 @@ export default function Dashboard() {
             // borderWidth: 1,
             // borderColor:"red",
             marginTop: 22,
-            paddingHorizontal: 22,
-            paddingVertical: 16,
-            backgroundColor: "#fff",
+            // paddingHorizontal: 22,
+            // paddingVertical: 16,
+            // backgroundColor: "#fff",
             gap: 12,
             // height:900
           }}
         >
           <PerformanceOverview />
+          <PerformanceCard />
         </View>
-      </ScrollView> */}
+      </ScrollView>
     </>
   );
 }

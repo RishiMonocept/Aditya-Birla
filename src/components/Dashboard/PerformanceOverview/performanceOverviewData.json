@@ -1,0 +1,32 @@
+[
+  {
+    "icon": "GOAL_ICON",
+    "title": "My Performance",
+    "isGaugeChart": true,
+    "achievementTabIcon": "PRO_SELLER",
+    "achievementTabTitle": "Pro Seller"
+  },
+  {
+    "icon": "SHEILD_ICON",
+    "title": "Policies sold",
+    "ammount": "1295",
+    "notificationTabIcon": "PRICE_TAG_ICON",
+    "notificationTabDescription": "You seem to be selling a majority of Activ Fit plans"
+  },
+  {
+    "icon": "MONEY_BAG_ICON",
+    "title": "Premium",
+    "ammount": "₹ 369.96 L",
+    "progressTitle": "78% of monthly goal acheived",
+    "progressBarValue": "78"
+  },
+  {
+    "icon": "COMMISSION_ICON",
+    "title": "Commission Earned",
+    "ammount": "₹ 50,000",
+    "notificationTabIcon": "COIN_ICON",
+    "notificationTabDescription": "You can potentially earn 10,000 more with just 2 more policies",
+    "notificationTabLinkDescription": "Actionable link",
+    "notificationTabLinkDescriptionIcon": "FORWARD_ICON"
+  }
+]

@@ -103,6 +103,12 @@ const LoginAdv = () => {
         userData ? JSON.parse(userData) : "No user data"
       );
       setLoading(false);
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{ name: "BottomTabs" }],
+        })
+      );
     }
   };
 
