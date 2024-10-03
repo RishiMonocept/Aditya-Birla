@@ -16,6 +16,7 @@ import coin from "../../assets/Dashboard/coin.png";
 import exploreMore from "../../assets/Dashboard/ExploreMorebtn.png";
 import chart from "../../assets/Dashboard/MyperformanceChart.png";
 import { fontStyle } from "../../res/theme/fonts";
+import PerformanceCard from "../Dashboard/PerformanceOverview/PerformanceCard/PerformanceCard";
 
 export default function PerformanceOverview() {
   const data = [
@@ -62,7 +63,7 @@ export default function PerformanceOverview() {
           <Image style={styles.dropdownIcon} source={dowmIcon} />
         </View>
       </View>
-      <FlatList
+      {/* <FlatList
         data={data}
         keyExtractor={(item) => item?.id}
         renderItem={({ item }) => (
@@ -153,7 +154,8 @@ export default function PerformanceOverview() {
         )}
         horizontal={true}
         ItemSeparatorComponent={() => <View style={{ width: 17 }} />}
-      />
+      /> */}
+      <PerformanceCard />
     </>
   );
 }
@@ -173,7 +175,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     flexDirection: "row",
     // opacity:0.39
-    borderRadius:4
+    borderRadius: 4,
   },
   tipsText: {
     fontSize: 13,
