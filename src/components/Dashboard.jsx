@@ -31,6 +31,7 @@ import DHA_HR_Portfolio from "./DashboardComponent/DHA_HR_Portfolio/DHA_HR_Portf
 import { fontStyle } from "../res/theme/fonts";
 import AllTasks2 from "./DashboardComponent/ALL_TASKS/AllTasks2";
 import KnowledgeCenter from "./DashboardComponent/KnowledgeCenter/KnowledgeCenter";
+import ParticipateInChallengeTo from "./DashboardComponent/ParticipateInChallenge/ParticipateInChallengeTo";
 
 export default function Dashboard() {
   const data = [
@@ -229,6 +230,7 @@ export default function Dashboard() {
           <KnowledgeCenter />
           <TopSellingProduct />
           <DHA_HR_Portfolio />
+          <ParticipateInChallengeTo/>
         </View>
       </ScrollView>
     </>
