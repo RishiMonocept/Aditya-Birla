@@ -1,12 +1,11 @@
 import { StyleSheet } from "react-native";
 import { fontSize, fontSize14, lineHeight } from "../../../res/theme/fonts";
-import { spacing } from "../../../res/dimension";
+import { spacing, spacingModerateScale } from "../../../res/dimension";
 
 export const styles = StyleSheet.create({
   card: {
     backgroundColor: "#fff",
-    padding: 16,
-    borderRadius: 8,
+    borderRadius: spacing.space_m3,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -14,12 +13,12 @@ export const styles = StyleSheet.create({
     },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    width: "48%",
+    flex: 1,
     borderWidth: 1,
     borderColor: "#e6e6e6",
-    paddingVertical: spacing.space_m3,
-    paddingHorizontal: spacing.space_m4,
-    gap: spacing.space_m1,
+    paddingVertical: spacingModerateScale.space_m3,
+    paddingHorizontal: spacingModerateScale.space_m2,
+    gap: spacingModerateScale.space_m1,
   },
   icon: {
     // width: 24,
@@ -29,8 +28,8 @@ export const styles = StyleSheet.create({
   title: {
     color: "#2E2E2E",
     fontWeight: "700",
-    fontSize: fontSize.font18,
-    marginLeft: spacing.space_m2,
+    fontSize: fontSize.font14,
+    marginLeft: spacingModerateScale.space_base,
   },
   amount: {
     color: "#2E2E2E",

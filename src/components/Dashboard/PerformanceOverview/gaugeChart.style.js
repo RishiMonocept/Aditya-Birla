@@ -41,9 +41,8 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 12,
     elevation: 12,
-    paddingTop: spacing.space_s2,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-end",
   },
   needle: {
     position: "absolute",

@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { fontSize, fontSize14, lineHeight } from "../../../res/theme/fonts";
-import { spacing } from "../../../res/dimension";
+import { spacing, spacingModerateScale } from "../../../res/dimension";
 
 export const styles = StyleSheet.create({
   card: {
@@ -26,7 +26,8 @@ export const styles = StyleSheet.create({
     // height: 24,
   },
   iconTitleContainer: {
-    marginTop: spacing.space_m2,
+    flexDirection: "row",
+    alignItems: "center",
   },
   title: {
     color: "#2E2E2E",
@@ -54,6 +55,9 @@ export const styles = StyleSheet.create({
     color: "#C7222A",
   },
   achievementTab: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: spacingModerateScale.space_base,
     backgroundColor: "#FFE7E5",
     paddingVertical: spacing.space_s2,
     paddingHorizontal: spacing.space_base,

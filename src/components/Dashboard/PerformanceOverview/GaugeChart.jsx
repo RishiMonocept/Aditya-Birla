@@ -15,7 +15,7 @@ const GaugeChart = ({
   subtitle,
 }) => {
   const percentage = Math.min(value / maxValue, 1); // Clamp the value to 1
-  const needleRotation = percentage * 180; // Scale from 0 to 180 degrees
+  const needleRotation = value >= 0 && value <= 100 ? percentage * 180 : 0; // Scale from 0 to 180 degrees
 
   return (
     <View style={[styles.container, { width, height }]}>
