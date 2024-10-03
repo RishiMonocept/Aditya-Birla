@@ -21,7 +21,7 @@ import ACTIVEONEICON from "../../../assets/Dashboard/ActiveOneIcon.svg";
 import TopSellingProductCard from "./TopSellingProductCard";
 import ICON2 from "../../../assets/Dashboard/checkedIcon.svg";
 import TIPS from "../../../assets/Dashboard/TipsIcon.svg";
-import FORWARD_ICON from "../../../assets/Dashboard/forwardIcon.svg"
+import FORWARD_ICON from "../../../assets/Dashboard/forwardIcon.svg";
 
 export default function TopSellingProduct() {
   const topSellingProductsData = [
@@ -35,8 +35,8 @@ export default function TopSellingProduct() {
       benifits2: "Cover Home-based Treatments",
       checkedIcon: <ICON2 />,
       tips: <TIPS />,
-      forward:<FORWARD_ICON/>,
-      tipsMessage:"Show selling tips for me"
+      forward: <FORWARD_ICON />,
+      tipsMessage: "Show selling tips for me",
     },
     {
       id: "2",
@@ -48,8 +48,8 @@ export default function TopSellingProduct() {
       benifits2: "Cover Home-based Treatments",
       checkedIcon: <ICON2 />,
       tips: <TIPS />,
-      forward:<FORWARD_ICON/>,
-      tipsMessage:"Show selling tips for me"
+      forward: <FORWARD_ICON />,
+      tipsMessage: "Show selling tips for me",
     },
   ];
 
@@ -82,6 +82,7 @@ export default function TopSellingProduct() {
             />
           )}
           horizontal={true}
+          showsHorizontalScrollIndicator={false}
           ItemSeparatorComponent={() => <View style={{ width: 12 }} />}
         />
       </View>
@@ -91,9 +92,7 @@ export default function TopSellingProduct() {
 
 const styles = StyleSheet.create({
   topsellingContainer: {
-    // borderWidth: 1,
     gap: spacing.space_l2,
-    // marginTop: 40,
   },
 
   topSellingText: {
