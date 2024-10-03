@@ -25,8 +25,6 @@ import pharmacy from "../assets/Dashboard/pharmacy.png";
 import exploreMore from "../assets/Dashboard/ExploreMorebtn.png";
 import PerformanceOverview from "./DashboardComponent/PerformanceOverview";
 import ImportantTask from "./DashboardComponent/ImportantTask";
-// import star from "../assets/Dashboard/
-import star from "../assets/Dashboard/star.png";
 import AllTasks from "./DashboardComponent/AllTasks";
 import TopSellingProduct from "./DashboardComponent/TopSellingProduct/TopSellingProduct";
 import DHA_HR_Portfolio from "./DashboardComponent/DHA_HR_Portfolio/DHA_HR_Portfolio";
@@ -214,16 +212,17 @@ export default function Dashboard() {
 
           <View
             style={{
-              borderWidth: 1,
+              // borderWidth: 1,
               // borderColor:"red",
-              paddingHorizontal: 22,
-              paddingVertical: 16,
+              // paddingHorizontal: 22,
+              // paddingVertical: 16,
               // backgroundColor: "#fff",
               gap: 12,
               // height:900
             }}
           >
             <PerformanceOverview />
+            {/* <PerformanceCard /> */}
           </View>
           <AllTasks />
           <AllTasks2 />

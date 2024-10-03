@@ -22,7 +22,7 @@ const BottomImage = () => {
 
   return (
     !isKeyboardVisible && (
-      <View style={{ flex: 0.35 }}>
+      <View style={{ flex: 0.35, zIndex: -10 }}>
         <ImageBackground
           source={loginBgImage}
           style={{ flex: 1, opacity: 0.9 }}
