@@ -3,7 +3,6 @@ import {
   StyleSheet,
   Text,
   KeyboardAvoidingView,
-  StatusBar,
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
@@ -19,6 +18,7 @@ import EmployeeLogin from "../../components/Login/EmployeeLogin";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Toast from "react-native-toast-message";
 import { CommonActions, useNavigation } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
 
 const LoginAdv = () => {
   const navigation = useNavigation();
@@ -91,7 +91,7 @@ const LoginAdv = () => {
     } catch (error) {
       Toast.show({
         type: "error",
-        position: "right",
+        position: "top",
         text1: "Error",
         text2: "An error occurred: " + error.message,
         visibilityTime: 3000,
@@ -220,7 +220,7 @@ const LoginAdv = () => {
           </View>
         </KeyboardAvoidingView>
         <BottomImage />
-        <StatusBar backgroundColor={"#F7F7F7"} barStyle={"dark-content"} />
+        <StatusBar style="dark" />
       </SafeAreaView>
     </TouchableWithoutFeedback>
   );

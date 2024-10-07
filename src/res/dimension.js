@@ -8,7 +8,7 @@ export const spacing = {
   space_base: 8,
   space_10: 10,
   space_m1: 12,
-  space_13:13,
+  space_13: 13,
   space_m2: 14,
   space_m3: 16,
   space_m4: 20,
@@ -26,6 +26,7 @@ export const spacingModerateScale = {
   space_s0: moderateScale(0),
   space_s1: moderateScale(2),
   space_s2: moderateScale(4),
+  space_s3: moderateScale(6),
   space_base: moderateScale(8),
   space_m1: moderateScale(12),
   space_m2: moderateScale(16),
@@ -478,7 +479,7 @@ export const shadowOpacityElevation = {
   elevation10: 10,
 };
 export const ShadowRadius = {
-  shadowRadius2:2,
+  shadowRadius2: 2,
   shadowRadius3: 3,
   shadowRadius4: 4,
   shadowRadius12: 12,

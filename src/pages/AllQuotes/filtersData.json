@@ -1,0 +1,10 @@
+{
+  "title": "Quick filters",
+  "filters": [
+    "All Policies (30)",
+    "< 30 Days (7)",
+    "30 - 60 Days (7)",
+    "60-90 Days (7)",
+    "Expired (7)"
+  ]
+}

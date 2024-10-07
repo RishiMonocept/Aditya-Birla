@@ -76,7 +76,7 @@ export default function Login() {
     } catch (error) {
       Toast.show({
         type: "error",
-        position: "right",
+        position: "top",
         text1: "Error",
         text2: "An error occurred: " + error.message,
         visibilityTime: 3000,

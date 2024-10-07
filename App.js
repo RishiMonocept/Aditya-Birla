@@ -14,6 +14,7 @@ import LoginSearch from "./src/pages/LoginAdv/LoginSearch/LoginSearch";
 import * as Font from "expo-font";
 import { useFonts } from "expo-font";
 import { AnekLatin_400Regular } from "@expo-google-fonts/anek-latin";
+import AllQuotes from "./src/pages/AllQuotes";
 
 const Stack = createNativeStackNavigator();
 
@@ -33,9 +34,9 @@ export default function App() {
       <View style={{ flex: 1, backgroundColor: "#F1F3F6" }}>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="AdvLoginPage" component={LoginAdv} />
-          {/* <Stack.Screen name="LoginPage" component={Login} /> */}
           <Stack.Screen name="BottomTabs" component={BottomNavigation} />
           <Stack.Screen name="LoginSearch" component={LoginSearch} />
+          <Stack.Screen name="AllQuotes" component={AllQuotes} />
         </Stack.Navigator>
         <Toast />
       </View>

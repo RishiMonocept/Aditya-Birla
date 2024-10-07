@@ -32,6 +32,7 @@ import { fontStyle } from "../res/theme/fonts";
 import AllTasks2 from "./DashboardComponent/ALL_TASKS/AllTasks2";
 import KnowledgeCenter from "./DashboardComponent/KnowledgeCenter/KnowledgeCenter";
 import ParticipateInChallengeTo from "./DashboardComponent/ParticipateInChallenge/ParticipateInChallengeTo";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Dashboard() {
   const data = [
@@ -64,9 +65,11 @@ export default function Dashboard() {
     },
   ];
   const [activeButton, setActiveButton] = useState("RaiseATicket");
+  const navigation = useNavigation();
 
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
+    navigation.navigate("AllQuotes");
   };
 
   return (
