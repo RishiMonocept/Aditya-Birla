@@ -46,6 +46,7 @@ export const lineHeight = {
   lineHeight13dot2: 13.2,
   lineHeight16dot8: 16.8,
   lineHeight19dot6: 19.6,
+  lineHeight19dot8: 19.8,
   lineHeight22dot4: 22.4,
   lineHeight21dot6: 21.6,
   lineHeight14dot4: 14.4,
