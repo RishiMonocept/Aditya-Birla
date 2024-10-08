@@ -28,6 +28,10 @@ export default function FilterModal({ openFilterModal, setOpenFilterModal }) {
 
             <View style={styles.productsContainer}>
                 <Text style={styles.productText}>Products</Text>
+                <View style={styles.checkboxContainer}>
+                    
+
+                </View>
 
             </View>
           </View>
@@ -80,5 +84,8 @@ const styles = StyleSheet.create({
     fontWeight:fontWeight.weight600,
     lineHeight:lineHeight.lineHeight19dot8,
     color:colors.primaryColors.black,
+  },
+  checkboxContainer:{
+    gap:spacingModerateScale.space_m2,
   }
 });
