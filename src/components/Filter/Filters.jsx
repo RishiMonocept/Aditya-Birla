@@ -13,6 +13,8 @@ const Filters = ({
     }
   }, [filters]);
 
+  
+
   return (
     <View style={styles.container}>
       <Text style={styles.titleText}>{title}</Text>

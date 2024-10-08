@@ -1,0 +1,27 @@
+[
+  {
+    "id": "1",
+    "name": "Download",
+    "icon": "DOWNLOAD_ICON"
+  },
+  {
+    "id": "2",
+    "name": "Delete",
+    "icon": "DELETE_ICON"
+  },
+  {
+    "id": "3",
+    "name": "Share via email",
+    "icon": "SHAREVIAEMAIL_ICON"
+  },
+  {
+    "id": "4",
+    "name": "Send Renewal Notice",
+    "icon": "SENDRENEWABLENOTICE_ICON"
+  },
+  {
+    "id": "5",
+    "name": "Create Auto-Debit Registration Link",
+    "icon": "CREATEAUTODEBIT_ICON"
+  }
+]

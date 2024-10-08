@@ -24,9 +24,16 @@ import { fontSize, lineHeight } from "../../res/theme/fonts";
 import Filters from "../../components/Filter/Filters";
 import NoDataFoundPage from "../../components/noDataFound/NoDataFoundPage";
 import BottomNavigation from "../../components/BottomNavigation";
+import ActionModal from "../../components/Modal/ActionModal/ActionModal";
 
 const AllQuotes = () => {
   const [selectedFilter, setSelectedFilter] = useState();
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleFilterPress = (filter) => {
+    setSelectedFilter(filter);
+    setOpenModal(true);
+  };
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -53,8 +60,9 @@ const AllQuotes = () => {
           <Filters
             data={filtersData}
             selectedFilter={selectedFilter}
-            setSelectedFilter={setSelectedFilter}
+            setSelectedFilter={handleFilterPress}
           />
+          <ActionModal openModal={openModal} setOpenModal={setOpenModal} />
           {/* <View></View> */}
           <NoDataFoundPage />
         </View>

@@ -12,6 +12,7 @@ export const spacing = {
   space_m2: 14,
   space_m3: 16,
   space_m4: 20,
+  space_22: 22,
   space_m5: 24,
   space_l1: 32,
   space_l2: 36,
