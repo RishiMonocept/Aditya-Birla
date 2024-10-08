@@ -29,6 +29,7 @@ export const spacingModerateScale = {
   space_s2: moderateScale(4),
   space_s3: moderateScale(6),
   space_base: moderateScale(8),
+  space_10: moderateScale(10),
   space_m1: moderateScale(12),
   space_m2: moderateScale(16),
   space_m3: moderateScale(20),

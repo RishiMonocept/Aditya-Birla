@@ -25,10 +25,12 @@ import Filters from "../../components/Filter/Filters";
 import NoDataFoundPage from "../../components/noDataFound/NoDataFoundPage";
 import BottomNavigation from "../../components/BottomNavigation";
 import ActionModal from "../../components/Modal/ActionModal/ActionModal";
+import FilterModal from "../../components/Modal/FilterModal/FilterModal";
 
 const AllQuotes = () => {
   const [selectedFilter, setSelectedFilter] = useState();
   const [openModal, setOpenModal] = useState(false);
+  const [openFilterModal,setOpenFilterModal] = useState(false)
 
   const handleFilterPress = (filter) => {
     setSelectedFilter(filter);
@@ -45,10 +47,11 @@ const AllQuotes = () => {
               <SEARCH />
               <TextInput style={styles.searchInput} />
             </View>
-            <TouchableOpacity style={styles.filterButton}>
+            <TouchableOpacity style={styles.filterButton} onPress={()=>setOpenFilterModal(true)}>
               <FILTER />
               <Text style={styles.filterText}>Filters</Text>
             </TouchableOpacity>
+            <FilterModal openFilterModal={openFilterModal} setOpenFilterModal={setOpenFilterModal}/>
             <TouchableOpacity style={styles.optionsContainer}>
               <OPTION />
             </TouchableOpacity>
