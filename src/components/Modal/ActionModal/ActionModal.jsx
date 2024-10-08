@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React from "react";
-import ActionModalData from "./ActionData.json"
+import ActionModalData from "./ActionData.json";
 import { borderRadius, spacing } from "../../../res/dimension";
 import colors from "../../../res/theme/colors";
 import CROSS_ICON from "../../../assets/AllQuotes/crossIcon.svg";
@@ -24,18 +24,6 @@ export default function ActionModal({ openModal, setOpenModal }) {
   const { height } = Dimensions.get("screen");
   const percentage = parseFloat(top.replace("%", "")) / 100;
   const openHeight = height * percentage;
-
-//   const actionData = [
-//     { id: "1", name: "Download", icon: "DOWNLOAD_ICON" },
-//     { id: "2", name: "Delete", icon: "DELETE_ICON" },
-//     { id: "3", name: "Share via email", icon: "SHAREVIAEMAIL_ICON" },
-//     { id: "4", name: "Send Renewal Notice", icon: "SENDRENEWABLENOTICE_ICON" },
-//     {
-//       id: "5",
-//       name: "Create Auto-Debit Registration Link",
-//       icon: "CREATEAUTODEBIT_ICON",
-//     },
-//   ];
 
   const iconMaping = {
     DOWNLOAD_ICON: <DOWNLOAD_ICON />,
@@ -72,21 +60,6 @@ export default function ActionModal({ openModal, setOpenModal }) {
                   icon={iconMaping[item.icon]}
                 />
               ))}
-
-              {/* <ActionButton title={"Download"} icon={<DOWNLOAD_ICON />} />
-              <ActionButton title={"Delete"} icon={<DELETE_ICON />} />
-              <ActionButton
-                title={"Share via email"}
-                icon={<SHAREVIAEMAIL_ICON />}
-              />
-              <ActionButton
-                title={"Send Renewal Notice"}
-                icon={<SENDRENEWABLENOTICE_ICON />}
-              />
-              <ActionButton
-                title={"Create Auto-Debit Registration Link"}
-                icon={<CREATEAUTODEBIT_ICON />}
-              /> */}
             </View>
           </View>
         </View>
