@@ -33,7 +33,7 @@ export default function FilterModal({ openFilterModal, setOpenFilterModal }) {
   const [showEndDateCalendar, setShowEndDateCalendar] = useState(false);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-  const [dateError, setDateError] = useState(""); // State to manage date validation error
+  const [dateError, setDateError] = useState("");
 
   const [activeButton, setActiveButton] = useState(null);
 
@@ -68,7 +68,7 @@ export default function FilterModal({ openFilterModal, setOpenFilterModal }) {
       setDateError("Start date cannot be greater than end date.");
     } else {
       setStartDate(currentDate);
-      setDateError(""); // Clear error if valid
+      setDateError("");
     }
   };
 
@@ -80,15 +80,15 @@ export default function FilterModal({ openFilterModal, setOpenFilterModal }) {
       setDateError("End date cannot be less than start date.");
     } else {
       setEndDate(currentDate);
-      setDateError(""); // Clear error if valid
+      setDateError("");
     }
   };
 
   const handleCloseModal = () => {
     setOpenFilterModal(false);
-    setStartDate(null); // Reset start date
-    setEndDate(null); // Reset end date
-    setDateError(""); // Clear error when modal is closed
+    setStartDate(null);
+    setEndDate(null);
+    setDateError("");
   };
 
   const top = "13%";
@@ -110,7 +110,7 @@ export default function FilterModal({ openFilterModal, setOpenFilterModal }) {
               <Text style={styles.ActionText}>Filter</Text>
               <TouchableOpacity
                 style={styles.crossIcon}
-                onPress={handleCloseModal} // Reset dates on closing
+                onPress={handleCloseModal}
               >
                 <CROSS_ICON />
               </TouchableOpacity>
@@ -173,7 +173,6 @@ export default function FilterModal({ openFilterModal, setOpenFilterModal }) {
                 )}
               </View>
 
-              {/* Show the error message if there's a date validation error */}
               {dateError ? (
                 <Text style={styles.errorText}>{dateError}</Text>
               ) : null}
@@ -207,10 +206,6 @@ export default function FilterModal({ openFilterModal, setOpenFilterModal }) {
                 }}
               />
             </View>
-
-            {/* <View style={styles.btnContainer}>
-                 
-            </View> */}
           </View>
         </View>
       </View>
