@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import { borderRadius, spacingModerateScale } from "../../../res/dimension";
 import { fontSize, fontWeight, lineHeight } from "../../../res/theme/fonts";
@@ -7,27 +7,30 @@ import { fontSize, fontWeight, lineHeight } from "../../../res/theme/fonts";
 export default function ButtonInModal({
   title,
   onPress,
-  isActive,
   activeColors,
   inactiveColors,
 }) {
+  const [isPressed, setIsPressed] = useState(false);
+
   return (
     <TouchableOpacity
       style={[
         styles.btnContainer,
         {
-          backgroundColor: isActive
+          backgroundColor: isPressed
             ? activeColors.background
             : inactiveColors.background,
         },
       ]}
       onPress={onPress}
+      onPressIn={() => setIsPressed(true)} // Change color on press in
+      onPressOut={() => setIsPressed(false)} // Revert color on press out
     >
       <Text
         style={[
           styles.titleText,
           {
-            color: isActive ? activeColors.text : inactiveColors.text,
+            color: isPressed ? activeColors.text : inactiveColors.text,
           },
         ]}
       >
@@ -42,7 +45,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacingModerateScale.space_m1,
     paddingVertical: spacingModerateScale.space_base,
     borderRadius: borderRadius.borderRadius8,
-    alignItems: "center", // Ensure the text is centered
+    alignItems: "center",
     width: "48%",
   },
   titleText: {

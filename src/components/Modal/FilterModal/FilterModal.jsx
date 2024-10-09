@@ -182,7 +182,6 @@ export default function FilterModal({ openFilterModal, setOpenFilterModal }) {
               <ButtonInModal
                 title="Cancel"
                 onPress={handleCancelPress}
-                isActive={activeButton === "cancel"}
                 activeColors={{
                   background: colors.primaryColors.vibrantRed,
                   text: colors.primaryColors.white,
@@ -195,7 +194,6 @@ export default function FilterModal({ openFilterModal, setOpenFilterModal }) {
               <ButtonInModal
                 title="Apply"
                 onPress={handleApplyPress}
-                isActive={activeButton === "apply"}
                 activeColors={{
                   background: colors.primaryColors.vibrantRed,
                   text: colors.primaryColors.white,
