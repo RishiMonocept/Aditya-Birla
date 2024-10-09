@@ -21,6 +21,7 @@ import DateInput from "../../TextInputUIs/DateInput";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { format } from "date-fns";
 import CALENDAR_ICON from "../../../assets/Forms/calendar-icon.png";
+import ButtonInModal from "./ButtonInModal";
 
 const filterData = {
   products: ["Active Fit", "Active One", "Active Fit Plus", "Active One Next"],
@@ -33,6 +34,16 @@ export default function FilterModal({ openFilterModal, setOpenFilterModal }) {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [dateError, setDateError] = useState(""); // State to manage date validation error
+
+  const [activeButton, setActiveButton] = useState(null);
+
+  const handleCancelPress = () => {
+    setActiveButton("cancel");
+  };
+
+  const handleApplyPress = () => {
+    setActiveButton("apply");
+  };
 
   const renderCheckBoxes = (data) => {
     return data.map((item, index) => {
@@ -80,7 +91,7 @@ export default function FilterModal({ openFilterModal, setOpenFilterModal }) {
     setDateError(""); // Clear error when modal is closed
   };
 
-  const top = "17%";
+  const top = "13%";
   const { height } = Dimensions.get("screen");
   const percentage = parseFloat(top.replace("%", "")) / 100;
   const openHeight = height * percentage;
@@ -169,8 +180,37 @@ export default function FilterModal({ openFilterModal, setOpenFilterModal }) {
             </View>
 
             <View style={styles.btnContainer}>
-                 
+              <ButtonInModal
+                title="Cancel"
+                onPress={handleCancelPress}
+                isActive={activeButton === "cancel"}
+                activeColors={{
+                  background: colors.primaryColors.vibrantRed,
+                  text: colors.primaryColors.white,
+                }}
+                inactiveColors={{
+                  background: colors.lightNeutrals.lightGray,
+                  text: colors.primaryColors.vibrantRed,
+                }}
+              />
+              <ButtonInModal
+                title="Apply"
+                onPress={handleApplyPress}
+                isActive={activeButton === "apply"}
+                activeColors={{
+                  background: colors.primaryColors.vibrantRed,
+                  text: colors.primaryColors.white,
+                }}
+                inactiveColors={{
+                  background: colors.lightNeutrals.lightGray,
+                  text: colors.primaryColors.vibrantRed,
+                }}
+              />
             </View>
+
+            {/* <View style={styles.btnContainer}>
+                 
+            </View> */}
           </View>
         </View>
       </View>
@@ -243,13 +283,16 @@ const styles = StyleSheet.create({
   },
   dateContainer: {
     gap: spacingModerateScale.space_m2,
-    borderWidth: 1,
+    // borderWidth: 1,
   },
   errorText: {
     color: "red",
     marginTop: 4,
   },
-  btnContainer:{
-    
-  }
+  btnContainer: {
+    gap: spacingModerateScale.space_m1,
+    paddingTop: spacingModerateScale.space_m4,
+    // borderWidth: 1,
+    flexDirection: "row",
+  },
 });
