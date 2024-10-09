@@ -1,5 +1,12 @@
-import { View, Text, Modal, TouchableOpacity } from "react-native";
-import React from "react";
+import {
+  View,
+  Text,
+  Modal,
+  TouchableOpacity,
+  Image,
+  Dimensions,
+} from "react-native";
+import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import {
   borderRadius,
@@ -9,30 +16,160 @@ import {
 import colors from "../../../res/theme/colors";
 import { fontSize, fontWeight, lineHeight } from "../../../res/theme/fonts";
 import CROSS_ICON from "../../../assets/AllQuotes/crossIcon.svg";
+import FilterCheckBoxAndText from "./FilterCheckBoxAndText";
+import DateInput from "../../TextInputUIs/DateInput";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import { format } from "date-fns";
+import CALENDAR_ICON from "../../../assets/Forms/calendar-icon.png";
+
+const filterData = {
+  products: ["Active Fit", "Active One", "Active Fit Plus", "Active One Next"],
+  policyTypes: ["Retail", "RUG", "COI Policy", "Master Policy"],
+};
 
 export default function FilterModal({ openFilterModal, setOpenFilterModal }) {
+  const [showStartDateCalendar, setShowStartDateCalendar] = useState(false);
+  const [showEndDateCalendar, setShowEndDateCalendar] = useState(false);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [dateError, setDateError] = useState(""); // State to manage date validation error
+
+  const renderCheckBoxes = (data) => {
+    return data.map((item, index) => {
+      if (index % 2 === 0) {
+        return (
+          <View style={styles.checkboexAndTitle} key={index}>
+            <FilterCheckBoxAndText title={data[index]} />
+            {data[index + 1] && (
+              <FilterCheckBoxAndText title={data[index + 1]} />
+            )}
+          </View>
+        );
+      }
+    });
+  };
+
+  const onStartDateChange = (event, selectedDate) => {
+    const currentDate = selectedDate || startDate;
+    setShowStartDateCalendar(false);
+
+    if (endDate && currentDate > endDate) {
+      setDateError("Start date cannot be greater than end date.");
+    } else {
+      setStartDate(currentDate);
+      setDateError(""); // Clear error if valid
+    }
+  };
+
+  const onEndDateChange = (event, selectedDate) => {
+    const currentDate = selectedDate || endDate;
+    setShowEndDateCalendar(false);
+
+    if (startDate && currentDate < startDate) {
+      setDateError("End date cannot be less than start date.");
+    } else {
+      setEndDate(currentDate);
+      setDateError(""); // Clear error if valid
+    }
+  };
+
+  const handleCloseModal = () => {
+    setOpenFilterModal(false);
+    setStartDate(null); // Reset start date
+    setEndDate(null); // Reset end date
+    setDateError(""); // Clear error when modal is closed
+  };
+
+  const top = "17%";
+  const { height } = Dimensions.get("screen");
+  const percentage = parseFloat(top.replace("%", "")) / 100;
+  const openHeight = height * percentage;
+
   return (
-    <Modal visible={openFilterModal} animationType="slide" transparent={true}>
+    <Modal
+      visible={openFilterModal}
+      animationType="slide"
+      transparent={true}
+      statusBarTranslucent
+    >
       <View style={styles.overlay}>
-        <View style={styles.outerContainer}>
+        <View style={[styles.outerContainer, { top: openHeight }]}>
           <View style={{ gap: 32 }}>
             <View style={styles.topContainer}>
               <Text style={styles.ActionText}>Filter</Text>
               <TouchableOpacity
                 style={styles.crossIcon}
-                onPress={() => setOpenFilterModal(false)}
+                onPress={handleCloseModal} // Reset dates on closing
               >
                 <CROSS_ICON />
               </TouchableOpacity>
             </View>
+            <View style={styles.productsContainer}>
+              <Text style={styles.productText}>Products</Text>
+              <View style={styles.checkboxContainer}>
+                {renderCheckBoxes(filterData.products)}
+              </View>
+            </View>
 
             <View style={styles.productsContainer}>
-                <Text style={styles.productText}>Products</Text>
-                <View style={styles.checkboxContainer}>
-                    
+              <Text style={styles.productText}>Policy Type</Text>
+              <View style={styles.checkboxContainer}>
+                {renderCheckBoxes(filterData.policyTypes)}
+              </View>
+            </View>
 
-                </View>
+            <View style={styles.dateContainer}>
+              <Text style={styles.productText}>Date Range</Text>
+              <View style={styles.mainContainer}>
+                <Text>
+                  {startDate
+                    ? format(startDate, "dd/MM/yyyy")
+                    : "Select Start Date"}
+                </Text>
+                <TouchableOpacity
+                  style={{ padding: 4 }}
+                  onPress={() => setShowStartDateCalendar(true)}
+                >
+                  <Image source={CALENDAR_ICON} style={styles.icon} />
+                </TouchableOpacity>
+                {showStartDateCalendar && (
+                  <DateTimePicker
+                    value={startDate || new Date()}
+                    mode="date"
+                    display="default"
+                    onChange={onStartDateChange}
+                  />
+                )}
+              </View>
 
+              <View style={styles.mainContainer}>
+                <Text>
+                  {endDate ? format(endDate, "dd/MM/yyyy") : "Select End Date"}
+                </Text>
+                <TouchableOpacity
+                  style={{ padding: 4 }}
+                  onPress={() => setShowEndDateCalendar(true)}
+                >
+                  <Image source={CALENDAR_ICON} style={styles.icon} />
+                </TouchableOpacity>
+                {showEndDateCalendar && (
+                  <DateTimePicker
+                    value={endDate || new Date()}
+                    mode="date"
+                    display="default"
+                    onChange={onEndDateChange}
+                  />
+                )}
+              </View>
+
+              {/* Show the error message if there's a date validation error */}
+              {dateError ? (
+                <Text style={styles.errorText}>{dateError}</Text>
+              ) : null}
+            </View>
+
+            <View style={styles.btnContainer}>
+                 
             </View>
           </View>
         </View>
@@ -62,12 +199,11 @@ const styles = StyleSheet.create({
     gap: spacingModerateScale.space_l1,
     alignItems: "center",
     justifyContent: "space-between",
-    borderWidth: 1,
   },
   ActionText: {
     fontSize: fontSize.font22,
     fontWeight: fontWeight.weight600,
-    lineHeight: lineHeight.lineHeight28,
+    lineHeight: lineHeight.lineHeight19dot8,
   },
   crossIcon: {
     height: spacing.space_22,
@@ -75,17 +211,45 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  productsContainer:{
-    gap:spacingModerateScale.space_m1,
-
+  productsContainer: {
+    gap: spacingModerateScale.space_m1,
   },
-  productText:{
-    fontSize:fontSize.font18,
-    fontWeight:fontWeight.weight600,
-    lineHeight:lineHeight.lineHeight19dot8,
-    color:colors.primaryColors.black,
+  productText: {
+    fontSize: fontSize.font18,
+    fontWeight: fontWeight.weight600,
+    lineHeight: lineHeight.lineHeight19dot8,
+    color: colors.primaryColors.black,
   },
-  checkboxContainer:{
-    gap:spacingModerateScale.space_m2,
+  checkboxContainer: {
+    gap: spacingModerateScale.space_m2,
+  },
+  checkboexAndTitle: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  mainContainer: {
+    backgroundColor: colors.primaryColors.white,
+    borderRadius: 20,
+    gap: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  icon: {
+    width: 18,
+    height: 20,
+  },
+  dateContainer: {
+    gap: spacingModerateScale.space_m2,
+    borderWidth: 1,
+  },
+  errorText: {
+    color: "red",
+    marginTop: 4,
+  },
+  btnContainer:{
+    
   }
 });
