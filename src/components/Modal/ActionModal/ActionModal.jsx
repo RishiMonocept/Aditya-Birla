@@ -19,7 +19,7 @@ import SENDRENEWABLENOTICE_ICON from "../../../assets/AllQuotes/sendRenewableNot
 import { fontSize, fontWeight, lineHeight } from "../../../res/theme/fonts";
 import ActionButton from "./ActionButton";
 
-const top = "29%";
+const top = "30%";
 export default function ActionModal({ openModal, setOpenModal }) {
   const { height } = Dimensions.get("screen");
   const percentage = parseFloat(top.replace("%", "")) / 100;

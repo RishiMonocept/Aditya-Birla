@@ -1,0 +1,146 @@
+[
+  {
+    "id": 1,
+    "name": "Krishnan Swami",
+    "rating": 2,
+    "product": "Activ Fit",
+    "policyType": "RUG Policy",
+    "policyNumber": "23-22-0175217-00",
+    "status": "Pending",
+    "mobileNumber": "9321075751",
+    "dateOfRenewal": "2023-03-15",
+    "renewalPremium": {
+      "totalPremium": 25000,
+      "hrBenefits": -786,
+      "renewalPremium": 24214
+    },
+    "modification": {
+      "description": "Member Added, Tenure 1 Year"
+    },
+    "icons": {
+      "editIcon": true,
+      "viewIcon": true,
+      "moreOptionsIcon": true
+    }
+  },
+  {
+    "id": 2,
+    "name": "Krishnan Swami",
+    "rating": 2,
+    "product": "Activ Fit",
+    "policyType": "RUG Policy",
+    "policyNumber": "23-22-0175217-00",
+    "status": "Pending",
+    "mobileNumber": "9321075751",
+    "dateOfRenewal": "2023-03-15",
+    "renewalPremium": {
+      "totalPremium": 25000,
+      "hrBenefits": -786,
+      "renewalPremium": 24214
+    },
+    "modification": {
+      "description": "Member Added, Tenure 1 Year"
+    },
+    "icons": {
+      "editIcon": true,
+      "viewIcon": true,
+      "moreOptionsIcon": true
+    }
+  },
+  {
+    "id": 3,
+    "name": "Krishnan Swami",
+    "rating": 2,
+    "product": "Activ Fit",
+    "policyType": "RUG Policy",
+    "policyNumber": "23-22-0175217-00",
+    "status": "Pending",
+    "mobileNumber": "9321075751",
+    "dateOfRenewal": "2023-03-15",
+    "renewalPremium": {
+      "totalPremium": 25000,
+      "hrBenefits": -786,
+      "renewalPremium": 24214
+    },
+    "modification": {
+      "description": "Member Added, Tenure 1 Year"
+    },
+    "icons": {
+      "editIcon": true,
+      "viewIcon": true,
+      "moreOptionsIcon": true
+    }
+  },
+  {
+    "id": 4,
+    "name": "Krishnan Swami",
+    "rating": 2,
+    "product": "Activ Fit",
+    "policyType": "RUG Policy",
+    "policyNumber": "23-22-0175217-00",
+    "status": "Pending",
+    "mobileNumber": "9321075751",
+    "dateOfRenewal": "2023-03-15",
+    "renewalPremium": {
+      "totalPremium": 25000,
+      "hrBenefits": -786,
+      "renewalPremium": 24214
+    },
+    "modification": {
+      "description": "Member Added, Tenure 1 Year"
+    },
+    "icons": {
+      "editIcon": true,
+      "viewIcon": true,
+      "moreOptionsIcon": true
+    }
+  },
+  {
+    "id": 5,
+    "name": "Krishnan Swami",
+    "rating": 2,
+    "product": "Activ Fit",
+    "policyType": "RUG Policy",
+    "policyNumber": "23-22-0175217-00",
+    "status": "Pending",
+    "mobileNumber": "9321075751",
+    "dateOfRenewal": "2023-03-15",
+    "renewalPremium": {
+      "totalPremium": 25000,
+      "hrBenefits": -786,
+      "renewalPremium": 24214
+    },
+    "modification": {
+      "description": "Member Added, Tenure 1 Year"
+    },
+    "icons": {
+      "editIcon": true,
+      "viewIcon": true,
+      "moreOptionsIcon": true
+    }
+  },
+  {
+    "id": 6,
+    "name": "Krishnan Swami",
+    "rating": 2,
+    "product": "Activ Fit",
+    "policyType": "RUG Policy",
+    "policyNumber": "23-22-0175217-00",
+    "status": "Pending",
+    "mobileNumber": "9321075751",
+    "dateOfRenewal": "2023-03-15",
+    "renewalPremium": {
+      "totalPremium": 25000,
+      "hrBenefits": -786,
+      "renewalPremium": 24214
+    },
+    "modification": {
+      "description": "Member Added, Tenure 1 Year"
+    },
+    "icons": {
+      "editIcon": true,
+      "viewIcon": true,
+      "moreOptionsIcon": true
+    }
+  }
+]

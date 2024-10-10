@@ -13,12 +13,14 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import {
   borderRadius,
   borderWidth,
+  flex,
   spacingModerateScale,
 } from "../../res/dimension";
 import HeaderWithouIcon from "../../components/Header/HeaderWithouIcon";
 
 // data
 import filtersData from "./filtersData.json";
+import policies from "./policiesData.json";
 
 // icons
 import SEARCH from "../../assets/AllQuotes/Search.svg";
@@ -29,92 +31,14 @@ import { fontSize, lineHeight } from "../../res/theme/fonts";
 import Filters from "../../components/Filter/Filters";
 import NoDataFoundPage from "../../components/noDataFound/NoDataFoundPage";
 import BottomNavigation from "../../components/BottomNavigation";
-import ActionModal from "../../components/Modal/ActionModal/ActionModal";
 import PolicyCard from "../../components/CardUIs/PolicyCard";
 
 const AllQuotes = () => {
   const [selectedFilter, setSelectedFilter] = useState();
-  const [openModal, setOpenModal] = useState(false);
 
   const handleFilterPress = (filter) => {
     setSelectedFilter(filter);
-    setOpenModal(true);
   };
-
-  const policies = [
-    {
-      id: 1,
-      name: "Krishnan Swami",
-      rating: 2,
-      product: "Activ Fit",
-      policyType: "RUG Policy",
-      policyNumber: "23-22-0175217-00",
-      status: "Pending",
-      mobileNumber: "9321075751",
-      dateOfRenewal: "2023-03-15",
-      renewalPremium: {
-        totalPremium: 25000,
-        hrBenefits: -786,
-        renewalPremium: 24214,
-      },
-      modification: {
-        description: "Member Added, Tenure 1 Year",
-      },
-      icons: {
-        editIcon: true,
-        viewIcon: true,
-        moreOptionsIcon: true,
-      },
-    },
-    {
-      id: 2,
-      name: "Krishnan Swami",
-      rating: 2,
-      product: "Activ Fit",
-      policyType: "RUG Policy",
-      policyNumber: "23-22-0175217-00",
-      status: "Pending",
-      mobileNumber: "9321075751",
-      dateOfRenewal: "2023-03-15",
-      renewalPremium: {
-        totalPremium: 25000,
-        hrBenefits: -786,
-        renewalPremium: 24214,
-      },
-      modification: {
-        description: "Member Added, Tenure 1 Year",
-      },
-      icons: {
-        editIcon: true,
-        viewIcon: true,
-        moreOptionsIcon: true,
-      },
-    },
-    {
-      id: 3,
-      name: "Krishnan Swami",
-      rating: 2,
-      product: "Activ Fit",
-      policyType: "RUG Policy",
-      policyNumber: "23-22-0175217-00",
-      status: "Pending",
-      mobileNumber: "9321075751",
-      dateOfRenewal: "2023-03-15",
-      renewalPremium: {
-        totalPremium: 25000,
-        hrBenefits: -786,
-        renewalPremium: 24214,
-      },
-      modification: {
-        description: "Member Added, Tenure 1 Year",
-      },
-      icons: {
-        editIcon: true,
-        viewIcon: true,
-        moreOptionsIcon: true,
-      },
-    },
-  ];
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -144,15 +68,17 @@ const AllQuotes = () => {
             selectedFilter={selectedFilter}
             setSelectedFilter={handleFilterPress}
           />
-          <ActionModal openModal={openModal} setOpenModal={setOpenModal} />
-          {/* <View></View> */}
+          <View style={{ flex: 1 }}>
+            <FlatList
+              data={policies}
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={({ item }) => <PolicyCard policy={item} />}
+              ItemSeparatorComponent={() => <View style={{ height: 16 }} />}
+              ListFooterComponent={<View style={{ height: 16 }} />}
+              showsVerticalScrollIndicator={false}
+            />
+          </View>
 
-          <FlatList
-            data={policies}
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => <PolicyCard policy={item} />}
-            ItemSeparatorComponent={() => <View style={{ height: 16 }} />}
-          />
           {/* <NoDataFoundPage /> */}
         </View>
         {/* <BottomNavigation /> */}

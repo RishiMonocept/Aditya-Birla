@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { styles } from "./styles/PolicyCard.style";
 import STAR_ICON from "../../assets/AllQuotes/ProfileCardIcons/STAR_ICON.svg";
 import EDIT_ICON from "../../assets/AllQuotes/ProfileCardIcons/EDIT_ICON.svg";
 import REFRESH_ICON from "../../assets/AllQuotes/ProfileCardIcons/REFRESH_ICON.svg";
 import KEBAB_MENU_ICON from "../../assets/AllQuotes/ProfileCardIcons/KEBAB_MENU_ICON.svg";
+import ActionModal from "../Modal/ActionModal/ActionModal";
 
 const PolicyCard = ({ policy }) => {
+  const [openModal, setOpenModal] = useState(false);
+
   return (
     <View style={styles.cardContainer}>
       <View style={styles.headerContainer}>
@@ -35,13 +38,10 @@ const PolicyCard = ({ policy }) => {
           >
             <REFRESH_ICON />
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              /* Handle kebab menu icon press */
-            }}
-          >
+          <TouchableOpacity onPress={() => setOpenModal(true)}>
             <KEBAB_MENU_ICON />
           </TouchableOpacity>
+          <ActionModal openModal={openModal} setOpenModal={setOpenModal} />
         </View>
       </View>
       <View style={styles.contentContainer}>
