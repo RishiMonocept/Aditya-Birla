@@ -8,7 +8,7 @@ import { fontSize } from "../../res/theme/fonts";
 
 export const styles = StyleSheet.create({
   container: {
-    marginTop: spacing.space_10,
+    // borderWidth: 1,
   },
   titleText: {
     color: "#797979",
