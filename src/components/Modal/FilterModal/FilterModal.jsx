@@ -16,7 +16,7 @@ import {
 import colors from "../../../res/theme/colors";
 import { fontSize, fontWeight, lineHeight } from "../../../res/theme/fonts";
 import CROSS_ICON from "../../../assets/AllQuotes/crossIcon.svg";
-import FilterCheckBoxAndText from "./FilterCheckBoxAndText";
+import FilterCheckBoxAndText from "./filterCheckBoxAndText";
 import DateInput from "../../TextInputUIs/DateInput";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { format } from "date-fns";
@@ -43,6 +43,7 @@ export default function FilterModal({ openFilterModal, setOpenFilterModal }) {
 
   const handleApplyPress = () => {
     setActiveButton("apply");
+    setOpenFilterModal(false);
   };
 
   const renderCheckBoxes = (data) => {
@@ -91,7 +92,7 @@ export default function FilterModal({ openFilterModal, setOpenFilterModal }) {
     setDateError("");
   };
 
-  const top = "13%";
+  const top = "15.5%";
   const { height } = Dimensions.get("screen");
   const percentage = parseFloat(top.replace("%", "")) / 100;
   const openHeight = height * percentage;
