@@ -6,10 +6,15 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   TouchableOpacity,
+  FlatList,
 } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { spacingModerateScale } from "../../res/dimension";
+import {
+  borderRadius,
+  borderWidth,
+  spacingModerateScale,
+} from "../../res/dimension";
 import HeaderWithouIcon from "../../components/Header/HeaderWithouIcon";
 
 // data
@@ -25,6 +30,7 @@ import Filters from "../../components/Filter/Filters";
 import NoDataFoundPage from "../../components/noDataFound/NoDataFoundPage";
 import BottomNavigation from "../../components/BottomNavigation";
 import ActionModal from "../../components/Modal/ActionModal/ActionModal";
+import PolicyCard from "../../components/CardUIs/PolicyCard";
 
 const AllQuotes = () => {
   const [selectedFilter, setSelectedFilter] = useState();
@@ -35,28 +41,104 @@ const AllQuotes = () => {
     setOpenModal(true);
   };
 
+  const policies = [
+    {
+      id: 1,
+      name: "Krishnan Swami",
+      rating: 2,
+      product: "Activ Fit",
+      policyType: "RUG Policy",
+      policyNumber: "23-22-0175217-00",
+      status: "Pending",
+      mobileNumber: "9321075751",
+      dateOfRenewal: "2023-03-15",
+      renewalPremium: {
+        totalPremium: 25000,
+        hrBenefits: -786,
+        renewalPremium: 24214,
+      },
+      modification: {
+        description: "Member Added, Tenure 1 Year",
+      },
+      icons: {
+        editIcon: true,
+        viewIcon: true,
+        moreOptionsIcon: true,
+      },
+    },
+    {
+      id: 2,
+      name: "Krishnan Swami",
+      rating: 2,
+      product: "Activ Fit",
+      policyType: "RUG Policy",
+      policyNumber: "23-22-0175217-00",
+      status: "Pending",
+      mobileNumber: "9321075751",
+      dateOfRenewal: "2023-03-15",
+      renewalPremium: {
+        totalPremium: 25000,
+        hrBenefits: -786,
+        renewalPremium: 24214,
+      },
+      modification: {
+        description: "Member Added, Tenure 1 Year",
+      },
+      icons: {
+        editIcon: true,
+        viewIcon: true,
+        moreOptionsIcon: true,
+      },
+    },
+    {
+      id: 3,
+      name: "Krishnan Swami",
+      rating: 2,
+      product: "Activ Fit",
+      policyType: "RUG Policy",
+      policyNumber: "23-22-0175217-00",
+      status: "Pending",
+      mobileNumber: "9321075751",
+      dateOfRenewal: "2023-03-15",
+      renewalPremium: {
+        totalPremium: 25000,
+        hrBenefits: -786,
+        renewalPremium: 24214,
+      },
+      modification: {
+        description: "Member Added, Tenure 1 Year",
+      },
+      icons: {
+        editIcon: true,
+        viewIcon: true,
+        moreOptionsIcon: true,
+      },
+    },
+  ];
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <SafeAreaView style={styles.container}>
         <View style={styles.wrapperView}>
-          <HeaderWithouIcon title={"All Quotes / Due for Renewal"} />
-          <View style={styles.searchAndFilter}>
-            <View style={styles.searhContainer}>
-              <SEARCH />
-              <TextInput style={styles.searchInput} />
+          <View style={{ gap: 22 }}>
+            <HeaderWithouIcon title={"All Quotes / Due for Renewal"} />
+            <View style={styles.searchAndFilter}>
+              <View style={styles.searhContainer}>
+                <SEARCH />
+                <TextInput style={styles.searchInput} />
+              </View>
+              <TouchableOpacity style={styles.filterButton}>
+                <FILTER />
+                <Text style={styles.filterText}>Filters</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.optionsContainer}>
+                <OPTION />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.homeIndicatiorContainer}>
+                <HOME_INDICATOR />
+              </TouchableOpacity>
             </View>
-            <TouchableOpacity style={styles.filterButton}>
-              <FILTER />
-              <Text style={styles.filterText}>Filters</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.optionsContainer}>
-              <OPTION />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.homeIndicatiorContainer}>
-              <HOME_INDICATOR />
-            </TouchableOpacity>
           </View>
-
           <Filters
             data={filtersData}
             selectedFilter={selectedFilter}
@@ -64,7 +146,14 @@ const AllQuotes = () => {
           />
           <ActionModal openModal={openModal} setOpenModal={setOpenModal} />
           {/* <View></View> */}
-          <NoDataFoundPage />
+
+          <FlatList
+            data={policies}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => <PolicyCard policy={item} />}
+            ItemSeparatorComponent={() => <View style={{ height: 16 }} />}
+          />
+          {/* <NoDataFoundPage /> */}
         </View>
         {/* <BottomNavigation /> */}
       </SafeAreaView>
@@ -80,13 +169,13 @@ const styles = StyleSheet.create({
   wrapperView: {
     marginHorizontal: spacingModerateScale.space_m2,
     flex: 1,
+    gap: 32,
   },
   searchAndFilter: {
     flexDirection: "row",
     gap: spacingModerateScale.space_m2,
     alignItems: "center",
     justifyContent: "space-between",
-    marginVertical: spacingModerateScale.space_m3,
   },
   searhContainer: {
     flexDirection: "row",
