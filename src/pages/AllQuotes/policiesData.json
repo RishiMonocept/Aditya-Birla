@@ -3,7 +3,7 @@
     "id": 1,
     "name": "Krishnan Swami",
     "rating": 2,
-    "product": "Activ Fit",
+    "product": "Active Fit",
     "policyType": "RUG Policy",
     "policyNumber": "23-22-0175217-00",
     "status": "Pending",
@@ -26,20 +26,20 @@
   {
     "id": 2,
     "name": "Krishnan Swami",
-    "rating": 2,
-    "product": "Activ Fit",
-    "policyType": "RUG Policy",
-    "policyNumber": "23-22-0175217-00",
-    "status": "Pending",
-    "mobileNumber": "9321075751",
-    "dateOfRenewal": "2023-03-15",
+    "rating": 3,
+    "product": "Active Fit Plus",
+    "policyType": "Retail",
+    "policyNumber": "23-22-0175217-01",
+    "status": "Active",
+    "mobileNumber": "9321075752",
+    "dateOfRenewal": "2024-05-22",
     "renewalPremium": {
-      "totalPremium": 25000,
-      "hrBenefits": -786,
-      "renewalPremium": 24214
+      "totalPremium": 26000,
+      "hrBenefits": -800,
+      "renewalPremium": 25200
     },
     "modification": {
-      "description": "Member Added, Tenure 1 Year"
+      "description": "Plan Upgraded, Tenure 1 Year"
     },
     "icons": {
       "editIcon": true,
@@ -50,17 +50,17 @@
   {
     "id": 3,
     "name": "Krishnan Swami",
-    "rating": 2,
-    "product": "Activ Fit",
-    "policyType": "RUG Policy",
-    "policyNumber": "23-22-0175217-00",
-    "status": "Pending",
-    "mobileNumber": "9321075751",
-    "dateOfRenewal": "2023-03-15",
+    "rating": 4,
+    "product": "Active One",
+    "policyType": "COI Policy",
+    "policyNumber": "23-22-0175217-02",
+    "status": "Completed",
+    "mobileNumber": "9321075753",
+    "dateOfRenewal": "2025-01-12",
     "renewalPremium": {
-      "totalPremium": 25000,
-      "hrBenefits": -786,
-      "renewalPremium": 24214
+      "totalPremium": 27000,
+      "hrBenefits": -900,
+      "renewalPremium": 26100
     },
     "modification": {
       "description": "Member Added, Tenure 1 Year"
@@ -74,20 +74,20 @@
   {
     "id": 4,
     "name": "Krishnan Swami",
-    "rating": 2,
-    "product": "Activ Fit",
-    "policyType": "RUG Policy",
-    "policyNumber": "23-22-0175217-00",
-    "status": "Pending",
-    "mobileNumber": "9321075751",
-    "dateOfRenewal": "2023-03-15",
+    "rating": 5,
+    "product": "Active One Next",
+    "policyType": "Master Policy",
+    "policyNumber": "23-22-0175217-03",
+    "status": "Expired",
+    "mobileNumber": "9321075754",
+    "dateOfRenewal": "2022-11-30",
     "renewalPremium": {
-      "totalPremium": 25000,
-      "hrBenefits": -786,
-      "renewalPremium": 24214
+      "totalPremium": 28000,
+      "hrBenefits": -1000,
+      "renewalPremium": 27000
     },
     "modification": {
-      "description": "Member Added, Tenure 1 Year"
+      "description": "Policy Renewal, Tenure 2 Years"
     },
     "icons": {
       "editIcon": true,
@@ -99,19 +99,19 @@
     "id": 5,
     "name": "Krishnan Swami",
     "rating": 2,
-    "product": "Activ Fit",
+    "product": "Active Fit",
     "policyType": "RUG Policy",
-    "policyNumber": "23-22-0175217-00",
-    "status": "Pending",
-    "mobileNumber": "9321075751",
-    "dateOfRenewal": "2023-03-15",
+    "policyNumber": "23-22-0175217-04",
+    "status": "Active",
+    "mobileNumber": "9321075755",
+    "dateOfRenewal": "2023-10-01",
     "renewalPremium": {
-      "totalPremium": 25000,
-      "hrBenefits": -786,
-      "renewalPremium": 24214
+      "totalPremium": 25500,
+      "hrBenefits": -850,
+      "renewalPremium": 24650
     },
     "modification": {
-      "description": "Member Added, Tenure 1 Year"
+      "description": "Coverage Extended, Tenure 1 Year"
     },
     "icons": {
       "editIcon": true,
@@ -122,20 +122,20 @@
   {
     "id": 6,
     "name": "Krishnan Swami",
-    "rating": 2,
-    "product": "Activ Fit",
+    "rating": 3,
+    "product": "Active Fit Plus",
     "policyType": "RUG Policy",
-    "policyNumber": "23-22-0175217-00",
+    "policyNumber": "23-22-0175217-05",
     "status": "Pending",
-    "mobileNumber": "9321075751",
-    "dateOfRenewal": "2023-03-15",
+    "mobileNumber": "9321075756",
+    "dateOfRenewal": "2023-09-20",
     "renewalPremium": {
-      "totalPremium": 25000,
-      "hrBenefits": -786,
-      "renewalPremium": 24214
+      "totalPremium": 26500,
+      "hrBenefits": -850,
+      "renewalPremium": 25650
     },
     "modification": {
-      "description": "Member Added, Tenure 1 Year"
+      "description": "Member Added, Tenure 2 Years"
     },
     "icons": {
       "editIcon": true,
