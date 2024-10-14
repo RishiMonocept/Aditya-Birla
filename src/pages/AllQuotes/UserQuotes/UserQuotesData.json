@@ -1,0 +1,146 @@
+[
+  {
+    "id": 1,
+    "quoteType": "Base Quote 1",
+    "subQuote": "Sub Quote 1",
+    "product": "Active User",
+    "policyNumber": "23-22-0175217-00",
+    "proposer": "Krishnan",
+    "renewalPremium": {
+      "amount": 25558,
+      "hrBenefits": "HR benefits of ₹786 added"
+    },
+    "mobileNumber": "9321075751",
+    "dateOfRenewal": "2023-03-15",
+    "modification": {
+      "status": "Modified",
+      "members": "1 Member Added",
+      "tenure": "1 Year"
+    },
+    "icons": {
+      "edit": true,
+      "refresh": true,
+      "moreOptions": true
+    }
+  },
+  {
+    "id": 2,
+    "quoteType": "Base Quote 1",
+    "subQuote": "Sub Quote 2",
+    "product": "Active User",
+    "policyNumber": "23-22-0175217-00",
+    "proposer": "Krishnan",
+    "renewalPremium": {
+      "amount": 25558,
+      "hrBenefits": "HR benefits of ₹786 added"
+    },
+    "mobileNumber": "9321075751",
+    "dateOfRenewal": "2023-03-15",
+    "modification": {
+      "status": "Modified",
+      "members": "1 Member Added",
+      "tenure": "1 Year"
+    },
+    "icons": {
+      "edit": true,
+      "refresh": true,
+      "moreOptions": true
+    }
+  },
+  {
+    "id": 3,
+    "quoteType": "Base Quote 2",
+    "subQuote": "Sub Quote 1",
+    "product": "Active User",
+    "policyNumber": "23-22-0175217-00",
+    "proposer": "Krishnan",
+    "renewalPremium": {
+      "amount": 25558,
+      "hrBenefits": "HR benefits of ₹786 added"
+    },
+    "mobileNumber": "9321075751",
+    "dateOfRenewal": "2023-03-15",
+    "modification": {
+      "status": "Modified",
+      "members": "1 Member Added",
+      "tenure": "1 Year"
+    },
+    "icons": {
+      "edit": true,
+      "refresh": true,
+      "moreOptions": true
+    }
+  },
+  {
+    "id": 4,
+    "quoteType": "Base Quote 2",
+    "subQuote": "Sub Quote 2",
+    "product": "Active User",
+    "policyNumber": "23-22-0175217-00",
+    "proposer": "Krishnan",
+    "renewalPremium": {
+      "amount": 25558,
+      "hrBenefits": "HR benefits of ₹786 added"
+    },
+    "mobileNumber": "9321075751",
+    "dateOfRenewal": "2023-03-15",
+    "modification": {
+      "status": "Modified",
+      "members": "1 Member Added",
+      "tenure": "1 Year"
+    },
+    "icons": {
+      "edit": true,
+      "refresh": true,
+      "moreOptions": true
+    }
+  },
+  {
+    "id": 5,
+    "quoteType": "Base Quote 3",
+    "subQuote": "Sub Quote 1",
+    "product": "Active User",
+    "policyNumber": "23-22-0175217-00",
+    "proposer": "Krishnan",
+    "renewalPremium": {
+      "amount": 25558,
+      "hrBenefits": "HR benefits of ₹786 added"
+    },
+    "mobileNumber": "9321075751",
+    "dateOfRenewal": "2023-03-15",
+    "modification": {
+      "status": "Modified",
+      "members": "1 Member Added",
+      "tenure": "1 Year"
+    },
+    "icons": {
+      "edit": true,
+      "refresh": true,
+      "moreOptions": true
+    }
+  },
+  {
+    "id": 6,
+    "quoteType": "Base Quote 3",
+    "subQuote": "Sub Quote 2",
+    "product": "Active User",
+    "policyNumber": "23-22-0175217-00",
+    "proposer": "Krishnan",
+    "renewalPremium": {
+      "amount": 25558,
+      "hrBenefits": "HR benefits of ₹786 added"
+    },
+    "mobileNumber": "9321075751",
+    "dateOfRenewal": "2023-03-15",
+    "modification": {
+      "status": "Modified",
+      "members": "1 Member Added",
+      "tenure": "1 Year"
+    },
+    "icons": {
+      "edit": true,
+      "refresh": true,
+      "moreOptions": true
+    }
+  }
+]

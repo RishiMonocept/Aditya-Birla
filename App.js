@@ -15,6 +15,7 @@ import * as Font from "expo-font";
 import { useFonts } from "expo-font";
 import { AnekLatin_400Regular } from "@expo-google-fonts/anek-latin";
 import AllQuotes from "./src/pages/AllQuotes";
+import UserQuotesScreen from "./src/pages/AllQuotes/UserQuotes/UserQuotesScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -37,6 +38,7 @@ export default function App() {
           <Stack.Screen name="BottomTabs" component={BottomNavigation} />
           <Stack.Screen name="LoginSearch" component={LoginSearch} />
           <Stack.Screen name="AllQuotes" component={AllQuotes} />
+          <Stack.Screen name="UserQuotesScreen" component={UserQuotesScreen} />
         </Stack.Navigator>
         <Toast />
       </View>

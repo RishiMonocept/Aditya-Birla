@@ -6,9 +6,11 @@ import EDIT_ICON from "../../assets/AllQuotes/ProfileCardIcons/EDIT_ICON.svg";
 import REFRESH_ICON from "../../assets/AllQuotes/ProfileCardIcons/REFRESH_ICON.svg";
 import KEBAB_MENU_ICON from "../../assets/AllQuotes/ProfileCardIcons/KEBAB_MENU_ICON.svg";
 import ActionModal from "../Modal/ActionModal/ActionModal";
+import { useNavigation } from "@react-navigation/native";
 
 const PolicyCard = ({ policy }) => {
   const [openModal, setOpenModal] = useState(false);
+  const navigation = useNavigation();
 
   return (
     <View style={styles.cardContainer}>
@@ -26,7 +28,7 @@ const PolicyCard = ({ policy }) => {
         <View style={styles.iconActionsContainer}>
           <TouchableOpacity
             onPress={() => {
-              /* Handle edit icon press */
+              navigation.navigate("UserQuotesScreen", { policy }); // Todo: Change it to mkae it user sepcific
             }}
           >
             <EDIT_ICON />
