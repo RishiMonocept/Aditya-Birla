@@ -4,7 +4,9 @@ import { styles } from "./LeadsPersonalDetails.style";
 import GenericInput from "../../TextInputUIs/GenericInput";
 import formJsonData from "../../../pages/Form/formData.json";
 import PickerInput from "../../TextInputUIs/PickerInput";
-
+/**
+ * NOTE(Depretiated) : Not in use, navigate to LeadForm.jsx
+ */
 export default function LeadsPersonalDetails() {
   const RenderInput = ({ item, onChange }) => {
     if (!item.visible) return null;

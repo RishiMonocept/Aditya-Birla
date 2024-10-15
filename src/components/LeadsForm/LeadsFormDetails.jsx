@@ -1,7 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import LeadsPersonalDetails from "./PersonalDetails/LeadsPersonalDetails";
-
+/**
+ * NOTE(Depretiated) : Not in use, navigate to FormScreen.jsx
+ */
 export default function LeadsFormDetails() {
   return (
     <View style={styles.mainContainer}>
