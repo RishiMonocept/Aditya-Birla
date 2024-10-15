@@ -10,20 +10,17 @@ import colors from "../../../res/theme/colors";
 import { fontSize, fontWeight, lineHeight } from "../../../res/theme/fonts";
 import CHECKED_ICON from "../../../assets/AllQuotes/Checked.svg";
 
-export default function FilterCheckBoxAndText({ title }) {
-  const [checked, setChecked] = useState(false);
+export default function FilterCheckBoxAndText({ title, checked, onPress }) {
+  // const [checked, setChecked] = useState(false);
 
   return (
-    <View style={styles.mainContainer}>
-      <TouchableOpacity
-        style={styles.checkboxContainer}
-        onPress={() => setChecked(!checked)}
-      >
+    <TouchableOpacity style={styles.mainContainer} onPress={onPress}>
+      <View style={[styles.checkboxContainer, checked && styles.checkedBox]}>
         {checked && <CHECKED_ICON />}
-      </TouchableOpacity>
+      </View>
 
       <Text style={styles.filterText}>{title}</Text>
-    </View>
+    </TouchableOpacity>
   );
 }
 

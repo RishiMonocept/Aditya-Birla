@@ -22,53 +22,90 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import { format } from "date-fns";
 import CALENDAR_ICON from "../../../assets/Forms/calendar-icon.png";
 import ButtonInModal from "./ButtonInModal";
+import policyData from "../../../pages/AllQuotes/policiesData.json";
 
-const filterData = {
-  products: ["Active Fit", "Active One", "Active Fit Plus", "Active One Next"],
-  policyTypes: ["Retail", "RUG", "COI Policy", "Master Policy"],
-};
-
-export default function FilterModal({ openFilterModal, setOpenFilterModal }) {
-  const [showStartDateCalendar, setShowStartDateCalendar] = useState(false);
-  const [showEndDateCalendar, setShowEndDateCalendar] = useState(false);
+export default function FilterModal({
+  openFilterModal,
+  setOpenFilterModal,
+  setFilteredData,
+  setFilterApplied,
+}) {
+  const [checkedProducts, setCheckedProducts] = useState([]);
+  const [checkedPolicyTypes, setCheckedPolicyTypes] = useState([]);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [dateError, setDateError] = useState("");
+  const [showStartDateCalendar, setShowStartDateCalendar] = useState(false);
+  const [showEndDateCalendar, setShowEndDateCalendar] = useState(false);
 
-  const [activeButton, setActiveButton] = useState(null);
+  const filterData = {
+    products: [
+      "Active Fit",
+      "Active One",
+      "Active Fit Plus",
+      "Active One Next",
+    ],
+    policyTypes: ["Retail", "RUG", "COI Policy", "Master Policy"],
+  };
 
-  const handleCancelPress = () => {
-    setActiveButton("cancel");
+  const toggleCheckedProducts = (item) => {
+    setCheckedProducts((prev) =>
+      prev.includes(item) ? prev.filter((i) => i !== item) : [...prev, item]
+    );
+    // console.log(object);
+  };
+
+  const toggleCheckedPolicyTypes = (item) => {
+    setCheckedPolicyTypes((prev) =>
+      prev.includes(item) ? prev.filter((i) => i !== item) : [...prev, item]
+    );
   };
 
   const handleApplyPress = () => {
-    setActiveButton("apply");
+    const filtered = policyData.filter((policy) => {
+      const isProductMatch =
+        checkedProducts.length === 0 ||
+        checkedProducts.includes(policy.product);
+
+      const isPolicyTypeMatch =
+        checkedPolicyTypes.length === 0 ||
+        checkedPolicyTypes.includes(policy.policyType);
+
+      const isDateMatch =
+        (!startDate || new Date(policy.dateOfRenewal) >= startDate) &&
+        (!endDate || new Date(policy.dateOfRenewal) <= endDate);
+      return isProductMatch && isPolicyTypeMatch && isDateMatch;
+    });
+
+    // console.log("Filtered Policies Modal: ", filtered);
+
+    setFilterApplied(true);
+    setFilteredData(filtered);
     setOpenFilterModal(false);
+    setCheckedProducts([]);
+    setCheckedPolicyTypes([]);
+    setStartDate(null);
+    setEndDate(null);
+    setDateError("");
   };
 
-  const renderCheckBoxes = (data) => {
-    return data.map((item, index) => {
-      if (index % 2 === 0) {
-        return (
-          <View style={styles.checkboexAndTitle} key={index}>
-            <FilterCheckBoxAndText title={data[index]} />
-            {data[index + 1] && (
-              <FilterCheckBoxAndText title={data[index + 1]} />
-            )}
-          </View>
-        );
-      }
-    });
+  const handleCancelPress = () => {
+    setCheckedProducts([]);
+    setCheckedPolicyTypes([]);
+    setStartDate(null);
+    setEndDate(null);
+    setDateError("");
+    setOpenFilterModal(false);
   };
 
   const onStartDateChange = (event, selectedDate) => {
     const currentDate = selectedDate || startDate;
     setShowStartDateCalendar(false);
+    setStartDate(currentDate);
 
     if (endDate && currentDate > endDate) {
       setDateError("Start date cannot be greater than end date.");
     } else {
-      setStartDate(currentDate);
       setDateError("");
     }
   };
@@ -76,20 +113,37 @@ export default function FilterModal({ openFilterModal, setOpenFilterModal }) {
   const onEndDateChange = (event, selectedDate) => {
     const currentDate = selectedDate || endDate;
     setShowEndDateCalendar(false);
+    setEndDate(currentDate);
 
     if (startDate && currentDate < startDate) {
       setDateError("End date cannot be less than start date.");
     } else {
-      setEndDate(currentDate);
       setDateError("");
     }
   };
 
-  const handleCloseModal = () => {
-    setOpenFilterModal(false);
-    setStartDate(null);
-    setEndDate(null);
-    setDateError("");
+  const renderCheckBoxes = (data, checkedList, toggleFunction) => {
+    return data.map((item, index) => {
+      if (index % 2 === 0) {
+        return (
+          <View style={styles.checkboexAndTitle} key={index}>
+            <FilterCheckBoxAndText
+              title={data[index]}
+              checked={checkedList.includes(data[index])}
+              onPress={() => toggleFunction(data[index])}
+            />
+
+            {data[index + 1] && (
+              <FilterCheckBoxAndText
+                title={data[index + 1]}
+                checked={checkedList.includes(data[index + 1])}
+                onPress={() => toggleFunction(data[index + 1])}
+              />
+            )}
+          </View>
+        );
+      }
+    });
   };
 
   const top = "15.5%";
@@ -111,7 +165,7 @@ export default function FilterModal({ openFilterModal, setOpenFilterModal }) {
               <Text style={styles.ActionText}>Filter</Text>
               <TouchableOpacity
                 style={styles.crossIcon}
-                onPress={handleCloseModal}
+                onPress={handleCancelPress}
               >
                 <CROSS_ICON />
               </TouchableOpacity>
@@ -119,14 +173,22 @@ export default function FilterModal({ openFilterModal, setOpenFilterModal }) {
             <View style={styles.productsContainer}>
               <Text style={styles.productText}>Products</Text>
               <View style={styles.checkboxContainer}>
-                {renderCheckBoxes(filterData.products)}
+                {renderCheckBoxes(
+                  filterData.products,
+                  checkedProducts,
+                  toggleCheckedProducts
+                )}
               </View>
             </View>
 
             <View style={styles.productsContainer}>
               <Text style={styles.productText}>Policy Type</Text>
               <View style={styles.checkboxContainer}>
-                {renderCheckBoxes(filterData.policyTypes)}
+                {renderCheckBoxes(
+                  filterData.policyTypes,
+                  checkedPolicyTypes,
+                  toggleCheckedPolicyTypes
+                )}
               </View>
             </View>
 

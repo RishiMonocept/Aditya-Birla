@@ -37,11 +37,12 @@ import FilterModal from "../../components/Modal/FilterModal/FilterModal";
 const AllQuotes = () => {
   const [selectedFilter, setSelectedFilter] = useState();
   const [openFilterModal, setOpenFilterModal] = useState(false);
+  const [filterApplied, setFilterApplied] = useState(false);
+  const [filteredData, setFilteredData] = useState([]);
 
   const handleFilterPress = (filter) => {
     setSelectedFilter(filter);
   };
-
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <SafeAreaView style={styles.container}>
@@ -63,6 +64,8 @@ const AllQuotes = () => {
               <FilterModal
                 openFilterModal={openFilterModal}
                 setOpenFilterModal={setOpenFilterModal}
+                setFilteredData={setFilteredData}
+                setFilterApplied={setFilterApplied}
               />
               <TouchableOpacity style={styles.optionsContainer}>
                 <OPTION />
@@ -79,7 +82,7 @@ const AllQuotes = () => {
           />
           <View style={{ flex: 1 }}>
             <FlatList
-              data={policies}
+              data={filterApplied ? filteredData : policies}
               keyExtractor={(item) => item.id.toString()}
               renderItem={({ item }) => <PolicyCard policy={item} />}
               ItemSeparatorComponent={() => <View style={{ height: 16 }} />}
