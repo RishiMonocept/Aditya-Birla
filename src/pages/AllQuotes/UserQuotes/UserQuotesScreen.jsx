@@ -23,10 +23,15 @@ import HOME_INDICATOR from "../../../assets/AllQuotes/HomeIndicator.svg";
 import DOWNLOAD_ICON from "../../../assets/DOWNLOAD_ICON.svg";
 
 import UserQuotesCard from "../../../components/CardUIs/UserQuotesCard";
+import Pagination from "../../../components/Pagination/Pagination";
 
 export default function UserQuotesScreen({ route }) {
   const { policy } = route.params; //TODO : for id mapping of user
   const [toggle, setToggle] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 10;
+
+  const handlePageChange = (page) => setCurrentPage(page);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -92,7 +97,11 @@ export default function UserQuotesScreen({ route }) {
               showsVerticalScrollIndicator={false}
             />
           </View>
-
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
           {/* <NoDataFoundPage /> */}
         </View>
         {/* <BottomNavigation /> */}
