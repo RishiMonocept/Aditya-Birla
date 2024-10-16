@@ -1,4 +1,11 @@
-import { View, StyleSheet, KeyboardAvoidingView, Platform } from "react-native";
+import {
+  View,
+  StyleSheet,
+  KeyboardAvoidingView,
+  Platform,
+  Text,
+} from "react-native";
+
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "../components/Header/Header";
@@ -9,6 +16,42 @@ import GenericButton from "../components/ButtonsUIs/GenericButton";
 
 const FormScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [formData, setFormData] = useState(null);
+  const [error, setError] = useState(null);
+
+  const fetchFormData = async () => {
+    const url = "https://usp.monocept.ai/yatra/api/getform";
+
+    const bodyData = {
+      partnerId: 1,
+      productId: 1,
+      formId: 1,
+    };
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(bodyData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const jsonResponse = await response.json();
+
+      if (jsonResponse.success) {
+        setFormData(jsonResponse.data); // Store the form data in the state
+      } else {
+        setError("API call failed, no JSON data received");
+      }
+    } catch (error) {
+      setError(error.message); // Store the error message
+    }
+  };
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -20,14 +63,31 @@ const FormScreen = () => {
           <StatusBar style="dark" />
           <GenericButton
             title={"Leads Form"}
-            onPress={() => setModalVisible(true)}
+            onPress={() => {
+              setModalVisible(true);
+              fetchFormData(); // Fetch form data when the button is pressed
+            }}
           />
-          <LeadsForm
-            isVisible={modalVisible}
-            onClose={() => setModalVisible(false)}
-          />
-
-          {/* <LeadsForm /> */}
+          {formData && (
+            <LeadsForm
+              isVisible={modalVisible}
+              onClose={() => setModalVisible(false)}
+              formJsonData={JSON.parse(formData?.jsonFormData)} // Pass parsed form data
+            />
+          )}
+          {/* Uncomment to display error or form data */}
+          {/* <View>
+            {error && <Text>Error: {error}</Text>}
+            {formData ? (
+              <View>
+                <Text>
+                  Form Title: {JSON.parse(formData.jsonFormData).formTitle}
+                </Text>
+              </View>
+            ) : (
+              <Text>Loading...</Text>
+            )}
+          </View> */}
         </SafeAreaView>
       </View>
     </KeyboardAvoidingView>

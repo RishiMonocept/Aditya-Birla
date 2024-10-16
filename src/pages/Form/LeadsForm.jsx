@@ -11,7 +11,7 @@ import {
   Modal,
   TouchableOpacity,
 } from "react-native";
-import formJsonData from "./formData.json";
+// import formJsonData from "./formData.json";
 import FormProgressHeader from "../../components/LeadsForm/FormProgressHeader";
 import GenericButton from "../../components/ButtonsUIs/GenericButton";
 import PickerInput from "../../components/TextInputUIs/PickerInput";
@@ -20,54 +20,7 @@ import Toast from "react-native-toast-message";
 import Header from "../../components/Header/Header";
 import DateInput from "../../components/TextInputUIs/DateInput";
 
-const RenderInput = ({ item, onChange, shakeAnimation, hasError }) => {
-  const { type, label, value, name, options, message } = item;
-
-  if (!item.visible || !["text", "select", "date"].includes(type)) return null;
-
-  const handleChange = (text) => onChange(name, text);
-
-  const renderInputComponent = () => {
-    switch (type) {
-      case "text":
-        return (
-          <GenericInput
-            placeholder={label}
-            value={value}
-            onChangeText={handleChange}
-          />
-        );
-      case "date":
-        return (
-          <DateInput
-            placeholder={label}
-            value={value}
-            onChangeText={handleChange}
-          />
-        );
-      case "select":
-        return (
-          <PickerInput
-            label={label}
-            onValueChange={(item) => handleChange(item)}
-            options={options}
-            selectedValue={value}
-          />
-        );
-      default:
-        return null;
-    }
-  };
-
-  return (
-    <Animated.View style={{ transform: [{ translateX: shakeAnimation }] }}>
-      {renderInputComponent()}
-      {hasError && <Text style={styles.errorText}>{message}</Text>}
-    </Animated.View>
-  );
-};
-
-export default function LeadsForm({ isVisible, onClose }) {
+export default function LeadsForm({ isVisible, onClose, formJsonData }) {
   const [formData, setFormData] = useState(
     formJsonData.formSections[0].formControls.reduce((acc, control) => {
       if (
@@ -83,13 +36,67 @@ export default function LeadsForm({ isVisible, onClose }) {
   const shakeAnimation = useRef(new Animated.Value(0)).current;
 
   const handleFormDataChange = (key, value) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      [key]: value,
-    }));
+    // setFormData((prevData) => ({
+    //   ...prevData,
+    //   [key]: value,
+    // }));
     if (errors[key]) {
       setErrors((prevErrors) => ({ ...prevErrors, [key]: false }));
     }
+  };
+
+  const RenderInput = ({ item, onChange, shakeAnimation, hasError }) => {
+    const { type, label, value, name, options, message } = item;
+    // console.log(type);
+
+    // if (!item.visible) return null;
+    /**
+     * We want:
+     * 1. agr text and date ke lava koi aur type hai => not print the field
+     * 2. agr visible field false hai => not print the field
+     *
+     */
+
+    const handleChange = (text) => onChange(name, text);
+
+    const renderInputComponent = () => {
+      switch (type) {
+        case "text":
+          return (
+            <GenericInput
+              placeholder={label}
+              value={value}
+              onChangeText={handleChange}
+            />
+          );
+        case "date":
+          return (
+            <DateInput
+              placeholder={label}
+              value={value}
+              onChangeText={handleChange}
+            />
+          );
+        case "select":
+          return (
+            <PickerInput
+              label={label}
+              onValueChange={(item) => handleChange(item)}
+              options={options}
+              selectedValue={value}
+            />
+          );
+        default:
+          return null;
+      }
+    };
+
+    return (
+      <Animated.View style={{ transform: [{ translateX: shakeAnimation }] }}>
+        {renderInputComponent()}
+        {hasError && <Text style={styles.errorText}>{message}</Text>}
+      </Animated.View>
+    );
   };
 
   const triggerShakeAnimation = () => {
@@ -170,7 +177,7 @@ export default function LeadsForm({ isVisible, onClose }) {
     );
     onClose();
   };
-
+  // console.log("--->", formJsonData.formSections[0].formControls);
   return (
     <Modal visible={isVisible} animationType="slide" onRequestClose={onClose}>
       <KeyboardAvoidingView
@@ -180,30 +187,34 @@ export default function LeadsForm({ isVisible, onClose }) {
         <Header title={"Proposal"} onPress={onClose} />
         <FormProgressHeader />
         <Text style={styles.title}>
-          {formJsonData.formSections[0].sectionTitle}
+          {formJsonData?.formSections[0]?.sectionTitle}
         </Text>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={{ gap: 16, marginBottom: 36 }}>
-            {formJsonData.formSections[0].formControls.map((item, index) => (
-              <RenderInput
-                key={index}
-                item={{
-                  ...item,
-                  value: formData[item.name],
-                  required: item.validators?.some(
-                    (validator) => validator.required
-                  ),
-                  message:
-                    errors[item.name]?.message ||
-                    item.validators?.find((v) => v.required)?.message,
-                }}
-                onChange={handleFormDataChange}
-                shakeAnimation={
-                  errors[item.name] ? shakeAnimation : new Animated.Value(0)
-                }
-                hasError={errors[item.name]}
-              />
-            ))}
+            {formJsonData.formSections[1].formControls.map((item, index) => {
+              return (
+                item?.visible && (
+                  <RenderInput
+                    key={index}
+                    item={{
+                      ...item,
+                      value: formData[item.name],
+                      required: item.validators?.some(
+                        (validator) => validator.required
+                      ),
+                      message:
+                        errors[item.name]?.message ||
+                        item.validators?.find((v) => v.required)?.message,
+                    }}
+                    onChange={handleFormDataChange}
+                    shakeAnimation={
+                      errors[item.name] ? shakeAnimation : new Animated.Value(0)
+                    }
+                    hasError={errors[item.name]}
+                  />
+                )
+              );
+            })}
           </View>
         </ScrollView>
         <GenericButton title={"Continue"} onPress={handleSubmit} />
