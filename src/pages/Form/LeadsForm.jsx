@@ -94,6 +94,14 @@ const RenderInput = ({ item, onChange, shakeAnimation, hasError }) => {
                 case "ID Type":
                   return idTypeData?.IdType || [];
 
+                case "Occupation":
+                  return proposerOccupationData?.ProposerOccupation || [];
+
+                case "Marital Status":
+                  return maritalStatusData?.MaritalStatus || [];
+
+                case "Education":
+                  return educationTypeData?.EducationType || [];
 
                 default:
                   return options || [];
