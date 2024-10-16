@@ -23,32 +23,48 @@ import DateInput from "../../components/TextInputUIs/DateInput";
 const RenderInput = ({ item, onChange, shakeAnimation, hasError }) => {
   const { type, label, value, name, options, message } = item;
   const [idTypeData, setIdTypeData] = useState([]);
-  const [defaultOptions, setDefaultOptions] = useState(options); // Use options from item as default
+  const [proposerOccupationData, setProposerOccupationData] = useState([]);
+  const [educationTypeData, setEducationTypeData] = useState([]);
+  const [maritalStatusData, setMaritalStatusData] = useState([]);
+  // const [apiData, setApiData] = useState({});
 
   if (!item.visible || !["text", "select", "date"].includes(type)) return null;
 
   const handleChange = (text) => onChange(name, text);
 
   const getData = async () => {
-    const response = await fetch("https://usp.monocept.ai/yatra/getId");
-    const jsonData = await response.json();
-    // setIdTypeData(jsonData);
+    try {
+      const idTypeResponse = await fetch("https://usp.monocept.ai/yatra/getId");
+      const idTypeJson = await idTypeResponse.json();
+      setIdTypeData(idTypeJson);
+
+      const proposerOccupationResponse = await fetch(
+        "https://usp.monocept.ai/yatra/getProposerOccupation"
+      );
+      const proposerOccupationJson = await proposerOccupationResponse.json();
+      setProposerOccupationData(proposerOccupationJson);
+
+      const educationTypeResponse = await fetch(
+        "https://usp.monocept.ai/yatra/getEducationType"
+      );
+      const educationTypeJson = await educationTypeResponse.json();
+      setEducationTypeData(educationTypeJson);
+
+      const maritalStatusResponse = await fetch(
+        "https://usp.monocept.ai/yatra/getMaritalStatus"
+      );
+      const maritalStatusJson = await maritalStatusResponse.json();
+      setMaritalStatusData(maritalStatusJson);
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
   };
 
   useEffect(() => {
-    if (label === "ID type") {
-      getData();
-    }
-  }, [label]);
+    getData();
+  }, []);
 
-  const handlePickerOptions = () => {
-    switch (label) {
-      case "ID type":
-        return idTypeData; // Use the data fetched from the API for ID type
-      default:
-        return defaultOptions; // Use the default options from the item
-    }
-  };
+  // console.log("idtypeData-->>", idTypeData.IdType);
 
   const renderInputComponent = () => {
     switch (type) {
@@ -70,20 +86,19 @@ const RenderInput = ({ item, onChange, shakeAnimation, hasError }) => {
         );
       case "select":
         return (
-          // switch (label) {
-          //   case "ID type":
-          //     //id api call
-          //     //data
-          //     options= data
-          //     break;
-
-          //   default:
-          //     break;
-          // }
           <PickerInput
             label={label}
-            onValueChange={(item) => onChange(item)}
-            options={handlePickerOptions()} // Call the function to determine options
+            onValueChange={(item) => handleChange(item)}
+            options={(() => {
+              switch (label) {
+                case "ID Type":
+                  return idTypeData?.IdType || [];
+
+
+                default:
+                  return options || [];
+              }
+            })()}
             selectedValue={value}
           />
         );
