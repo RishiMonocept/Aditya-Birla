@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   View,
   Text,
@@ -22,10 +22,33 @@ import DateInput from "../../components/TextInputUIs/DateInput";
 
 const RenderInput = ({ item, onChange, shakeAnimation, hasError }) => {
   const { type, label, value, name, options, message } = item;
+  const [idTypeData, setIdTypeData] = useState([]);
+  const [defaultOptions, setDefaultOptions] = useState(options); // Use options from item as default
 
   if (!item.visible || !["text", "select", "date"].includes(type)) return null;
 
   const handleChange = (text) => onChange(name, text);
+
+  const getData = async () => {
+    const response = await fetch("https://usp.monocept.ai/yatra/getId");
+    const jsonData = await response.json();
+    // setIdTypeData(jsonData);
+  };
+
+  useEffect(() => {
+    if (label === "ID type") {
+      getData();
+    }
+  }, [label]);
+
+  const handlePickerOptions = () => {
+    switch (label) {
+      case "ID type":
+        return idTypeData; // Use the data fetched from the API for ID type
+      default:
+        return defaultOptions; // Use the default options from the item
+    }
+  };
 
   const renderInputComponent = () => {
     switch (type) {
@@ -47,10 +70,20 @@ const RenderInput = ({ item, onChange, shakeAnimation, hasError }) => {
         );
       case "select":
         return (
+          // switch (label) {
+          //   case "ID type":
+          //     //id api call
+          //     //data
+          //     options= data
+          //     break;
+
+          //   default:
+          //     break;
+          // }
           <PickerInput
             label={label}
-            onValueChange={(item) => handleChange(item)}
-            options={options}
+            onValueChange={(item) => onChange(item)}
+            options={handlePickerOptions()} // Call the function to determine options
             selectedValue={value}
           />
         );
