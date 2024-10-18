@@ -21,7 +21,6 @@ const FormScreen = () => {
 
   const fetchFormData = async () => {
     const url = "https://usp.monocept.ai/yatra/api/getform";
-
     const bodyData = {
       partnerId: 1,
       productId: 1,
@@ -45,11 +44,13 @@ const FormScreen = () => {
 
       if (jsonResponse.success) {
         setFormData(jsonResponse.data); // Store the form data in the state
+        setError(null); // Reset any previous errors
       } else {
-        setError("API call failed, no JSON data received");
+        throw new Error("API call failed, no valid data received");
       }
-    } catch (error) {
-      setError(error.message); // Store the error message
+    } catch (err) {
+      setError(err.message); // Store the error message
+      setFormData(null); // Reset formData on error
     }
   };
   return (
@@ -68,13 +69,16 @@ const FormScreen = () => {
               fetchFormData(); // Fetch form data when the button is pressed
             }}
           />
+          {error && <Text style={styles.errorText}>Error: {error}</Text>}
           {formData && (
             <LeadsForm
               isVisible={modalVisible}
               onClose={() => setModalVisible(false)}
-              formJsonData={JSON.parse(formData?.jsonFormData)} // Pass parsed form data
+              formJsonData={JSON.parse(formData.jsonFormData)} // Pass parsed form data
             />
           )}
+          {!formData && !error && <Text>Loading...</Text>}
+
           {/* Uncomment to display error or form data */}
           {/* <View>
             {error && <Text>Error: {error}</Text>}
