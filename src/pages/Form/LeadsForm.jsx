@@ -28,7 +28,11 @@ const RenderInput = ({ item, onChange, shakeAnimation, hasError }) => {
   const [maritalStatusData, setMaritalStatusData] = useState([]);
   // const [apiData, setApiData] = useState({});
 
-  if (!item.visible || !["text", "select", "date"].includes(type)) return null;
+  if (
+    !item.visible ||
+    !["text", "select", "date", "email", "phonenumber","idnumber"].includes(type)
+  )
+    return null;
 
   const handleChange = (text) => onChange(name, text);
 
@@ -69,6 +73,9 @@ const RenderInput = ({ item, onChange, shakeAnimation, hasError }) => {
   const renderInputComponent = () => {
     switch (type) {
       case "text":
+      case "email":
+      case "phonenumber":
+      case "idnumber":
         return (
           <GenericInput
             placeholder={label}
@@ -127,7 +134,9 @@ export default function LeadsForm({ isVisible, onClose }) {
   const [formData, setFormData] = useState(
     formJsonData.formSections[0].formControls.reduce((acc, control) => {
       if (
-        ["text", "select", "date"].includes(control.type) &&
+        ["text", "select", "date", "email", "phonenumber","idnumber"].includes(
+          control.type
+        ) &&
         control.visible
       ) {
         acc[control.name] = control.value || "";
@@ -174,7 +183,11 @@ export default function LeadsForm({ isVisible, onClose }) {
       (acc, item) => {
         const { name, type, validators, visible } = item;
 
-        if (!["text", "select", "date"].includes(type) || !visible) return acc;
+        if (
+          !["text", "select", "date", "email", "phonenumber","idnumber"].includes(type) ||
+          !visible
+        )
+          return acc;
 
         const requiredValidator = validators?.find((v) => v.required);
         if (requiredValidator && !formData[name]) {
@@ -216,7 +229,9 @@ export default function LeadsForm({ isVisible, onClose }) {
     setFormData(
       formJsonData.formSections[0].formControls.reduce((acc, control) => {
         if (
-          ["text", "select", "date"].includes(control.type) &&
+          ["text", "select", "date", "email", "phonenumber","idnumber"].includes(
+            control.type
+          ) &&
           control.visible
         ) {
           acc[control.name] = control.value || "";
