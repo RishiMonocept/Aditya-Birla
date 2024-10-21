@@ -6,7 +6,7 @@ import {
   Text,
 } from "react-native";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "../components/Header/Header";
 import { styles } from "./home.style";
@@ -19,40 +19,44 @@ const FormScreen = () => {
   const [formData, setFormData] = useState(null);
   const [error, setError] = useState(null);
 
-  const fetchFormData = async () => {
-    const url = "https://usp.monocept.ai/yatra/api/getform";
-    const bodyData = {
-      partnerId: 1,
-      productId: 1,
-      formId: 1,
+  useEffect(() => {
+    const fetchFormData = async () => {
+      const url = "https://usp.monocept.ai/yatra/api/getform";
+      const bodyData = {
+        partnerId: 1,
+        productId: 1,
+        formId: 1,
+      };
+
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(bodyData),
+        });
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const jsonResponse = await response.json();
+
+        if (jsonResponse.success) {
+          setFormData(jsonResponse.data); // Store the form data in the state
+          setError(null); // Reset any previous errors
+        } else {
+          throw new Error("API call failed, no valid data received");
+        }
+      } catch (err) {
+        setError(err.message); // Store the error message
+        setFormData(null); // Reset formData on error
+      }
     };
+    fetchFormData();
+  }, []);
 
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(bodyData),
-      });
-
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      const jsonResponse = await response.json();
-
-      if (jsonResponse.success) {
-        setFormData(jsonResponse.data); // Store the form data in the state
-        setError(null); // Reset any previous errors
-      } else {
-        throw new Error("API call failed, no valid data received");
-      }
-    } catch (err) {
-      setError(err.message); // Store the error message
-      setFormData(null); // Reset formData on error
-    }
-  };
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -66,7 +70,6 @@ const FormScreen = () => {
             title={"Leads Form"}
             onPress={() => {
               setModalVisible(true);
-              fetchFormData(); // Fetch form data when the button is pressed
             }}
           />
           {error && <Text style={styles.errorText}>Error: {error}</Text>}
