@@ -19,6 +19,7 @@ import GenericInput from "../../components/TextInputUIs/GenericInput";
 import Toast from "react-native-toast-message";
 import Header from "../../components/Header/Header";
 import DateInput from "../../components/TextInputUIs/DateInput";
+import CheckBoxInput from "../../components/TextInputUIs/CheckBoxInput";
 
 export default function LeadsForm({ isVisible, onClose, formJsonData }) {
   const [formIndex, setFormIndex] = useState(0);
@@ -99,6 +100,7 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
 
     useEffect(() => {
       getData();
+      // fetchMemberDetailsData();
     }, []);
 
     // console.log("idtypeData-->>", idTypeData.IdType);
@@ -260,6 +262,69 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
       onClose();
     }
   };
+
+  // const [formMemberData, setFormMemberData] = useState(null);
+  // const [error, setError] = useState(null);
+
+  // const fetchMemberDetailsData = async () => {
+  //   const url = "https://usp.monocept.ai/yatra/api/getproposerrelationships";
+  //   const bodyData = {
+  //     policyType: "Multi Individual",
+  //   };
+
+  //   try {
+  //     const response = await fetch(url, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(bodyData),
+  //     });
+
+  //     if (!response.ok) {
+  //       throw new Error("Network response was not ok");
+  //     }
+
+  //     const jsonResponse = await response.json();
+
+  //     if (jsonResponse.success) {
+  //       setFormMemberData(jsonResponse.data); // Store the form data in the state
+  //       console.log("heloo---->>>", formMemberData);
+
+  //       setError(null); // Reset any previous errors
+  //     } else {
+  //       throw new Error("API call failed, no valid data received");
+  //     }
+  //   } catch (err) {
+  //     setError(err.message); // Store the error message
+  //     setFormMemberData(null); // Reset formData on error
+  //   }
+  // };
+
+  // const [checked, setChecked] = useState(false);
+  const [checkedStates, setCheckedStates] = useState([
+    false,
+    false,
+    false,
+    false,
+  ]); // Store checked states for all checkboxes
+
+  // Handle the checked state change
+  const handleCheckBoxChange = (index, value) => {
+    const updatedCheckedStates = [...checkedStates];
+    updatedCheckedStates[index] = value;
+    setCheckedStates(updatedCheckedStates);
+  };
+
+  const handleSubmitDemo = () => {
+    console.log("Checked States: ", checkedStates); // Log the checked states when submitting
+    // Perform other form submission logic here
+    // fetchMemberDetailsData();
+
+    // Reset the checked states after submission
+    // setCheckedStates([false, false, false, false]);
+  };
+
   // console.log("--->", formJsonData.formSections[0].formControls);
   return (
     <Modal visible={isVisible} animationType="slide" onRequestClose={onClose}>
@@ -274,18 +339,28 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
         </Text>
         {formJsonData?.formSections[formIndex]?.sectionTitle ===
           "Insured Member Details" && (
-          <View
-            style={{
-              flex: 1,
-              borderWidth: 2,
-              padding: 200,
-              borderColor: "#3d3838",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Text style={{ color: "black" }}>Hello</Text>
-          </View>
+          <>
+            {[...Array(4)].map((_, index) => (
+              <CheckBoxInput
+                key={index}
+                checked={checkedStates[index]} // Set the checked state
+                setChecked={(value) => handleCheckBoxChange(index, value)} // Handle checkbox changes
+              />
+            ))}
+            <GenericButton title={"Submit"} onPress={handleSubmitDemo} />
+            {/* {!formMemberData && !error && <Text>Loading...</Text>} */}
+          </> // <View
+          //   style={{
+          //     flex: 1,
+          //     borderWidth: 2,
+          //     padding: 200,
+          //     borderColor: "#3d3838",
+          //     alignItems: "center",
+          //     justifyContent: "center",
+          //   }}
+          // >
+          //   <Text style={{ color: "black" }}>Hello</Text>
+          // </View>
         )}
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={{ gap: 16, marginBottom: 36 }}>
