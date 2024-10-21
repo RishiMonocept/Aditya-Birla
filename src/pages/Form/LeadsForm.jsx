@@ -11,7 +11,7 @@ import {
   Modal,
   TouchableOpacity,
 } from "react-native";
-import formJsonData from "./formData.json";
+// import formJsonData from "./formData.json";
 import FormProgressHeader from "../../components/LeadsForm/FormProgressHeader";
 import GenericButton from "../../components/ButtonsUIs/GenericButton";
 import PickerInput from "../../components/TextInputUIs/PickerInput";
@@ -20,121 +20,13 @@ import Toast from "react-native-toast-message";
 import Header from "../../components/Header/Header";
 import DateInput from "../../components/TextInputUIs/DateInput";
 
-const RenderInput = ({ item, onChange, shakeAnimation, hasError }) => {
-  const { type, label, value, name, options, message } = item;
-  const [idTypeData, setIdTypeData] = useState([]);
-  const [proposerOccupationData, setProposerOccupationData] = useState([]);
-  const [educationTypeData, setEducationTypeData] = useState([]);
-  const [maritalStatusData, setMaritalStatusData] = useState([]);
-  // const [apiData, setApiData] = useState({});
+export default function LeadsForm({ isVisible, onClose, formJsonData }) {
+  const [formIndex, setFormIndex] = useState(0);
 
-  if (
-    !item.visible ||
-    !["text", "select", "date", "email", "phonenumber","idnumber"].includes(type)
-  )
-    return null;
-
-  const handleChange = (text) => onChange(name, text);
-
-  const getData = async () => {
-    try {
-      const idTypeResponse = await fetch("https://usp.monocept.ai/yatra/getId");
-      const idTypeJson = await idTypeResponse.json();
-      setIdTypeData(idTypeJson);
-
-      const proposerOccupationResponse = await fetch(
-        "https://usp.monocept.ai/yatra/getProposerOccupation"
-      );
-      const proposerOccupationJson = await proposerOccupationResponse.json();
-      setProposerOccupationData(proposerOccupationJson);
-
-      const educationTypeResponse = await fetch(
-        "https://usp.monocept.ai/yatra/getEducationType"
-      );
-      const educationTypeJson = await educationTypeResponse.json();
-      setEducationTypeData(educationTypeJson);
-
-      const maritalStatusResponse = await fetch(
-        "https://usp.monocept.ai/yatra/getMaritalStatus"
-      );
-      const maritalStatusJson = await maritalStatusResponse.json();
-      setMaritalStatusData(maritalStatusJson);
-    } catch (error) {
-      console.error("Error fetching data: ", error);
-    }
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
-  // console.log("idtypeData-->>", idTypeData.IdType);
-
-  const renderInputComponent = () => {
-    switch (type) {
-      case "text":
-      case "email":
-      case "phonenumber":
-      case "idnumber":
-        return (
-          <GenericInput
-            placeholder={label}
-            value={value}
-            onChangeText={handleChange}
-          />
-        );
-      case "date":
-        return (
-          <DateInput
-            placeholder={label}
-            value={value}
-            onChangeText={handleChange}
-          />
-        );
-      case "select":
-        return (
-          <PickerInput
-            label={label}
-            onValueChange={(item) => handleChange(item)}
-            options={(() => {
-              switch (label) {
-                case "ID Type":
-                  return idTypeData?.IdType || [];
-
-                case "Occupation":
-                  return proposerOccupationData?.ProposerOccupation || [];
-
-                case "Marital Status":
-                  return maritalStatusData?.MaritalStatus || [];
-
-                case "Education":
-                  return educationTypeData?.EducationType || [];
-
-                default:
-                  return options || [];
-              }
-            })()}
-            selectedValue={value}
-          />
-        );
-      default:
-        return null;
-    }
-  };
-
-  return (
-    <Animated.View style={{ transform: [{ translateX: shakeAnimation }] }}>
-      {renderInputComponent()}
-      {hasError && <Text style={styles.errorText}>{message}</Text>}
-    </Animated.View>
-  );
-};
-
-export default function LeadsForm({ isVisible, onClose }) {
   const [formData, setFormData] = useState(
-    formJsonData.formSections[0].formControls.reduce((acc, control) => {
+    formJsonData.formSections[formIndex].formControls.reduce((acc, control) => {
       if (
-        ["text", "select", "date", "email", "phonenumber","idnumber"].includes(
+        ["text", "select", "date", "email", "phonenumber", "idnumber"].includes(
           control.type
         ) &&
         control.visible
@@ -155,6 +47,120 @@ export default function LeadsForm({ isVisible, onClose }) {
     if (errors[key]) {
       setErrors((prevErrors) => ({ ...prevErrors, [key]: false }));
     }
+  };
+
+  const RenderInput = ({ item, onChange, shakeAnimation, hasError }) => {
+    const { type, label, value, name, options, message } = item;
+    const [idTypeData, setIdTypeData] = useState([]);
+    const [proposerOccupationData, setProposerOccupationData] = useState([]);
+    const [educationTypeData, setEducationTypeData] = useState([]);
+    const [maritalStatusData, setMaritalStatusData] = useState([]);
+    // const [apiData, setApiData] = useState({});
+
+    if (
+      !item.visible ||
+      !["text", "select", "date", "email", "phonenumber", "idnumber"].includes(
+        type
+      )
+    )
+      return null;
+
+    const handleChange = (text) => onChange(name, text);
+
+    const getData = async () => {
+      try {
+        const idTypeResponse = await fetch(
+          "https://usp.monocept.ai/yatra/getId"
+        );
+        const idTypeJson = await idTypeResponse.json();
+        setIdTypeData(idTypeJson);
+
+        const proposerOccupationResponse = await fetch(
+          "https://usp.monocept.ai/yatra/getProposerOccupation"
+        );
+        const proposerOccupationJson = await proposerOccupationResponse.json();
+        setProposerOccupationData(proposerOccupationJson);
+
+        const educationTypeResponse = await fetch(
+          "https://usp.monocept.ai/yatra/getEducationType"
+        );
+        const educationTypeJson = await educationTypeResponse.json();
+        setEducationTypeData(educationTypeJson);
+
+        const maritalStatusResponse = await fetch(
+          "https://usp.monocept.ai/yatra/getMaritalStatus"
+        );
+        const maritalStatusJson = await maritalStatusResponse.json();
+        setMaritalStatusData(maritalStatusJson);
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
+    };
+
+    useEffect(() => {
+      getData();
+    }, []);
+
+    // console.log("idtypeData-->>", idTypeData.IdType);
+
+    const renderInputComponent = () => {
+      switch (type) {
+        case "text":
+        case "email":
+        case "phonenumber":
+        case "idnumber":
+          return (
+            <GenericInput
+              placeholder={label}
+              value={value}
+              onChangeText={handleChange}
+            />
+          );
+        case "date":
+          return (
+            <DateInput
+              placeholder={label}
+              value={value}
+              onChangeText={handleChange}
+            />
+          );
+        case "select":
+          return (
+            <PickerInput
+              label={label}
+              onValueChange={(item) => handleChange(item)}
+              options={(() => {
+                switch (label) {
+                  case "ID Type":
+                    return idTypeData?.IdType || [];
+
+                  case "Occupation":
+                    return proposerOccupationData?.ProposerOccupation || [];
+
+                  case "Marital Status":
+                    return maritalStatusData?.MaritalStatus || [];
+
+                  case "Education":
+                    return educationTypeData?.EducationType || [];
+
+                  default:
+                    return options || [];
+                }
+              })()}
+              selectedValue={value}
+            />
+          );
+        default:
+          return null;
+      }
+    };
+
+    return (
+      <Animated.View style={{ transform: [{ translateX: shakeAnimation }] }}>
+        {renderInputComponent()}
+        {hasError && <Text style={styles.errorText}>{message}</Text>}
+      </Animated.View>
+    );
   };
 
   const triggerShakeAnimation = () => {
@@ -179,12 +185,19 @@ export default function LeadsForm({ isVisible, onClose }) {
   };
 
   const handleSubmit = () => {
-    const newErrors = formJsonData.formSections[0].formControls.reduce(
+    const newErrors = formJsonData.formSections[formIndex].formControls.reduce(
       (acc, item) => {
         const { name, type, validators, visible } = item;
 
         if (
-          !["text", "select", "date", "email", "phonenumber","idnumber"].includes(type) ||
+          ![
+            "text",
+            "select",
+            "date",
+            "email",
+            "phonenumber",
+            "idnumber",
+          ].includes(type) ||
           !visible
         )
           return acc;
@@ -213,35 +226,41 @@ export default function LeadsForm({ isVisible, onClose }) {
       {}
     );
 
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      triggerShakeAnimation();
-      return;
+    // if (Object.keys(newErrors).length > 0) {
+    //   setErrors(newErrors);
+    //   triggerShakeAnimation();
+    //   return;
+    // }
+
+    if (formIndex < formJsonData?.formSections.length - 1) {
+      setFormIndex((prev) => prev + 1);
+    } else {
+      console.log("Form submitted successfully", formData);
+      Toast.show({
+        type: "success",
+        position: "top",
+        text1: "Submitted Successfully",
+        visibilityTime: 3000,
+      });
+      setFormData(
+        formJsonData.formSections[formIndex].formControls.reduce(
+          (acc, control) => {
+            if (
+              ["text", "select", "date"].includes(control.type) &&
+              control.visible
+            ) {
+              acc[control.name] = control.value || "";
+            }
+            return acc;
+          },
+          {}
+        )
+      );
+      setFormIndex(0);
+      onClose();
     }
-
-    console.log("Form submitted successfully", formData);
-    Toast.show({
-      type: "success",
-      position: "top",
-      text1: "Submitted Successfully",
-      visibilityTime: 3000,
-    });
-    setFormData(
-      formJsonData.formSections[0].formControls.reduce((acc, control) => {
-        if (
-          ["text", "select", "date", "email", "phonenumber","idnumber"].includes(
-            control.type
-          ) &&
-          control.visible
-        ) {
-          acc[control.name] = control.value || "";
-        }
-        return acc;
-      }, {})
-    );
-    onClose();
   };
-
+  // console.log("--->", formJsonData.formSections[0].formControls);
   return (
     <Modal visible={isVisible} animationType="slide" onRequestClose={onClose}>
       <KeyboardAvoidingView
@@ -251,30 +270,53 @@ export default function LeadsForm({ isVisible, onClose }) {
         <Header title={"Proposal"} onPress={onClose} />
         <FormProgressHeader />
         <Text style={styles.title}>
-          {formJsonData.formSections[0].sectionTitle}
+          {formJsonData?.formSections[formIndex]?.sectionTitle}
         </Text>
+        {formJsonData?.formSections[formIndex]?.sectionTitle ===
+          "Insured Member Details" && (
+          <View
+            style={{
+              flex: 1,
+              borderWidth: 2,
+              padding: 200,
+              borderColor: "#3d3838",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Text style={{ color: "black" }}>Hello</Text>
+          </View>
+        )}
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={{ gap: 16, marginBottom: 36 }}>
-            {formJsonData.formSections[0].formControls.map((item, index) => (
-              <RenderInput
-                key={index}
-                item={{
-                  ...item,
-                  value: formData[item.name],
-                  required: item.validators?.some(
-                    (validator) => validator.required
-                  ),
-                  message:
-                    errors[item.name]?.message ||
-                    item.validators?.find((v) => v.required)?.message,
-                }}
-                onChange={handleFormDataChange}
-                shakeAnimation={
-                  errors[item.name] ? shakeAnimation : new Animated.Value(0)
-                }
-                hasError={errors[item.name]}
-              />
-            ))}
+            {formJsonData.formSections[formIndex].formControls.map(
+              (item, index) => {
+                return (
+                  item?.visible && (
+                    <RenderInput
+                      key={index}
+                      item={{
+                        ...item,
+                        value: formData[item.name],
+                        required: item.validators?.some(
+                          (validator) => validator.required
+                        ),
+                        message:
+                          errors[item.name]?.message ||
+                          item.validators?.find((v) => v.required)?.message,
+                      }}
+                      onChange={handleFormDataChange}
+                      shakeAnimation={
+                        errors[item.name]
+                          ? shakeAnimation
+                          : new Animated.Value(0)
+                      }
+                      hasError={errors[item.name]}
+                    />
+                  )
+                );
+              }
+            )}
           </View>
         </ScrollView>
         <GenericButton title={"Continue"} onPress={handleSubmit} />
