@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
   },
   containerStyle: {
     borderRadius: 20,
+    overflow: "hidden",
   },
   itemContainer: {
     borderRadius: 20,
