@@ -19,6 +19,7 @@ import GenericInput from "../../components/TextInputUIs/GenericInput";
 import Toast from "react-native-toast-message";
 import Header from "../../components/Header/Header";
 import DateInput from "../../components/TextInputUIs/DateInput";
+import DropdownComponent from "../../components/TextInputUIs/Dropdown";
 
 const RenderInput = ({ item, onChange, shakeAnimation, hasError }) => {
   const { type, label, value, name, options, message } = item;
@@ -54,7 +55,13 @@ const RenderInput = ({ item, onChange, shakeAnimation, hasError }) => {
         );
       case "select":
         return (
-          <PickerInput
+          // <PickerInput
+          //   label={label}
+          //   onValueChange={(item) => handleChange(item)}
+          //   options={options}
+          //   selectedValue={value}
+          // />
+          <DropdownComponent
             label={label}
             onValueChange={(item) => handleChange(item)}
             options={options}
@@ -155,11 +162,11 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
       {}
     );
 
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      triggerShakeAnimation();
-      return;
-    }
+    // if (Object.keys(newErrors).length > 0) {
+    //   setErrors(newErrors);
+    //   triggerShakeAnimation();
+    //   return;
+    // }
 
     if (formIndex < formJsonData?.formSections.length - 1) {
       setFormIndex((prev) => prev + 1);
