@@ -20,6 +20,60 @@ import Toast from "react-native-toast-message";
 import Header from "../../components/Header/Header";
 import DateInput from "../../components/TextInputUIs/DateInput";
 
+const RenderInput = ({ item, onChange, shakeAnimation, hasError }) => {
+  const { type, label, value, name, options, message } = item;
+  // console.log(type);
+
+  if (!item.visible) return null;
+  /**
+   * We want:
+   * 1. agr text and date ke lava koi aur type hai => not print the field
+   * 2. agr visible field false hai => not print the field
+   *
+   */
+
+  const handleChange = (text) => onChange(name, text);
+
+  const renderInputComponent = () => {
+    switch (type) {
+      case "text":
+        return (
+          <GenericInput
+            placeholder={label}
+            value={value}
+            onChangeText={handleChange}
+          />
+        );
+      case "date":
+        return (
+          <DateInput
+            placeholder={label}
+            value={value}
+            onChangeText={handleChange}
+          />
+        );
+      case "select":
+        return (
+          <PickerInput
+            label={label}
+            onValueChange={(item) => handleChange(item)}
+            options={options}
+            selectedValue={value}
+          />
+        );
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <Animated.View style={{ transform: [{ translateX: shakeAnimation }] }}>
+      {renderInputComponent()}
+      {hasError && <Text style={styles.errorText}>{message}</Text>}
+    </Animated.View>
+  );
+};
+
 export default function LeadsForm({ isVisible, onClose, formJsonData }) {
   const [formIndex, setFormIndex] = useState(0);
 
@@ -42,63 +96,11 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
       ...prevData,
       [key]: value,
     }));
+
+    console.log(formData);
     if (errors[key]) {
       setErrors((prevErrors) => ({ ...prevErrors, [key]: false }));
     }
-  };
-
-  const RenderInput = ({ item, onChange, shakeAnimation, hasError }) => {
-    const { type, label, value, name, options, message } = item;
-    // console.log(type);
-
-    // if (!item.visible) return null;
-    /**
-     * We want:
-     * 1. agr text and date ke lava koi aur type hai => not print the field
-     * 2. agr visible field false hai => not print the field
-     *
-     */
-
-    const handleChange = (text) => onChange(name, text);
-
-    const renderInputComponent = () => {
-      switch (type) {
-        case "text":
-          return (
-            <GenericInput
-              placeholder={label}
-              value={value}
-              onChangeText={handleChange}
-            />
-          );
-        case "date":
-          return (
-            <DateInput
-              placeholder={label}
-              value={value}
-              onChangeText={handleChange}
-            />
-          );
-        case "select":
-          return (
-            <PickerInput
-              label={label}
-              onValueChange={(item) => handleChange(item)}
-              options={options}
-              selectedValue={value}
-            />
-          );
-        default:
-          return null;
-      }
-    };
-
-    return (
-      <Animated.View style={{ transform: [{ translateX: shakeAnimation }] }}>
-        {renderInputComponent()}
-        {hasError && <Text style={styles.errorText}>{message}</Text>}
-      </Animated.View>
-    );
   };
 
   const triggerShakeAnimation = () => {
@@ -153,11 +155,11 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
       {}
     );
 
-    // if (Object.keys(newErrors).length > 0) {
-    //   setErrors(newErrors);
-    //   triggerShakeAnimation();
-    //   return;
-    // }
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      triggerShakeAnimation();
+      return;
+    }
 
     if (formIndex < formJsonData?.formSections.length - 1) {
       setFormIndex((prev) => prev + 1);
@@ -219,28 +221,24 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
             {formJsonData.formSections[formIndex].formControls.map(
               (item, index) => {
                 return (
-                  item?.visible && (
-                    <RenderInput
-                      key={index}
-                      item={{
-                        ...item,
-                        value: formData[item.name],
-                        required: item.validators?.some(
-                          (validator) => validator.required
-                        ),
-                        message:
-                          errors[item.name]?.message ||
-                          item.validators?.find((v) => v.required)?.message,
-                      }}
-                      onChange={handleFormDataChange}
-                      shakeAnimation={
-                        errors[item.name]
-                          ? shakeAnimation
-                          : new Animated.Value(0)
-                      }
-                      hasError={errors[item.name]}
-                    />
-                  )
+                  <RenderInput
+                    key={index}
+                    item={{
+                      ...item,
+                      value: formData[item.name],
+                      required: item.validators?.some(
+                        (validator) => validator.required
+                      ),
+                      message:
+                        errors[item.name]?.message ||
+                        item.validators?.find((v) => v.required)?.message,
+                    }}
+                    onChange={handleFormDataChange}
+                    shakeAnimation={
+                      errors[item.name] ? shakeAnimation : new Animated.Value(0)
+                    }
+                    hasError={errors[item.name]}
+                  />
                 );
               }
             )}
