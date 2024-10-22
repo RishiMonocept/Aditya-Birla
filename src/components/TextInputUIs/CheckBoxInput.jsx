@@ -9,7 +9,7 @@ import {
   spacingVerticalScale,
 } from "../../res/ScaledSheet";
 
-export default function CheckBoxInput({ checked, setChecked }) {
+export default function CheckBoxInput({ checked, setChecked, item }) {
   //   const [checked, setChecked] = useState(false);
 
   const handlePress = () => {
@@ -20,7 +20,7 @@ export default function CheckBoxInput({ checked, setChecked }) {
     <View style={styles.memberDetailContainer}>
       <View
         style={{
-          borderWidth: 1,
+          // borderWidth: 1,
           flexDirection: "row",
           gap: spacingScale.base,
           alignItems: "center",
@@ -32,8 +32,8 @@ export default function CheckBoxInput({ checked, setChecked }) {
             styles.checkboxContainer,
             {
               borderColor: checked ? "#2E2E2E" : null,
-              borderWidth: checked ? 0 : 1, // You can adjust the width here if needed
-              borderRadius: checked ? 0 : spacingModerateScale.s2, // You can adjust the radius here if needed
+              borderWidth: checked ? 0 : 1,
+              borderRadius: checked ? 0 : spacingModerateScale.s2,
             },
           ]}
           onPress={handlePress}
@@ -47,9 +47,11 @@ export default function CheckBoxInput({ checked, setChecked }) {
             backgroundColor: "#fff",
             borderRadius: spacingModerateScale.m4,
           }}
-        ></View>
+        >
+          {/* <Image source={require(item.imagePath)} /> */}
+        </View>
 
-        <Text style={styles.filterText}>ABC</Text>
+        <Text style={styles.filterText}>{item.name}</Text>
       </View>
 
       {checked && (
@@ -72,7 +74,6 @@ const styles = StyleSheet.create({
     paddingVertical: spacingVerticalScale.base,
     gap: spacingModerateScale.base,
     borderRadius: spacingModerateScale.m3,
-    borderWidth: 1,
     backgroundColor: "#F1F3F6",
     flexDirection: "row",
     alignItems: "center",
@@ -98,7 +99,6 @@ const styles = StyleSheet.create({
   },
   deleteContainer: {
     gap: spacingModerateScale.base,
-    borderWidth: 1,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",

@@ -1,11 +1,19 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 
-export default function GenericButton({ title, onPress }) {
+export default function GenericButton({
+  title,
+  onPress,
+  backgroundColor = "#C7222A",
+  textColor = "#ffffff",
+}) {
   return (
     <View style={{ paddingVertical: 10 }}>
-      <TouchableOpacity style={styles.mainContainer} onPress={onPress}>
-        <Text style={styles.text}>{title}</Text>
+      <TouchableOpacity
+        style={[styles.mainContainer, { backgroundColor: backgroundColor }]}
+        onPress={onPress}
+      >
+        <Text style={[styles.text, { color: textColor }]}>{title}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -13,7 +21,6 @@ export default function GenericButton({ title, onPress }) {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    backgroundColor: "#C7222A",
     borderRadius: 60,
     justifyContent: "space-between",
     paddingVertical: 12,
@@ -21,7 +28,6 @@ const styles = StyleSheet.create({
     // marginVertical: 10,
   },
   text: {
-    color: "#ffffff",
     fontSize: 16,
     fontWeight: "600",
     lineHeight: 19.2,

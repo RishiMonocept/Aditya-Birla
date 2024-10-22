@@ -10,6 +10,7 @@ import {
   Vibration,
   Modal,
   TouchableOpacity,
+  FlatList,
 } from "react-native";
 // import formJsonData from "./formData.json";
 import FormProgressHeader from "../../components/LeadsForm/FormProgressHeader";
@@ -23,7 +24,6 @@ import CheckBoxInput from "../../components/TextInputUIs/CheckBoxInput";
 
 export default function LeadsForm({ isVisible, onClose, formJsonData }) {
   const [formIndex, setFormIndex] = useState(0);
-
   const [formData, setFormData] = useState(
     formJsonData.formSections[formIndex].formControls.reduce((acc, control) => {
       if (
@@ -39,6 +39,9 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
   );
   const [errors, setErrors] = useState({});
   const shakeAnimation = useRef(new Animated.Value(0)).current;
+  const [formMemberData, setFormMemberData] = useState(null);
+  const [policyType, setPolicyType] = useState("Multi Individual");
+  const [checkedStates, setCheckedStates] = useState([]);
 
   const handleFormDataChange = (key, value) => {
     setFormData((prevData) => ({
@@ -100,10 +103,26 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
 
     useEffect(() => {
       getData();
-      // fetchMemberDetailsData();
     }, []);
 
-    // console.log("idtypeData-->>", idTypeData.IdType);
+    const getOptions = () => {
+      switch (label) {
+        case "ID Type":
+          return idTypeData?.IdType || [];
+
+        case "Occupation":
+          return proposerOccupationData?.ProposerOccupation || [];
+
+        case "Marital Status":
+          return maritalStatusData?.MaritalStatus || [];
+
+        case "Education":
+          return educationTypeData?.EducationType || [];
+
+        default:
+          return options || [];
+      }
+    };
 
     const renderInputComponent = () => {
       switch (type) {
@@ -131,24 +150,7 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
             <PickerInput
               label={label}
               onValueChange={(item) => handleChange(item)}
-              options={(() => {
-                switch (label) {
-                  case "ID Type":
-                    return idTypeData?.IdType || [];
-
-                  case "Occupation":
-                    return proposerOccupationData?.ProposerOccupation || [];
-
-                  case "Marital Status":
-                    return maritalStatusData?.MaritalStatus || [];
-
-                  case "Education":
-                    return educationTypeData?.EducationType || [];
-
-                  default:
-                    return options || [];
-                }
-              })()}
+              options={getOptions()}
               selectedValue={value}
             />
           );
@@ -263,69 +265,75 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
     }
   };
 
-  // const [formMemberData, setFormMemberData] = useState(null);
-  // const [error, setError] = useState(null);
+  const fetchMemberDetailsData = async () => {
+    const url = "https://usp.monocept.ai/yatra/api/getproposerrelationships";
+    const bodyData = {
+      policyType: policyType,
+    };
 
-  // const fetchMemberDetailsData = async () => {
-  //   const url = "https://usp.monocept.ai/yatra/api/getproposerrelationships";
-  //   const bodyData = {
-  //     policyType: "Multi Individual",
-  //   };
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(bodyData),
+      });
 
-  //   try {
-  //     const response = await fetch(url, {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(bodyData),
-  //     });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
 
-  //     if (!response.ok) {
-  //       throw new Error("Network response was not ok");
-  //     }
+      const jsonResponse = await response.json();
 
-  //     const jsonResponse = await response.json();
-
-  //     if (jsonResponse.success) {
-  //       setFormMemberData(jsonResponse.data); // Store the form data in the state
-  //       console.log("heloo---->>>", formMemberData);
-
-  //       setError(null); // Reset any previous errors
-  //     } else {
-  //       throw new Error("API call failed, no valid data received");
-  //     }
-  //   } catch (err) {
-  //     setError(err.message); // Store the error message
-  //     setFormMemberData(null); // Reset formData on error
-  //   }
-  // };
-
-  // const [checked, setChecked] = useState(false);
-  const [checkedStates, setCheckedStates] = useState([
-    false,
-    false,
-    false,
-    false,
-  ]); // Store checked states for all checkboxes
-
-  // Handle the checked state change
-  const handleCheckBoxChange = (index, value) => {
-    const updatedCheckedStates = [...checkedStates];
-    updatedCheckedStates[index] = value;
-    setCheckedStates(updatedCheckedStates);
+      if (jsonResponse.success) {
+        setFormMemberData(jsonResponse.data.relationShip);
+      } else {
+        throw new Error("API call failed, no valid data received");
+      }
+    } catch (err) {
+      setFormMemberData(null);
+    }
   };
 
-  const handleSubmitDemo = () => {
-    console.log("Checked States: ", checkedStates); // Log the checked states when submitting
-    // Perform other form submission logic here
-    // fetchMemberDetailsData();
-
-    // Reset the checked states after submission
-    // setCheckedStates([false, false, false, false]);
+  const handleCheckBoxChange = (index) => {
+    setCheckedStates((prevCheckedStates) => {
+      const updatedCheckedStates = [...prevCheckedStates];
+      updatedCheckedStates[index] = !prevCheckedStates[index];
+      return updatedCheckedStates;
+    });
   };
 
-  // console.log("--->", formJsonData.formSections[0].formControls);
+  const handleAddMore = () => {
+    console.log("Checked States: ", checkedStates);
+    if (formMemberData && formMemberData.length > 0) {
+      setCheckedStates(new Array(formMemberData.length).fill(false));
+    }
+  };
+
+  const renderMemberDetailsItem = ({ item, index }) => (
+    <View key={item.id} style={{ marginVertical: 8 }}>
+      <CheckBoxInput
+        checked={checkedStates[index]}
+        setChecked={() => handleCheckBoxChange(index)}
+        item={item}
+      />
+    </View>
+  );
+
+  //REVIEW : It works, but might be wrong
+  useEffect(() => {
+    // console.log("fetched form data ------>", formMemberData);
+    if (formMemberData && formMemberData.length > 0) {
+      setCheckedStates(new Array(formMemberData.length).fill(false));
+    }
+  }, [formMemberData]);
+
+  //REVIEW : It works, but might be wrong
+  useEffect(() => {
+    fetchMemberDetailsData();
+  }, []);
+
   return (
     <Modal visible={isVisible} animationType="slide" onRequestClose={onClose}>
       <KeyboardAvoidingView
@@ -340,53 +348,43 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
         {formJsonData?.formSections[formIndex]?.sectionTitle ===
           "Insured Member Details" && (
           <>
-            {[...Array(4)].map((_, index) => (
-              <CheckBoxInput
-                key={index}
-                checked={checkedStates[index]} // Set the checked state
-                setChecked={(value) => handleCheckBoxChange(index, value)} // Handle checkbox changes
-              />
-            ))}
-            <GenericButton title={"Submit"} onPress={handleSubmitDemo} />
-            {/* {!formMemberData && !error && <Text>Loading...</Text>} */}
-          </> // <View
-          //   style={{
-          //     flex: 1,
-          //     borderWidth: 2,
-          //     padding: 200,
-          //     borderColor: "#3d3838",
-          //     alignItems: "center",
-          //     justifyContent: "center",
-          //   }}
-          // >
-          //   <Text style={{ color: "black" }}>Hello</Text>
-          // </View>
+            <FlatList
+              data={formMemberData}
+              keyExtractor={(item) => item.id}
+              renderItem={renderMemberDetailsItem}
+            />
+          </>
         )}
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={{ gap: 16, marginBottom: 36 }}>
             {formJsonData.formSections[formIndex].formControls.map(
               (item, index) => {
+                const isVisible = item?.visible;
+                const value = formData[item.name];
+                const isRequired = item.validators?.some(
+                  (validator) => validator.required
+                );
+                const errorMessage =
+                  errors[item.name]?.message ||
+                  item.validators?.find((v) => v.required)?.message;
+                const hasError = errors[item.name];
+                const shakeAnim = hasError
+                  ? shakeAnimation
+                  : new Animated.Value(0);
+
                 return (
-                  item?.visible && (
+                  isVisible && (
                     <RenderInput
                       key={index}
                       item={{
                         ...item,
-                        value: formData[item.name],
-                        required: item.validators?.some(
-                          (validator) => validator.required
-                        ),
-                        message:
-                          errors[item.name]?.message ||
-                          item.validators?.find((v) => v.required)?.message,
+                        value,
+                        required: isRequired,
+                        message: errorMessage,
                       }}
                       onChange={handleFormDataChange}
-                      shakeAnimation={
-                        errors[item.name]
-                          ? shakeAnimation
-                          : new Animated.Value(0)
-                      }
-                      hasError={errors[item.name]}
+                      shakeAnimation={shakeAnim}
+                      hasError={hasError}
                     />
                   )
                 );
@@ -394,6 +392,16 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
             )}
           </View>
         </ScrollView>
+        {formJsonData?.formSections[formIndex]?.sectionTitle ===
+          "Insured Member Details" && (
+          <GenericButton
+            title={"+ Add More"}
+            onPress={handleAddMore}
+            backgroundColor="#F1F3F6"
+            textColor="#000000"
+          />
+        )}
+
         <GenericButton title={"Continue"} onPress={handleSubmit} />
       </KeyboardAvoidingView>
     </Modal>
