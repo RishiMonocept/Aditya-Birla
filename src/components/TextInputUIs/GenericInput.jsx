@@ -11,6 +11,7 @@ export default function GenericInput({ placeholder, onChangeText, value }) {
         onChangeText={onChangeText}
         keyboardType="visible-password"
         dataDetectorTypes={"calendarEvent"}
+        // autoCapitalize={placeholder === "PAN Card Number" && "characters"}
       />
     </View>
   );

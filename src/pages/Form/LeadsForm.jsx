@@ -21,6 +21,7 @@ import Toast from "react-native-toast-message";
 import Header from "../../components/Header/Header";
 import DateInput from "../../components/TextInputUIs/DateInput";
 import CheckBoxInput from "../../components/TextInputUIs/CheckBoxInput";
+import DropdownComponent from "../../components/TextInputUIs/Dropdown";
 
 export default function LeadsForm({ isVisible, onClose, formJsonData }) {
   const [formIndex, setFormIndex] = useState(0);
@@ -48,6 +49,8 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
       ...prevData,
       [key]: value,
     }));
+
+    console.log(formData);
     if (errors[key]) {
       setErrors((prevErrors) => ({ ...prevErrors, [key]: false }));
     }
@@ -147,7 +150,13 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
           );
         case "select":
           return (
-            <PickerInput
+            // <PickerInput
+            //   label={label}
+            //   onValueChange={(item) => handleChange(item)}
+            //   options={getOptions()}
+            //   selectedValue={value}
+            // />
+            <DropdownComponent
               label={label}
               onValueChange={(item) => handleChange(item)}
               options={getOptions()}
@@ -306,9 +315,9 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
 
   const handleAddMore = () => {
     console.log("Checked States: ", checkedStates);
-    if (formMemberData && formMemberData.length > 0) {
-      setCheckedStates(new Array(formMemberData.length).fill(false));
-    }
+    // if (formMemberData && formMemberData.length > 0) {
+    //   setCheckedStates(new Array(formMemberData.length).fill(false));
+    // }
   };
 
   const renderMemberDetailsItem = ({ item, index }) => (
