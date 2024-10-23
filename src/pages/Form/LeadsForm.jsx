@@ -332,7 +332,7 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
     // }
   };
 
-  const renderMemberDetailsItem = ({ item, index }) => (
+  const renderMemberDetailsItem = (item, index) => (
     <View key={item.id} style={{ marginVertical: 8 }}>
       <CheckBoxInput
         checked={checkedStates[index]}
@@ -369,11 +369,16 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
         {formJsonData?.formSections[formIndex]?.sectionTitle ===
           "Insured Member Details" && (
           <>
-            <FlatList
+            {/* <FlatList
               data={formMemberData}
               keyExtractor={(item) => item.id}
               renderItem={renderMemberDetailsItem}
-            />
+            /> */}
+            <ScrollView showsVerticalScrollIndicator={false}>
+              {formMemberData.map((item, index) =>
+                renderMemberDetailsItem(item, index)
+              )}
+            </ScrollView>
           </>
         )}
         <ScrollView

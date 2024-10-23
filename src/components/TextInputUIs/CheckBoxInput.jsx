@@ -48,7 +48,9 @@ export default function CheckBoxInput({ checked, setChecked, item }) {
             placeholder="Enter Age"
             style={styles.textInputContainer}
           />
-          <DELETE_ICON />
+          <TouchableOpacity>
+            <DELETE_ICON />
+          </TouchableOpacity>
         </View>
       )}
     </View>
