@@ -23,7 +23,13 @@ import DateInput from "../../components/TextInputUIs/DateInput";
 import CheckBoxInput from "../../components/TextInputUIs/CheckBoxInput";
 import DropdownComponent from "../../components/TextInputUIs/Dropdown";
 
-const RenderInput = ({ item, onChange, shakeAnimation, hasError }) => {
+const RenderInput = ({
+  item,
+  onChange,
+  shakeAnimation,
+  hasError,
+  scrollOffset,
+}) => {
   const { type, label, value, name, options, message } = item;
   const [idTypeData, setIdTypeData] = useState([]);
   const [proposerOccupationData, setProposerOccupationData] = useState([]);
@@ -126,6 +132,7 @@ const RenderInput = ({ item, onChange, shakeAnimation, hasError }) => {
             onValueChange={(item) => handleChange(item)}
             options={getOptions()}
             selectedValue={value}
+            scrollOffset={scrollOffset}
           />
         );
       default:
@@ -161,6 +168,13 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
   const [formMemberData, setFormMemberData] = useState(null);
   const [policyType, setPolicyType] = useState("Multi Individual");
   const [checkedStates, setCheckedStates] = useState([]);
+
+  const [scrollOffset, setScrollOffset] = useState(0);
+
+  const handleScroll = (event) => {
+    const offset = event.nativeEvent.contentOffset.y;
+    setScrollOffset(offset);
+  };
 
   const handleFormDataChange = (key, value) => {
     setFormData((prevData) => ({
@@ -362,7 +376,11 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
             />
           </>
         )}
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          onScroll={handleScroll}
+          scrollEventThrottle={16}
+        >
           <View style={{ gap: 16, marginBottom: 36 }}>
             {formJsonData.formSections[formIndex].formControls.map(
               (item, index) => {
@@ -392,6 +410,7 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
                       onChange={handleFormDataChange}
                       shakeAnimation={shakeAnim}
                       hasError={hasError}
+                      scrollOffset={scrollOffset}
                     />
                   )
                 );
