@@ -21,7 +21,13 @@ import Header from "../../components/Header/Header";
 import DateInput from "../../components/TextInputUIs/DateInput";
 import DropdownComponent from "../../components/TextInputUIs/Dropdown";
 
-const RenderInput = ({ item, onChange, shakeAnimation, hasError }) => {
+const RenderInput = ({
+  item,
+  onChange,
+  shakeAnimation,
+  hasError,
+  scrollOffset,
+}) => {
   const { type, label, value, name, options, message } = item;
   // console.log(type);
 
@@ -66,6 +72,7 @@ const RenderInput = ({ item, onChange, shakeAnimation, hasError }) => {
             onValueChange={(item) => handleChange(item)}
             options={options}
             selectedValue={value}
+            scrollOffset={scrollOffset}
           />
         );
       default:
@@ -97,6 +104,13 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
   );
   const [errors, setErrors] = useState({});
   const shakeAnimation = useRef(new Animated.Value(0)).current;
+
+  const [scrollOffset, setScrollOffset] = useState(0);
+
+  const handleScroll = (event) => {
+    const offset = event.nativeEvent.contentOffset.y;
+    setScrollOffset(offset);
+  };
 
   const handleFormDataChange = (key, value) => {
     setFormData((prevData) => ({
@@ -223,7 +237,11 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
             <Text style={{ color: "black" }}>Hello</Text>
           </View>
         )}
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          onScroll={handleScroll}
+          scrollEventThrottle={16}
+        >
           <View style={{ gap: 16, marginBottom: 36 }}>
             {formJsonData.formSections[formIndex].formControls.map(
               (item, index) => {
@@ -245,6 +263,7 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
                       errors[item.name] ? shakeAnimation : new Animated.Value(0)
                     }
                     hasError={errors[item.name]}
+                    scrollOffset={scrollOffset}
                   />
                 );
               }

@@ -1,5 +1,5 @@
-import React from "react";
-import { View } from "react-native";
+import React, { useState, useEffect, useRef } from "react";
+import { View, Dimensions } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 import { styles } from "./style";
 
@@ -8,21 +8,29 @@ const DropdownComponent = ({
   onValueChange,
   options,
   selectedValue,
+  scrollOffset,
 }) => {
-  //   const renderLabel = () => {
-  //     if (value || isFocus) {
-  //       return (
-  //         <Text style={[styles.label, isFocus && { color: "blue" }]}>
-  //           Dropdown label
-  //         </Text>
-  //       );
-  //     }
-  //     return null;
-  //   };
+  const [remainingHeight, setRemainingHeight] = useState(0);
+  const [, setIsFocus] = useState(false);
+  const dropdownRef = useRef(null);
+  const windowHeight = Dimensions.get("window").height;
+
+  const calculateRemainingHeight = () => {
+    dropdownRef.current?.measureInWindow((x, y, width, height) => {
+      const dropdownBottom = y + height;
+
+      const calculatedRemainingHeight = windowHeight - dropdownBottom;
+
+      setRemainingHeight(Math.max(calculatedRemainingHeight, 0));
+    });
+  };
+
+  useEffect(() => {
+    calculateRemainingHeight();
+  }, [scrollOffset]);
 
   return (
-    <View style={styles.container}>
-      {/* {renderLabel()} */}
+    <View style={styles.container} ref={dropdownRef}>
       <Dropdown
         style={styles.dropdown}
         placeholderStyle={styles.placeholderStyle}
@@ -35,8 +43,11 @@ const DropdownComponent = ({
         maxHeight={180}
         labelField="name"
         valueField="value"
+        onFocus={() => setIsFocus(true)}
+        onBlur={() => setIsFocus(false)}
         placeholder={label}
         value={selectedValue}
+        dropdownPosition={remainingHeight < 180 ? "top" : "bottom"}
         onChange={(item) => {
           onValueChange(item.value);
         }}
