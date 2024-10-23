@@ -150,19 +150,7 @@ const RenderInput = ({
 
 export default function LeadsForm({ isVisible, onClose, formJsonData }) {
   const [formIndex, setFormIndex] = useState(0);
-  const [formData, setFormData] = useState(
-    formJsonData.formSections[formIndex].formControls.reduce((acc, control) => {
-      if (
-        ["text", "select", "date", "email", "phonenumber", "idnumber"].includes(
-          control.type
-        ) &&
-        control.visible
-      ) {
-        acc[control.name] = control.value || "";
-      }
-      return acc;
-    }, {})
-  );
+  const [formData, setFormData] = useState({});
   const [errors, setErrors] = useState({});
   const shakeAnimation = useRef(new Animated.Value(0)).current;
   const [formMemberData, setFormMemberData] = useState(null);
@@ -255,11 +243,11 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
       {}
     );
 
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      triggerShakeAnimation();
-      return;
-    }
+    // if (Object.keys(newErrors).length > 0) {
+    //   setErrors(newErrors);
+    //   triggerShakeAnimation();
+    //   return;
+    // }
 
     if (formIndex < formJsonData?.formSections.length - 1) {
       setFormIndex((prev) => prev + 1);
@@ -271,20 +259,7 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
         text1: "Submitted Successfully",
         visibilityTime: 3000,
       });
-      setFormData(
-        formJsonData.formSections[formIndex].formControls.reduce(
-          (acc, control) => {
-            if (
-              ["text", "select", "date"].includes(control.type) &&
-              control.visible
-            ) {
-              acc[control.name] = control.value || "";
-            }
-            return acc;
-          },
-          {}
-        )
-      );
+      setFormData({});
       setFormIndex(0);
       onClose();
     }
