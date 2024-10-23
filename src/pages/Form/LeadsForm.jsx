@@ -23,6 +23,124 @@ import DateInput from "../../components/TextInputUIs/DateInput";
 import CheckBoxInput from "../../components/TextInputUIs/CheckBoxInput";
 import DropdownComponent from "../../components/TextInputUIs/Dropdown";
 
+const RenderInput = ({ item, onChange, shakeAnimation, hasError }) => {
+  const { type, label, value, name, options, message } = item;
+  const [idTypeData, setIdTypeData] = useState([]);
+  const [proposerOccupationData, setProposerOccupationData] = useState([]);
+  const [educationTypeData, setEducationTypeData] = useState([]);
+  const [maritalStatusData, setMaritalStatusData] = useState([]);
+  // const [apiData, setApiData] = useState({});
+
+  if (
+    !item.visible ||
+    !["text", "select", "date", "email", "phonenumber", "idnumber"].includes(
+      type
+    )
+  )
+    return null;
+
+  const handleChange = (text) => onChange(name, text);
+
+  const getData = async () => {
+    try {
+      const idTypeResponse = await fetch("https://usp.monocept.ai/yatra/getId");
+      const idTypeJson = await idTypeResponse.json();
+      setIdTypeData(idTypeJson);
+
+      const proposerOccupationResponse = await fetch(
+        "https://usp.monocept.ai/yatra/getProposerOccupation"
+      );
+      const proposerOccupationJson = await proposerOccupationResponse.json();
+      setProposerOccupationData(proposerOccupationJson);
+
+      const educationTypeResponse = await fetch(
+        "https://usp.monocept.ai/yatra/getEducationType"
+      );
+      const educationTypeJson = await educationTypeResponse.json();
+      setEducationTypeData(educationTypeJson);
+
+      const maritalStatusResponse = await fetch(
+        "https://usp.monocept.ai/yatra/getMaritalStatus"
+      );
+      const maritalStatusJson = await maritalStatusResponse.json();
+      setMaritalStatusData(maritalStatusJson);
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getOptions = () => {
+    switch (label) {
+      case "ID Type":
+        return idTypeData?.IdType || [];
+
+      case "Occupation":
+        return proposerOccupationData?.ProposerOccupation || [];
+
+      case "Marital Status":
+        return maritalStatusData?.MaritalStatus || [];
+
+      case "Education":
+        return educationTypeData?.EducationType || [];
+
+      default:
+        return options || [];
+    }
+  };
+
+  const renderInputComponent = () => {
+    switch (type) {
+      case "text":
+      case "email":
+      case "phonenumber":
+      case "idnumber":
+        return (
+          <GenericInput
+            placeholder={label}
+            value={value}
+            onChangeText={handleChange}
+          />
+        );
+      case "date":
+        return (
+          <DateInput
+            placeholder={label}
+            value={value}
+            onChangeText={handleChange}
+          />
+        );
+      case "select":
+        return (
+          // <PickerInput
+          //   label={label}
+          //   onValueChange={(item) => handleChange(item)}
+          //   options={getOptions()}
+          //   selectedValue={value}
+          // />
+          <DropdownComponent
+            label={label}
+            onValueChange={(item) => handleChange(item)}
+            options={getOptions()}
+            selectedValue={value}
+          />
+        );
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <Animated.View style={{ transform: [{ translateX: shakeAnimation }] }}>
+      {renderInputComponent()}
+      {hasError && <Text style={styles.errorText}>{message}</Text>}
+    </Animated.View>
+  );
+};
+
 export default function LeadsForm({ isVisible, onClose, formJsonData }) {
   const [formIndex, setFormIndex] = useState(0);
   const [formData, setFormData] = useState(
@@ -54,126 +172,6 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
     if (errors[key]) {
       setErrors((prevErrors) => ({ ...prevErrors, [key]: false }));
     }
-  };
-
-  const RenderInput = ({ item, onChange, shakeAnimation, hasError }) => {
-    const { type, label, value, name, options, message } = item;
-    const [idTypeData, setIdTypeData] = useState([]);
-    const [proposerOccupationData, setProposerOccupationData] = useState([]);
-    const [educationTypeData, setEducationTypeData] = useState([]);
-    const [maritalStatusData, setMaritalStatusData] = useState([]);
-    // const [apiData, setApiData] = useState({});
-
-    if (
-      !item.visible ||
-      !["text", "select", "date", "email", "phonenumber", "idnumber"].includes(
-        type
-      )
-    )
-      return null;
-
-    const handleChange = (text) => onChange(name, text);
-
-    const getData = async () => {
-      try {
-        const idTypeResponse = await fetch(
-          "https://usp.monocept.ai/yatra/getId"
-        );
-        const idTypeJson = await idTypeResponse.json();
-        setIdTypeData(idTypeJson);
-
-        const proposerOccupationResponse = await fetch(
-          "https://usp.monocept.ai/yatra/getProposerOccupation"
-        );
-        const proposerOccupationJson = await proposerOccupationResponse.json();
-        setProposerOccupationData(proposerOccupationJson);
-
-        const educationTypeResponse = await fetch(
-          "https://usp.monocept.ai/yatra/getEducationType"
-        );
-        const educationTypeJson = await educationTypeResponse.json();
-        setEducationTypeData(educationTypeJson);
-
-        const maritalStatusResponse = await fetch(
-          "https://usp.monocept.ai/yatra/getMaritalStatus"
-        );
-        const maritalStatusJson = await maritalStatusResponse.json();
-        setMaritalStatusData(maritalStatusJson);
-      } catch (error) {
-        console.error("Error fetching data: ", error);
-      }
-    };
-
-    useEffect(() => {
-      getData();
-    }, []);
-
-    const getOptions = () => {
-      switch (label) {
-        case "ID Type":
-          return idTypeData?.IdType || [];
-
-        case "Occupation":
-          return proposerOccupationData?.ProposerOccupation || [];
-
-        case "Marital Status":
-          return maritalStatusData?.MaritalStatus || [];
-
-        case "Education":
-          return educationTypeData?.EducationType || [];
-
-        default:
-          return options || [];
-      }
-    };
-
-    const renderInputComponent = () => {
-      switch (type) {
-        case "text":
-        case "email":
-        case "phonenumber":
-        case "idnumber":
-          return (
-            <GenericInput
-              placeholder={label}
-              value={value}
-              onChangeText={handleChange}
-            />
-          );
-        case "date":
-          return (
-            <DateInput
-              placeholder={label}
-              value={value}
-              onChangeText={handleChange}
-            />
-          );
-        case "select":
-          return (
-            // <PickerInput
-            //   label={label}
-            //   onValueChange={(item) => handleChange(item)}
-            //   options={getOptions()}
-            //   selectedValue={value}
-            // />
-            <DropdownComponent
-              label={label}
-              onValueChange={(item) => handleChange(item)}
-              options={getOptions()}
-              selectedValue={value}
-            />
-          );
-        default:
-          return null;
-      }
-    };
-
-    return (
-      <Animated.View style={{ transform: [{ translateX: shakeAnimation }] }}>
-        {renderInputComponent()}
-        {hasError && <Text style={styles.errorText}>{message}</Text>}
-      </Animated.View>
-    );
   };
 
   const triggerShakeAnimation = () => {
