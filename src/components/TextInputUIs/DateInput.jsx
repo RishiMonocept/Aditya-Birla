@@ -27,11 +27,11 @@ export default function DateInput({
       setDate((prev) => prev);
     } else {
       setDate(currentDate);
-      onChangeText(format(currentDate, "dd/MM/yyyy"));
+      onChangeText(format(currentDate, "yyyy-MM-dd"));
     }
   };
 
-  const formattedValue = date ? format(date, "dd/MM/yyyy") : selectedDate;
+  const formattedValue = date ? format(date, "yyyy-MM-dd") : selectedDate;
 
   return (
     <View style={styles.mainContainer}>

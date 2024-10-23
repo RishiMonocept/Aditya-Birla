@@ -183,11 +183,15 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
       [key]: value,
     }));
 
-    console.log(formData);
     if (errors[key]) {
       setErrors((prevErrors) => ({ ...prevErrors, [key]: false }));
     }
   };
+
+  // TODO : Remove when the onSubmit API is integrated
+  useEffect(() => {
+    console.log("Updated form data", formData);
+  }, [formData]);
 
   const triggerShakeAnimation = () => {
     Vibration.vibrate(500);
@@ -252,11 +256,11 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
       {}
     );
 
-    // if (Object.keys(newErrors).length > 0) {
-    //   setErrors(newErrors);
-    //   triggerShakeAnimation();
-    //   return;
-    // }
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      triggerShakeAnimation();
+      return;
+    }
 
     if (formIndex < formJsonData?.formSections.length - 1) {
       setFormIndex((prev) => prev + 1);
@@ -381,6 +385,8 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
               data={formMemberData}
               keyExtractor={(item) => item.id}
               renderItem={renderMemberDetailsItem}
+              showsVerticalScrollIndicator={false}
+              removeClippedSubviews={false}
             />
           </>
         )}
