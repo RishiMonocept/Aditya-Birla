@@ -117,6 +117,7 @@ const RenderInput = ({
             placeholder={label}
             value={value}
             onChangeText={handleChange}
+            selectedDate={value}
           />
         );
       case "select":
@@ -265,37 +266,6 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
     }
   };
 
-  const fetchMemberDetailsData = async () => {
-    const url = "https://usp.monocept.ai/yatra/api/getproposerrelationships";
-    const bodyData = {
-      policyType: policyType,
-    };
-
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(bodyData),
-      });
-
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      const jsonResponse = await response.json();
-
-      if (jsonResponse.success) {
-        setFormMemberData(jsonResponse.data.relationShip);
-      } else {
-        throw new Error("API call failed, no valid data received");
-      }
-    } catch (err) {
-      setFormMemberData(null);
-    }
-  };
-
   const handleCheckBoxChange = (index) => {
     setCheckedStates((prevCheckedStates) => {
       const updatedCheckedStates = [...prevCheckedStates];
@@ -331,8 +301,46 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
 
   //REVIEW : It works, but might be wrong
   useEffect(() => {
+    const fetchMemberDetailsData = async () => {
+      const url = "https://usp.monocept.ai/yatra/api/getproposerrelationships";
+      const bodyData = {
+        policyType: policyType,
+      };
+
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(bodyData),
+        });
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const jsonResponse = await response.json();
+
+        if (jsonResponse.success) {
+          setFormMemberData(jsonResponse.data.relationShip);
+        } else {
+          throw new Error("API call failed, no valid data received");
+        }
+      } catch (err) {
+        setFormMemberData(null);
+      }
+    };
+
     fetchMemberDetailsData();
-  }, []);
+  }, [policyType]);
+
+  useEffect(() => {
+    const handleUpdatePolicyType = (type) => {
+      setPolicyType(type);
+    };
+    handleUpdatePolicyType(formData?.memberPolicyType);
+  }, [formData?.memberPolicyType]);
 
   return (
     <Modal visible={isVisible} animationType="slide" onRequestClose={onClose}>

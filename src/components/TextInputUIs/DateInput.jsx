@@ -10,24 +10,35 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import { format } from "date-fns";
 import CALENDAR_ICON from "../../assets/Forms/calendar-icon.png";
 
-export default function DateInput({ placeholder, onChangeText, value }) {
-  const [date, setDate] = useState(new Date());
+export default function DateInput({
+  placeholder,
+  onChangeText,
+  value,
+  selectedDate,
+}) {
+  const [date, setDate] = useState(null);
   const [showCalendar, setShowCalendar] = useState(false);
 
   const onDateChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
     setShowCalendar(false);
-    setDate(currentDate);
-    onChangeText(format(currentDate, "yyyy-MM-dd")); // Format as needed
+    console.log(event.type);
+    const currentDate = selectedDate || date;
+    if (event.type === "dismissed") {
+      setDate((prev) => prev);
+    } else {
+      setDate(currentDate);
+      onChangeText(format(currentDate, "yyyy-MM-dd"));
+    }
   };
-  value = format(date, "yyyy-MM-dd");
+
+  const formattedValue = date ? format(date, "yyyy-MM-dd") : selectedDate;
 
   return (
     <View style={styles.mainContainer}>
       <TextInput
         placeholder={placeholder}
         placeholderTextColor={"#979CAE"}
-        value={value}
+        value={formattedValue}
         onChangeText={onChangeText}
         editable={false}
         style={{ color: "#000" }}
@@ -40,9 +51,9 @@ export default function DateInput({ placeholder, onChangeText, value }) {
       </TouchableOpacity>
       {showCalendar && (
         <DateTimePicker
-          value={date}
+          value={date || new Date()}
           mode="date"
-          display="default"
+          display="calendar"
           onChange={onDateChange}
         />
       )}
