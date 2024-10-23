@@ -18,9 +18,9 @@ export default function DateInput({ placeholder, onChangeText, value }) {
     const currentDate = selectedDate || date;
     setShowCalendar(false);
     setDate(currentDate);
-    onChangeText(format(currentDate, "dd/MM/yyyy")); // Format as needed
+    onChangeText(format(currentDate, "yyyy-MM-dd")); // Format as needed
   };
-  value = format(date, "dd/MM/yyyy");
+  value = format(date, "yyyy-MM-dd");
 
   return (
     <View style={styles.mainContainer}>
