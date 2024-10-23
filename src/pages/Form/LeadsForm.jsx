@@ -182,7 +182,7 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
       [key]: value,
     }));
 
-    console.log(formData);
+    console.log("formData-->>", formData);
     if (errors[key]) {
       setErrors((prevErrors) => ({ ...prevErrors, [key]: false }));
     }
@@ -317,12 +317,19 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
     }
   };
 
-  const handleCheckBoxChange = (index) => {
+  const handleCheckBoxChange = (index, key, value) => {
     setCheckedStates((prevCheckedStates) => {
       const updatedCheckedStates = [...prevCheckedStates];
       updatedCheckedStates[index] = !prevCheckedStates[index];
+      setFormData((prevData) => ({
+        ...prevData,
+        [key]: updatedCheckedStates[index] ? value : "",
+      }));
+
       return updatedCheckedStates;
     });
+
+    console.log("checkedStates--<<>>>", checkedStates);
   };
 
   const handleAddMore = () => {
@@ -336,7 +343,7 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
     <View key={item.id} style={{ marginVertical: 8 }}>
       <CheckBoxInput
         checked={checkedStates[index]}
-        setChecked={() => handleCheckBoxChange(index)}
+        setChecked={() => handleCheckBoxChange(index, item.name, item.value)}
         item={item}
       />
     </View>

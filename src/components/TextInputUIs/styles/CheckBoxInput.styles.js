@@ -31,6 +31,8 @@ export const styles = StyleSheet.create({
     width: spacingScale.l3,
     backgroundColor: "#fff",
     borderRadius: spacingModerateScale.m4,
+    alignItems: "center",
+    justifyContent: "center",
   },
   filterText: {
     fontSize: spacingModerateScale.m2,
