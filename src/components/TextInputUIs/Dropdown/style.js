@@ -9,6 +9,15 @@ export const styles = StyleSheet.create({
   containerStyle: {
     borderRadius: 20,
     overflow: "hidden",
+    borderWidth: 0.5,
+    elevation: 8,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 6,
   },
   itemContainer: {
     borderRadius: 20,
