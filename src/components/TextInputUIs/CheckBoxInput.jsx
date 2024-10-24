@@ -1,5 +1,5 @@
 import { View, Text, TextInput } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { TouchableOpacity } from "react-native";
 import CHECKED_ICON from "../../assets/AllQuotes/Checked.svg";
 import DELETE_ICON from "../../assets/Forms/delete_icon.svg";
@@ -7,8 +7,15 @@ import { spacingModerateScale, spacingScale } from "../../res/ScaledSheet";
 import { styles } from "./styles/CheckBoxInput.styles";
 
 export default function CheckBoxInput({ checked, setChecked, item }) {
+  const [age, setAge] = useState("");
+
   const handlePress = () => {
     setChecked(!checked);
+  };
+
+  const handleTextChange = (text) => {
+    const numericText = text.replace(/[^0-9]/g, "");
+    setAge(numericText.slice(0, 3));
   };
 
   return (
@@ -47,8 +54,15 @@ export default function CheckBoxInput({ checked, setChecked, item }) {
           <TextInput
             placeholder="Enter Age"
             style={styles.textInputContainer}
+            value={age}
+            maxLength={3}
+            keyboardType="numeric"
+            autoCapitalize="characters"
+            onChangeText={handleTextChange}
           />
-          <DELETE_ICON />
+          <TouchableOpacity onPress={() => setAge("")}>
+            <DELETE_ICON />
+          </TouchableOpacity>
         </View>
       )}
     </View>
