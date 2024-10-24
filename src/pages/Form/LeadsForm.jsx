@@ -466,6 +466,7 @@ const styles = StyleSheet.create({
     color: "#C7222A",
     fontSize: 12,
     marginTop: 4,
+    paddingHorizontal: 16,
   },
   closeButton: {
     marginTop: 16,
