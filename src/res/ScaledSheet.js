@@ -39,7 +39,7 @@ export const spacingScale = {
   m1: scale(12),
   m2: scale(14),
   m3: scale(16),
-  space_18:scale(18),
+  space_18: scale(18),
   m4: scale(20),
   m5: scale(24),
   l1: scale(32),
@@ -47,10 +47,10 @@ export const spacingScale = {
   l3: scale(40),
   l4: scale(48),
   l5: scale(64),
+  l6: scale(75),
   xl1: scale(80),
   xl2: scale(96),
   space_194: scale(194),
-  
 };
 
 export const spacingVerticalScale = {
@@ -58,9 +58,10 @@ export const spacingVerticalScale = {
   s1: verticalScale(2),
   s2: verticalScale(4),
   base: verticalScale(8),
+  space_10: verticalScale(10),
   m1: verticalScale(12),
   m2: verticalScale(16),
-  space_16dot8:verticalScale(16.8),
+  space_16dot8: verticalScale(16.8),
   m3: verticalScale(20),
   m4: verticalScale(24),
   l1: verticalScale(32),
@@ -69,7 +70,7 @@ export const spacingVerticalScale = {
   l4: verticalScale(64),
   xl1: verticalScale(80),
   xl2: verticalScale(96),
-  space_18:verticalScale(18)
+  space_18: verticalScale(18),
 };
 
 export const spacingModerateScale = {

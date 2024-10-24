@@ -27,10 +27,12 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   profileImage: {
-    height: spacingVerticalScale.l2,
-    width: spacingScale.l3,
+    height: spacingModerateScale.l2,
+    width: spacingModerateScale.l2,
     backgroundColor: "#fff",
-    borderRadius: spacingModerateScale.m4,
+    borderRadius: 20,
+    alignItems: "center",
+    justifyContent: "center",
   },
   filterText: {
     fontSize: spacingModerateScale.m2,
@@ -48,6 +50,6 @@ export const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderRadius: spacingModerateScale.m3,
     paddingHorizontal: spacingScale.base,
-    width: spacingScale.l5,
+    width: spacingScale.l6,
   },
 });

@@ -1,4 +1,4 @@
-import { View, Text, TextInput } from "react-native";
+import { View, Text, TextInput, Image } from "react-native";
 import React, { useState } from "react";
 import { TouchableOpacity } from "react-native";
 import CHECKED_ICON from "../../assets/AllQuotes/Checked.svg";
@@ -8,6 +8,14 @@ import { styles } from "./styles/CheckBoxInput.styles";
 
 export default function CheckBoxInput({ checked, setChecked, item }) {
   const [age, setAge] = useState("");
+  const imageMapping = {
+    "assets/Self.png": require("../../assets/Self.png"),
+    "assets/Spouse.png": require("../../assets/Spouse.png"),
+    "assets/Son.png": require("../../assets/Son.png"),
+    "assets/Daughter.png": require("../../assets/Daughter.png"),
+    "assets/Father.png": require("../../assets/Father.png"),
+    "assets/Mother.png": require("../../assets/Mother.png"),
+  };
 
   const handlePress = () => {
     setChecked(!checked);
@@ -43,7 +51,13 @@ export default function CheckBoxInput({ checked, setChecked, item }) {
           {checked && <CHECKED_ICON />}
         </TouchableOpacity>
         <View style={styles.profileImage}>
-          {/* <Image source={require(item.imagePath)} /> */}
+          <Image
+            style={{
+              width: spacingModerateScale.m5,
+              height: spacingModerateScale.m5,
+            }}
+            source={imageMapping[item.imagePath]}
+          />
         </View>
 
         <Text style={styles.filterText}>{item.name}</Text>

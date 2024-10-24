@@ -8,7 +8,7 @@ export default function GenericButton({
   textColor = "#ffffff",
 }) {
   return (
-    <View style={{ paddingTop: 10, paddingBottom: 20 }}>
+    <View style={{ paddingVertical: 10 }}>
       <TouchableOpacity
         style={[styles.mainContainer, { backgroundColor: backgroundColor }]}
         onPress={onPress}

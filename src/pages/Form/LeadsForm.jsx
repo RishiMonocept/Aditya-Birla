@@ -22,6 +22,7 @@ import Header from "../../components/Header/Header";
 import DateInput from "../../components/TextInputUIs/DateInput";
 import CheckBoxInput from "../../components/TextInputUIs/CheckBoxInput";
 import DropdownComponent from "../../components/TextInputUIs/Dropdown";
+import { spacingVerticalScale } from "../../res/ScaledSheet";
 
 const RenderInput = ({
   item,
@@ -432,17 +433,18 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
             )}
           </View>
         </ScrollView>
-        {formJsonData?.formSections[formIndex]?.sectionTitle ===
-          "Insured Member Details" && (
-          <GenericButton
-            title={"+ Add More"}
-            onPress={handleAddMore}
-            backgroundColor="#F1F3F6"
-            textColor="#000000"
-          />
-        )}
-
-        <GenericButton title={"Continue"} onPress={handleSubmit} />
+        <View style={{ marginBottom: spacingVerticalScale.space_10 }}>
+          {formJsonData?.formSections[formIndex]?.sectionTitle ===
+            "Insured Member Details" && (
+            <GenericButton
+              title={"+ Add More"}
+              onPress={handleAddMore}
+              backgroundColor="#F1F3F6"
+              textColor="#000000"
+            />
+          )}
+          <GenericButton title={"Continue"} onPress={handleSubmit} />
+        </View>
       </KeyboardAvoidingView>
     </Modal>
   );
