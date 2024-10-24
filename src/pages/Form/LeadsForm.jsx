@@ -443,8 +443,9 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
               textColor="#000000"
             />
           )}
-
-          <GenericButton title={"Continue"} onPress={handleSubmit} />
+          <View style={{ paddingBottom: 20 }}>
+            <GenericButton title={"Continue"} onPress={handleSubmit} />
+          </View>
         </KeyboardAvoidingView>
       </Modal>
     </SafeAreaView>
