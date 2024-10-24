@@ -258,11 +258,11 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
       {}
     );
 
-    // if (Object.keys(newErrors).length > 0) {
-    //   setErrors(newErrors);
-    //   triggerShakeAnimation();
-    //   return;
-    // }
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      triggerShakeAnimation();
+      return;
+    }
 
     if (formIndex < formJsonData?.formSections.length - 2) {
       setFormIndex((prev) => prev + 1);
