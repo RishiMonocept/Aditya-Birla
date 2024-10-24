@@ -2,16 +2,43 @@ import { StyleSheet, TextInput, View } from "react-native";
 import React from "react";
 
 export default function GenericInput({ placeholder, onChangeText, value }) {
+  const handleTextChange = (text) => {
+    if (placeholder === "PAN Card Number") {
+      onChangeText(text.toUpperCase().slice(0, 10));
+    } else if (placeholder === "Age") {
+      const numericText = text.replace(/[^0-9]/g, "");
+      onChangeText(numericText.slice(0, 3));
+    } else {
+      onChangeText(text);
+    }
+  };
+
   return (
     <View style={styles.mainContainer}>
       <TextInput
         placeholder={placeholder}
         placeholderTextColor={"#979CAE"}
         value={value}
-        onChangeText={onChangeText}
-        keyboardType="visible-password"
-        dataDetectorTypes={"calendarEvent"}
-        // autoCapitalize={placeholder === "PAN Card Number" && "characters"}
+        onChangeText={handleTextChange}
+        keyboardType={
+          placeholder === "PAN Card Number"
+            ? "default"
+            : placeholder === "Age" || placeholder === "Mobile Number"
+            ? "numeric"
+            : "visible-password"
+        }
+        autoCapitalize={
+          placeholder === "PAN Card Number" ? "characters" : "none"
+        }
+        maxLength={
+          placeholder === "PAN Card Number"
+            ? 10
+            : placeholder === "Age"
+            ? 3
+            : placeholder === "Mobile Number"
+            ? 10
+            : undefined
+        }
       />
     </View>
   );

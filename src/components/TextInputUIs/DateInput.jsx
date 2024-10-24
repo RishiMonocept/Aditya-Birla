@@ -31,7 +31,7 @@ export default function DateInput({
     }
   };
 
-  const formattedValue = date ? format(date, "yyyy-MM-dd") : selectedDate;
+  const formattedValue = date ? format(date, "dd/MM/yyyy") : selectedDate;
 
   return (
     <View style={styles.mainContainer}>

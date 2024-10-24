@@ -41,7 +41,6 @@ export const styles = StyleSheet.create({
   },
   placeholderStyle: {
     fontSize: 14,
-    fontWeight: "600",
     color: "#979CAE",
   },
   selectedTextStyle: {
