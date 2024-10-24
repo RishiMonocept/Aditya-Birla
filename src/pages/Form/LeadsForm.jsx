@@ -457,6 +457,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     paddingTop: 14,
     marginHorizontal: 16,
+    marginTop: Platform.OS == "ios" ? 55 : 0,
   },
   title: {
     lineHeight: 17.6,
