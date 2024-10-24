@@ -48,5 +48,6 @@ export const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderRadius: spacingModerateScale.m3,
     paddingHorizontal: spacingScale.base,
+    width: spacingScale.l5,
   },
 });
