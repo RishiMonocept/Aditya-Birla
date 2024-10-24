@@ -16,21 +16,27 @@ export default function CheckBoxInput({ checked, setChecked, item }) {
     "assets/Father.png": require("../../assets/Father.png"),
     "assets/Mother.png": require("../../assets/Mother.png"),
   };
+  const [marked, setMarked] = useState(false);
 
   const handlePress = () => {
-    setChecked(!checked);
+    const newMarkedState = !marked;
+    setMarked(newMarkedState);
+
+    setChecked({ name: item.name, age: newMarkedState ? age : null });
   };
 
-  const handleTextChange = (text) => {
+  const handleAgeChange = (text) => {
     const numericText = text.replace(/[^0-9]/g, "");
     setAge(numericText.slice(0, 3));
+    if (marked) {
+      setChecked({ name: item.name, age: text });
+    }
   };
 
   return (
     <View style={styles.memberDetailContainer}>
       <View
         style={{
-          // borderWidth: 1,
           flexDirection: "row",
           gap: spacingScale.base,
           alignItems: "center",
@@ -41,14 +47,14 @@ export default function CheckBoxInput({ checked, setChecked, item }) {
           style={[
             styles.checkboxContainer,
             {
-              borderColor: checked ? "#2E2E2E" : null,
-              borderWidth: checked ? 0 : 1,
-              borderRadius: checked ? 0 : spacingModerateScale.s2,
+              borderColor: marked ? "#2E2E2E" : null,
+              borderWidth: marked ? 0 : 1,
+              borderRadius: marked ? 0 : spacingModerateScale.s2,
             },
           ]}
           onPress={handlePress}
         >
-          {checked && <CHECKED_ICON />}
+          {marked && <CHECKED_ICON />}
         </TouchableOpacity>
         <View style={styles.profileImage}>
           <Image
@@ -63,7 +69,7 @@ export default function CheckBoxInput({ checked, setChecked, item }) {
         <Text style={styles.filterText}>{item.name}</Text>
       </View>
 
-      {checked && (
+      {marked && (
         <View style={styles.deleteContainer}>
           <TextInput
             placeholder="Enter Age"
@@ -72,7 +78,7 @@ export default function CheckBoxInput({ checked, setChecked, item }) {
             maxLength={3}
             keyboardType="numeric"
             autoCapitalize="characters"
-            onChangeText={handleTextChange}
+            onChangeText={handleAgeChange}
           />
           <TouchableOpacity onPress={() => setAge("")}>
             <DELETE_ICON />

@@ -23,6 +23,7 @@ import DateInput from "../../components/TextInputUIs/DateInput";
 import CheckBoxInput from "../../components/TextInputUIs/CheckBoxInput";
 import DropdownComponent from "../../components/TextInputUIs/Dropdown";
 import { spacingVerticalScale } from "../../res/ScaledSheet";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const RenderInput = ({
   item,
@@ -292,10 +293,35 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
     }
   };
 
-  const handleCheckBoxChange = (index) => {
+  const handleCheckBoxChange = (checkboxObject) => {
     setCheckedStates((prevCheckedStates) => {
-      const updatedCheckedStates = [...prevCheckedStates];
-      updatedCheckedStates[index] = !prevCheckedStates[index];
+      const key = formJsonData?.formSections[formIndex]?.sectionTitle;
+      const currentValues = prevCheckedStates[key] || [];
+
+      // This is a check to know if the object already exists in the array
+      const existingIndex = currentValues.findIndex(
+        (item) => item.name === checkboxObject.name
+      );
+
+      let updatedCheckedStates;
+
+      if (existingIndex > -1) {
+        // If it exists, remove it (toggle off)
+        updatedCheckedStates = {
+          ...prevCheckedStates,
+          [key]: currentValues.filter((_, index) => index !== existingIndex),
+        };
+      } else {
+        // If it doesn't exist, add it to the array
+        updatedCheckedStates = {
+          ...prevCheckedStates,
+          [key]: [...currentValues, checkboxObject],
+        };
+      }
+
+      // this call is to update the form data
+      handleFormDataChange(key, updatedCheckedStates[key]);
+
       return updatedCheckedStates;
     });
   };
@@ -311,19 +337,11 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
     <View key={item.id} style={{ marginVertical: 8 }}>
       <CheckBoxInput
         checked={checkedStates[index]}
-        setChecked={() => handleCheckBoxChange(index)}
+        setChecked={handleCheckBoxChange}
         item={item}
       />
     </View>
   );
-
-  //REVIEW : It works, but might be wrong
-  useEffect(() => {
-    // console.log("fetched form data ------>", formMemberData);
-    if (formMemberData && formMemberData.length > 0) {
-      setCheckedStates(new Array(formMemberData.length).fill(false));
-    }
-  }, [formMemberData]);
 
   //REVIEW : It works, but might be wrong
   useEffect(() => {
@@ -369,84 +387,86 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
   }, [formData?.memberPolicyType]);
 
   return (
-    <Modal visible={isVisible} animationType="slide" onRequestClose={onClose}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={styles.container}
-      >
-        <Header title={"Proposal"} onPress={onClose} />
-        <FormProgressHeader />
-        <Text style={styles.title}>
-          {formJsonData?.formSections[formIndex]?.sectionTitle}
-        </Text>
-        {formJsonData?.formSections[formIndex]?.sectionTitle ===
-          "Insured Member Details" && (
-          <>
-            <FlatList
-              data={formMemberData}
-              keyExtractor={(item) => item.id}
-              renderItem={renderMemberDetailsItem}
-              showsVerticalScrollIndicator={false}
-              removeClippedSubviews={false}
-            />
-          </>
-        )}
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          onScroll={handleScroll}
-          scrollEventThrottle={16}
+    <SafeAreaView>
+      <Modal visible={isVisible} animationType="slide" onRequestClose={onClose}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          style={styles.container}
         >
-          <View style={{ gap: 16, marginBottom: 36 }}>
-            {formJsonData.formSections[formIndex].formControls.map(
-              (item, index) => {
-                const isVisible = item?.visible;
-                const value = formData[item.name];
-                const isRequired = item.validators?.some(
-                  (validator) => validator.required
-                );
-                const errorMessage =
-                  errors[item.name]?.message ||
-                  item.validators?.find((v) => v.required)?.message;
-                const hasError = errors[item.name];
-                const shakeAnim = hasError
-                  ? shakeAnimation
-                  : new Animated.Value(0);
-
-                return (
-                  isVisible && (
-                    <RenderInput
-                      key={index}
-                      item={{
-                        ...item,
-                        value,
-                        required: isRequired,
-                        message: errorMessage,
-                      }}
-                      onChange={handleFormDataChange}
-                      shakeAnimation={shakeAnim}
-                      hasError={hasError}
-                      scrollOffset={scrollOffset}
-                    />
-                  )
-                );
-              }
-            )}
-          </View>
-        </ScrollView>
-        <View style={{ marginBottom: spacingVerticalScale.space_10 }}>
+          <Header title={"Proposal"} onPress={onClose} />
+          <FormProgressHeader />
+          <Text style={styles.title}>
+            {formJsonData?.formSections[formIndex]?.sectionTitle}
+          </Text>
           {formJsonData?.formSections[formIndex]?.sectionTitle ===
             "Insured Member Details" && (
-            <GenericButton
-              title={"+ Add More"}
-              onPress={handleAddMore}
-              backgroundColor="#F1F3F6"
-              textColor="#000000"
-            />
+            <>
+              <FlatList
+                data={formMemberData}
+                keyExtractor={(item) => item.id}
+                renderItem={renderMemberDetailsItem}
+                showsVerticalScrollIndicator={false}
+                removeClippedSubviews={false}
+              />
+            </>
           )}
-          <GenericButton title={"Continue"} onPress={handleSubmit} />
-        </View>
-      </KeyboardAvoidingView>
-    </Modal>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            onScroll={handleScroll}
+            scrollEventThrottle={16}
+          >
+            <View style={{ gap: 16, marginBottom: 36 }}>
+              {formJsonData.formSections[formIndex].formControls.map(
+                (item, index) => {
+                  const isVisible = item?.visible;
+                  const value = formData[item.name];
+                  const isRequired = item.validators?.some(
+                    (validator) => validator.required
+                  );
+                  const errorMessage =
+                    errors[item.name]?.message ||
+                    item.validators?.find((v) => v.required)?.message;
+                  const hasError = errors[item.name];
+                  const shakeAnim = hasError
+                    ? shakeAnimation
+                    : new Animated.Value(0);
+
+                  return (
+                    isVisible && (
+                      <RenderInput
+                        key={index}
+                        item={{
+                          ...item,
+                          value,
+                          required: isRequired,
+                          message: errorMessage,
+                        }}
+                        onChange={handleFormDataChange}
+                        shakeAnimation={shakeAnim}
+                        hasError={hasError}
+                        scrollOffset={scrollOffset}
+                      />
+                    )
+                  );
+                }
+              )}
+            </View>
+          </ScrollView>
+          <View style={{ marginBottom: spacingVerticalScale.space_10 }}>
+            {formJsonData?.formSections[formIndex]?.sectionTitle ===
+              "Insured Member Details" && (
+              <GenericButton
+                title={"+ Add More"}
+                onPress={handleAddMore}
+                backgroundColor="#F1F3F6"
+                textColor="#000000"
+              />
+            )}
+            <GenericButton title={"Continue"} onPress={handleSubmit} />
+          </View>
+        </KeyboardAvoidingView>
+      </Modal>
+    </SafeAreaView>
   );
 }
 
@@ -456,6 +476,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     paddingTop: 14,
     marginHorizontal: 16,
+    marginTop: Platform.OS == "ios" ? 55 : 0,
   },
   title: {
     lineHeight: 17.6,
