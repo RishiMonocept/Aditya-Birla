@@ -262,7 +262,7 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
       return;
     }
 
-    if (formIndex < formJsonData?.formSections.length - 1) {
+    if (formIndex < formJsonData?.formSections.length - 2) {
       setFormIndex((prev) => prev + 1);
     } else {
       console.log("Form submitted successfully", formData);
