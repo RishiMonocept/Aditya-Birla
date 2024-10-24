@@ -11,7 +11,7 @@ const DropdownComponent = ({
   scrollOffset,
 }) => {
   const [remainingHeight, setRemainingHeight] = useState(0);
-  const [, setIsFocus] = useState(false);
+  const [isFocus, setIsFocus] = useState(false);
   const dropdownRef = useRef(null);
   const windowHeight = Dimensions.get("window").height;
 
@@ -48,8 +48,11 @@ const DropdownComponent = ({
         placeholder={label}
         value={selectedValue}
         dropdownPosition={remainingHeight < 180 ? "top" : "bottom"}
+        inverted={false}
+        autoScroll={false}
         onChange={(item) => {
           onValueChange(item.value);
+          setIsFocus(false);
         }}
       />
     </View>
