@@ -292,10 +292,35 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
     }
   };
 
-  const handleCheckBoxChange = (index) => {
+  const handleCheckBoxChange = (checkboxObject) => {
     setCheckedStates((prevCheckedStates) => {
-      const updatedCheckedStates = [...prevCheckedStates];
-      updatedCheckedStates[index] = !prevCheckedStates[index];
+      const key = formJsonData?.formSections[formIndex]?.sectionTitle;
+      const currentValues = prevCheckedStates[key] || [];
+
+      // This is a check to know if the object already exists in the array
+      const existingIndex = currentValues.findIndex(
+        (item) => item.name === checkboxObject.name
+      );
+
+      let updatedCheckedStates;
+
+      if (existingIndex > -1) {
+        // If it exists, remove it (toggle off)
+        updatedCheckedStates = {
+          ...prevCheckedStates,
+          [key]: currentValues.filter((_, index) => index !== existingIndex),
+        };
+      } else {
+        // If it doesn't exist, add it to the array
+        updatedCheckedStates = {
+          ...prevCheckedStates,
+          [key]: [...currentValues, checkboxObject],
+        };
+      }
+
+      // this call is to update the form data
+      handleFormDataChange(key, updatedCheckedStates[key]);
+
       return updatedCheckedStates;
     });
   };
@@ -311,19 +336,11 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
     <View key={item.id} style={{ marginVertical: 8 }}>
       <CheckBoxInput
         checked={checkedStates[index]}
-        setChecked={() => handleCheckBoxChange(index)}
+        setChecked={handleCheckBoxChange}
         item={item}
       />
     </View>
   );
-
-  //REVIEW : It works, but might be wrong
-  useEffect(() => {
-    // console.log("fetched form data ------>", formMemberData);
-    if (formMemberData && formMemberData.length > 0) {
-      setCheckedStates(new Array(formMemberData.length).fill(false));
-    }
-  }, [formMemberData]);
 
   //REVIEW : It works, but might be wrong
   useEffect(() => {
