@@ -1,13 +1,18 @@
 import { View, Text, TextInput, Image } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { TouchableOpacity } from "react-native";
 import CHECKED_ICON from "../../assets/AllQuotes/Checked.svg";
 import DELETE_ICON from "../../assets/Forms/delete_icon.svg";
 import { spacingModerateScale, spacingScale } from "../../res/ScaledSheet";
-import sonIcon from "../../assets/Son.png";
 import { styles } from "./styles/CheckBoxInput.styles";
 
-export default function CheckBoxInput({ checked, setChecked, item }) {
+export default function CheckBoxInput({
+  checked,
+  setChecked,
+  item,
+  age,
+  setAge,
+}) {
   const imageMapping = {
     "assets/Self.png": require("../../assets/Self.png"),
     "assets/Spouse.png": require("../../assets/Spouse.png"),
@@ -17,16 +22,18 @@ export default function CheckBoxInput({ checked, setChecked, item }) {
     "assets/Mother.png": require("../../assets/Mother.png"),
   };
 
-  console.log(item);
   const handlePress = () => {
-    setChecked(!checked);
+    setChecked();
+  };
+
+  const handleDelete = () => {
+    setAge("");
   };
 
   return (
     <View style={styles.memberDetailContainer}>
       <View
         style={{
-          // borderWidth: 1,
           flexDirection: "row",
           gap: spacingScale.base,
           alignItems: "center",
@@ -51,8 +58,6 @@ export default function CheckBoxInput({ checked, setChecked, item }) {
             style={{
               width: 24,
               height: 24,
-              // alignItems: "center",
-              // justifyContent: "center",
             }}
             source={imageMapping[item.imagePath]}
           />
@@ -66,8 +71,10 @@ export default function CheckBoxInput({ checked, setChecked, item }) {
           <TextInput
             placeholder="Enter Age"
             style={styles.textInputContainer}
+            value={age}
+            onChangeText={(text) => setAge(text)}
           />
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleDelete}>
             <DELETE_ICON />
           </TouchableOpacity>
         </View>

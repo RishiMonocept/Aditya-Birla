@@ -168,6 +168,8 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
   const [formMemberData, setFormMemberData] = useState(null);
   const [policyType, setPolicyType] = useState("Multi Individual");
   const [checkedStates, setCheckedStates] = useState([]);
+  // const [selectedAges, setSelectedAges] = useState([]);
+  const [ages, setAges] = useState({});
 
   const [scrollOffset, setScrollOffset] = useState(0);
 
@@ -317,19 +319,44 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
     }
   };
 
-  const handleCheckBoxChange = (index, key, value) => {
+  const handleCheckBoxChange = (index, value) => {
     setCheckedStates((prevCheckedStates) => {
       const updatedCheckedStates = [...prevCheckedStates];
-      updatedCheckedStates[index] = !prevCheckedStates[index];
-      setFormData((prevData) => ({
-        ...prevData,
-        [key]: updatedCheckedStates[index] ? value : "",
-      }));
+      updatedCheckedStates[index] = !prevCheckedStates[index]; 
 
-      return updatedCheckedStates;
+    
+      setFormData((prevData) => {
+        const updatedData = { ...prevData };
+        if (updatedCheckedStates[index]) {
+          updatedData[value] = ""; 
+        } else {
+          delete updatedData[value]; 
+        }
+
+        // console.log("Updated Form Data:", updatedData);
+        return updatedData;
+      });
+
+
+      if (!updatedCheckedStates[index]) {
+        setAges((prevAges) => {
+          const updatedAges = { ...prevAges };
+          delete updatedAges[value]; 
+          return updatedAges;
+        });
+      }
+
+      return updatedCheckedStates; 
     });
+  };
 
-    console.log("checkedStates--<<>>>", checkedStates);
+  const handleAgeChange = (key, age) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [key]: age, // Update the age in formData
+    }));
+
+    console.log("Ages:", formData); // Log the ages state
   };
 
   const handleAddMore = () => {
@@ -343,8 +370,10 @@ export default function LeadsForm({ isVisible, onClose, formJsonData }) {
     <View key={item.id} style={{ marginVertical: 8 }}>
       <CheckBoxInput
         checked={checkedStates[index]}
-        setChecked={() => handleCheckBoxChange(index, item.name, item.value)}
+        setChecked={() => handleCheckBoxChange(index, item.value)}
         item={item}
+        age={ages[item.value]}
+        setAge={(text) => handleAgeChange(item.value, text)}
       />
     </View>
   );
