@@ -23,7 +23,7 @@ export default function GenericInput({ placeholder, onChangeText, value }) {
         keyboardType={
           placeholder === "PAN Card Number"
             ? "default"
-            : placeholder === "Age"
+            : placeholder === "Age" || placeholder === "Mobile Number"
             ? "numeric"
             : "visible-password"
         }
@@ -35,6 +35,8 @@ export default function GenericInput({ placeholder, onChangeText, value }) {
             ? 10
             : placeholder === "Age"
             ? 3
+            : placeholder === "Mobile Number"
+            ? 10
             : undefined
         }
       />
