@@ -8,6 +8,16 @@ import sonIcon from "../../assets/Son.png";
 import { styles } from "./styles/CheckBoxInput.styles";
 
 export default function CheckBoxInput({ checked, setChecked, item }) {
+  const imageMapping = {
+    "assets/Self.png": require("../../assets/Self.png"),
+    "assets/Spouse.png": require("../../assets/Spouse.png"),
+    "assets/Son.png": require("../../assets/Son.png"),
+    "assets/Daughter.png": require("../../assets/Daughter.png"),
+    "assets/Father.png": require("../../assets/Father.png"),
+    "assets/Mother.png": require("../../assets/Mother.png"),
+  };
+
+  console.log(item);
   const handlePress = () => {
     setChecked(!checked);
   };
@@ -44,7 +54,7 @@ export default function CheckBoxInput({ checked, setChecked, item }) {
               // alignItems: "center",
               // justifyContent: "center",
             }}
-            source={sonIcon}
+            source={imageMapping[item.imagePath]}
           />
         </View>
 

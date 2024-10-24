@@ -27,10 +27,10 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   profileImage: {
-    height: spacingVerticalScale.l2,
-    width: spacingScale.l3,
+    height: 40,
+    width: 40,
     backgroundColor: "#fff",
-    borderRadius: spacingModerateScale.m4,
+    borderRadius: 20,
     alignItems: "center",
     justifyContent: "center",
   },
